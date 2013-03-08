@@ -11,74 +11,27 @@ public partial class Registration : System.Web.UI.Page
     {
 
     }
-    protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
+
+    //method to display fields based on what the user selects
+
+
+    
+    protected void applyPromo_Click(object sender, EventArgs e)
     {
-        ddl_RegistrationType.Visible = true;
+        //Check the promo code that was entered against the DB and adjust the price.
     }
-    protected void ddl_RegistrationType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        fName.Visible = true;
-        lName.Visible = true;
-        title.Visible = true;
-        company.Visible = true;
-        address.Visible = true;
-        city.Visible = true;
-        ddl_state.Visible = true;
-        zip.Visible = true;
-        phone.Visible = true;
-        email.Visible = true;
-        submit.Visible = true;
-        add.Visible = true;
-        clear.Visible = true;
-    }
+    
+    
+    
+    
     protected void submit_Click(object sender, EventArgs e)
     {
-
-    }
-    protected void clear_Click(object sender, EventArgs e)
-    {
-        //clear the text fields
-        fName.Text = "";
-        lName.Text = "";
-        title.Text = "";
-        company.Text = "";
-        address.Text = "";
-        city.Text = "";
-        ddl_state.Text = "";
-        zip.Text = "";
-        phone.Text = "";
-        email.Text = "";
-
-        //fName.Visible = false;
-        //lName.Visible = false;
-        //title.Visible = false;
-        //company.Visible = false;
-        //address.Visible = false;
-        //city.Visible = false;
-        //ddl_state.Visible = false;
-        //zip.Visible = false;
-        //phone.Visible = false;
-        //email.Visible = false;
-        //submit.Visible = false;
-        //add.Visible = false;
-        //clear.Visible = false;
-    }
-    protected void add_Click(object sender, EventArgs e)
-    {
-        //submit form data to the DB
-
-
-        //clear the text fields
-        fName.Text = "";
-        lName.Text = "";
-        title.Text = "";
-        company.Text = "";
-        address.Text = "";
-        city.Text = "";
-        ddl_state.Text = "";
-        zip.Text = "";
-        phone.Text = "";
-        email.Text = "";
-
+        //run in if stmt to be sure that validators are valid before post
+        if (this.IsValid)
+        { 
+            //submit form data to the DB
+            Response.Write("Writing values to the database...");
+        }
+       
     }
 }
