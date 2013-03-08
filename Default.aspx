@@ -1,43 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<title>Partners In Business</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
-		<script src="js/jquery-1.8.3.min.js" ></script>
-		<script src="css/5grid/init.js?use=mobile,desktop,1000px" ></script>
-		<script src="js/init.js" ></script>
-        <noscript>
-			<link rel="stylesheet" href="css/5grid/core.css" />
-			<link rel="stylesheet" href="css/5grid/core-desktop.css" />
-			<link rel="stylesheet" href="css/5grid/core-1200px.css" />
-			<link rel="stylesheet" href="css/5grid/core-noscript.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
-		</noscript>
-		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
-		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
-	</head>
-	<body>
-
-		<!-- Nav -->
-			<nav id="nav" >
-				<ul>
-					<li><a href="Default.aspx" >Home</a></li>
-                    <li><a href="Registration.aspx" target="_blank" >Registration</a></li>
-					<li><a href="Reports.aspx" >Reports</a></li>
-					<li><a href="Conferences.aspx" >Conferences</a></li>
-                    <li><a href="Documentation.aspx" >Help</a></li>
-				</ul>
-			</nav>
-
-        <!-- Page Nav -->
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
+    <!-- Page Nav -->
 			<nav id="pgnav" >
 				<ul>
 					<li><a href="#top" > Top |</a></li>
@@ -68,50 +34,99 @@
 
         <!-- Search -->
         <!-- The following controls will allow the user to quickly perform a search of the database and return the results -->
-			<div class="wrapper wrapper-style2" >
-				<article id="search" >
-					<header>
-						<h2>Quick Search</h2>
-						<span>Run a quick search of the Partners In Business Database</span>
-					</header>
-					<input id="Text1" type="text" placeholder="First Name"/>
-                    <input id="Text2" type="text" placeholder="Last Name"/>	
-                    <input id="Text3" type="text" placeholder="Organization"/>
-                    <input id="Text4" type="text" placeholder="Partner Number"/>
-                    <div class="row" >
-					    <div class="12u" >
-						    <input type="submit" class="button" value="Search" />
-							<input type="reset" class="button button-alt" value="Clear" />
-						</div>
-					</div>		
-				</article>
-			</div>
-
-        <!-- Quick Registration -->
-        <!-- The following controls will allow the user to quickly register an attendee for the conference with minimal information -->
-			<div class="wrapper wrapper-style2" >
-				<article id="registration" >					
+            <div class="wrapper wrapper-style2">
+                <article id="search">
                     <header>
-						<h2>Quick Registration</h2>
-						<span>Quickly register someone for a Partners In Business Conference</span>
-					</header>
-					<input id="Text5" type="text" placeholder="First Name"/>
-                    <input id="Text6" type="text" placeholder="Last Name"/>	
-                    <input id="Text7" type="text" placeholder="Organization"/>
-                    <input id="Text8" type="text" placeholder="Title"/>
-                    <input id="Text9" type="text" placeholder="Partner Number"/>
-                    <div class="row" >
-					    <div class="12u" >
-						    <input type="submit" class="button" value="Submit" />
-							<input type="reset" class="button button-alt" value="Clear" />                            
-						</div><br /><br />
-                        <div class="row-special" >
-                        <a href="Registration.aspx" class="button" >Full Registration</a>
-                    </div> 
-                                           
-					</div>		
-				</article>
-			</div>
+                        <h2>Quick Search</h2>
+                        <span>Run a quick search of the Partners In Business Database</span>
+                    </header>
+                    <div class="5grid">
+                        <div class="row">
+                            <div class="12u">
+                                <div class="5grid">
+                                    <div class="row">
+                                        <div class="3u">
+                                            <input id="Text1" type="text" placeholder="First Name" />
+                                        </div>
+                                        <div class="3u">
+                                            <input id="Text2" type="text" placeholder="Last Name" />
+                                        </div>
+                                        <div class="3u">
+                                            <input id="Text3" type="text" placeholder="Organization" />
+                                        </div>
+                                        <div class="3u">
+                                            <input id="Text4" type="text" placeholder="Partner Number" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="12u">
+                                            <input type="submit" class="button" value="Search" />
+                                            <input type="reset" class="button button-alt" value="Clear" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>			
+			
+
+        <%--<!-- Quick Registration -->
+        <!-- The following controls will allow the user to quickly register an attendee for the conference with minimal information -->
+    <div class="wrapper wrapper-style2">
+        <article id="registration">
+            <header>
+                <h2>Quick Registration</h2>
+                <span>Quickly register someone for a Partners In Business Conference</span>
+            </header>
+                <div class="5grid">
+                    <div class="row">
+                        <div class="12u">
+                            <div class="5grid">
+                                <div class="row">
+                                    <div class="6u">
+                                        <input id="Text5" type="text" placeholder="First Name" />
+                                    </div>
+                                    <div class="6u">
+                                        <input id="Text6" type="text" placeholder="Last Name" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="6u">
+                                            <input id="Text7" type="text" placeholder="Organization" />
+                                        </div>
+
+                                        <div class="6u">
+                                            <input id="Text8" type="text" placeholder="Title" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="6u">
+                                            <input id="Text9" type="text" placeholder="Partner Number" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="12u">
+                                        <input type="submit" class="button" value="Submit" />
+                                        <input type="reset" class="button button-alt" value="Clear" />
+                                    </div>
+                                </div>
+
+                                <br />
+                                <br />
+                                <div class="row-special">
+                                    <a href="Registration.aspx" class="button">Full Registration</a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </article>
+    </div>--%>
 
 		<!-- Reports -->
 			<div class="wrapper wrapper-style2" >
@@ -208,18 +223,5 @@
 					</div>					
 				</article>
 			</div>
-        
-		<!-- Footer -->
-			<div class="wrapper wrapper-style4" >
-				<article id="footer" >					
-					<footer>
-						<p id="copyright" >
-							© 2013 Partners In Business | Website: <a href="http://partners.usu.edu" >partners.usu.edu</a> | Contact: <a href="mailto:kgubler@gmail.com">Kaden Gubler</a> & <a href="mailto:deja7777@gmail.com">Claiton Weeks</a> | Documentation: <a href="/Documentation.aspx">Click Here</a>
-						</p>
-					</footer>
-				</article>
-			</div>
+</asp:Content>
 
-
-	
-</body></html>
