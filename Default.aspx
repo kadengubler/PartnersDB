@@ -7,11 +7,12 @@
     <!-- Page Nav -->
     <nav id="pgnav">
         <ul>
-            <li><a href="#top">Top |</a></li>
-            <li><a href="#quicksearch">Search |</a></li>
+            <li><a href="#top">Top |</a></li>            
+            <li><a href="#quicksearch">Quick Search |</a></li>
             <%--<li><a href="#registration">Quick Registration |</a></li>--%>
             <li><a href="#quickreports">Quick Reports |</a></li>
-            <li><a href="#conferences">Conferences</a></li>
+            <li><a href="#regsearch">Regular Search |</a></li>
+            <%--<li><a href="#conferences">Conferences</a></li>--%>
         </ul>
     </nav>
 
@@ -37,7 +38,7 @@
         </article>
     </div>
 
-    <!-- Search -->
+    <!-- Quick Search -->
     <!-- The following controls will allow the user to quickly perform a search of the database and return the results -->
     <div class="wrapper wrapper-style2">
         <article id="quicksearch">
@@ -50,33 +51,22 @@
                     <div class="12u">
                         <div class="5grid">
                             <div class="row">
-                                <div class="2u"></div>
-                                <div class="2u">
-                                    <asp:TextBox ID="txt_fName" placeholder="First Name" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="2u">
-                                    <asp:TextBox ID="txt_lName" runat="server" placeholder="Last Name"></asp:TextBox>
-                                </div>
-                                <div class="2u">
-                                    <asp:TextBox ID="txt_org" runat="server" placeholder="Organization"></asp:TextBox>
-                                </div>
-                                <div class="2u">
-                                    <asp:TextBox ID="txt_partNum" runat="server" placeholder="Partner Number"></asp:TextBox>
-                                </div>
-                                <div class="2u"></div>
+                                <div class="3u"></div>
+                                <div class="6u">
+                                    <asp:TextBox ID="TextBox1" placeholder="Search" runat="server"></asp:TextBox>
+                                </div>                                
+                                <div class="3u"></div>
                             </div>
                             <div class="row">
                                 <div class="12u">
-                                    <asp:Button ID="search" CssClass="button" runat="server" Text="Search" OnClick="search_Click" />
-                                    <asp:Button ID="clear" CssClass="button button-alt" runat="server" Text="Clear" OnClick="clear_Click" />
+                                    <asp:Button ID="btn_qksearch" CssClass="button" runat="server" Text="Search" OnClick="btn_qksearch_Click"  />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <asp:GridView ID="gv_search" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Visible="False">
+            <asp:GridView ID="gv_qksearch" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Visible="False">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
@@ -94,9 +84,9 @@
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Organization] FROM [Contacts]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Organization] FROM [Contacts]"></asp:SqlDataSource>
             
-            <asp:GridView ID="gv_detail" runat="server" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="gv_qkdetail" runat="server" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -109,8 +99,8 @@
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
-        </article>
-    </div>
+            </article>
+        </div>
 
 
     <%--<!-- Quick Registration -->
@@ -180,6 +170,7 @@
                 <div class="row">
                     <div class="3u"></div>
                     <div class="6u">
+                        <%-- ***connect source to conferences DB*** --%>
                         <asp:DropDownList ID="conference" runat="server">
                             <asp:ListItem>--Please select a conference--</asp:ListItem>
                             <asp:ListItem>Crossroads</asp:ListItem>
@@ -225,7 +216,83 @@
         </article>
     </div>
 
-    <!-- Conferences -->
+
+    <!-- Search -->
+    <!-- The following controls will allow the user to perform a regular search of the database and return the results -->
+    <div class="wrapper wrapper-style2">
+        <article id="regsearch">
+            <header>
+                <h2>Search</h2>
+                <span>Run a search of the Partners In Business Database</span>
+            </header>
+            <div class="5grid">
+                <div class="row">
+                    <div class="12u">
+                        <div class="5grid">
+                            <div class="row">
+                                <div class="2u"></div>
+                                <div class="2u">
+                                    <asp:TextBox ID="txt_fName" placeholder="First Name" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="2u">
+                                    <asp:TextBox ID="txt_lName" runat="server" placeholder="Last Name"></asp:TextBox>
+                                </div>
+                                <div class="2u">
+                                    <asp:TextBox ID="txt_org" runat="server" placeholder="Organization"></asp:TextBox>
+                                </div>
+                                <div class="2u">
+                                    <asp:TextBox ID="txt_partNum" runat="server" placeholder="Partner Number"></asp:TextBox>
+                                </div>
+                                <div class="2u"></div>
+                            </div>
+                            <div class="row">
+                                <div class="12u">
+                                    <asp:Button ID="search" CssClass="button" runat="server" Text="Search" OnClick="search_Click"  />
+                                    <asp:Button ID="clear" CssClass="button button-alt" runat="server" Text="Clear" OnClick="clear_Click"  />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <asp:GridView ID="gv_search" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Visible="False">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+                    <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+                    <asp:BoundField DataField="Organization" HeaderText="Organization" SortExpression="Organization" />
+                </Columns>
+                <EditRowStyle BackColor="#999999" />
+                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+            </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Organization] FROM [Contacts]"></asp:SqlDataSource>
+            
+            <asp:GridView ID="gv_detail" runat="server" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <EditRowStyle BackColor="#999999" />
+                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+            </asp:GridView>
+        </article>
+    </div>
+
+    <%--<!-- Conferences -->
     <!-- The following will link the user to the conferences page where they can run reports -->
     <div class="wrapper wrapper-style3">
         <article id="conferences">
@@ -286,5 +353,5 @@
                 </div>
             </div>
         </article>
-    </div>
+    </div>--%>
 </asp:Content>

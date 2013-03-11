@@ -21,8 +21,8 @@
             <div class="row">
                 <div class="4u">
                     <span class="me image image-full">
-                        <img src="images/logo.jpg" alt="logo"></span>
-                </div>
+                        <img src="images/logo.jpg" alt="logo" /></span>
+                </div>                
                 <div class="8u">
                     <header>
                         <h1>Documentation</h1>
@@ -34,6 +34,39 @@
     </div>
 
 
+
+    <!-- Search -->
+    <div class="wrapper wrapper-style2">
+        <article id="search">
+            <header>
+                <h2>Search</h2>
+                <span>Search the help documents</span>
+            </header>
+            <div class="5grid">
+                <div class="row">
+                    <div class="12u">
+                        <div class="5grid">
+                            <div class="row">
+                                <div class="4u"></div>
+                                <div class="4u">
+                                    <asp:TextBox ID="TextBox1" placeholder="Search" runat="server"></asp:TextBox>
+                                </div>                                
+                                <div class="4u"></div>
+                            </div>
+                            <div class="row">
+                                <div class="12u">
+                                    <asp:Button ID="btn_search" CssClass="button" runat="server" Text="Search" OnClick="btn_search_Click"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </article>
+        </div>
+
+
+
     <!-- Asp.net Documentation -->
     <div class="wrapper wrapper-style2">
         <article class="do-5grid" id="asp_doc">
@@ -41,6 +74,11 @@
                 <h3>Asp.net course info</h3>
                 <br />
             </header>
+            <h5>Project Requirements</h5>
+            <div class="row">
+                <a href="Documentation/Project%20Description.txt">Requirements</a>
+            </div>
+            <br />
             <h5>Project Milestones</h5>
             <div class="row">
                 <a href="Documentation/FirstMilestone.htm" target="_blank">First Milestone</a><br />
@@ -55,18 +93,25 @@
     <!-- Partners Documentation -->
     <div class="wrapper wrapper-style2">
         <article class="5grid-layout" id="partners">
-            <header>Partners info</header>
+            <header>
+                <h3>Partners Info</h3>
+                <br />
+            </header>
             <div class="row">
                 <a href="Documentation/PartnersRequirements.txt">Partners Requirements</a>
             </div>
         </article>
     </div>
 
-    <!-- Conference Wiki -->
+    <!-- Partners Wiki -->
     <div class="wrapper wrapper-style2">
         <article class="5grid-layout" id="wiki">
-            <header>Conference Wiki</header>
+            <header>
+                <h3>Conferenes Wiki</h3>
+            </header>
             <div class="row">
+                <a href="Documentation/Wiki/FrontPage.html">Documentation/Wiki/FrontPage.html</a><br />
+                <a href="Documentation/Wiki/">Documentation/Wiki/</a>
             </div>
         </article>
     </div>

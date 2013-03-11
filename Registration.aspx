@@ -33,11 +33,6 @@
                                         <asp:ListItem>Partner</asp:ListItem>
                                         <asp:ListItem>Student</asp:ListItem>
                                     </asp:DropDownList>
-
-                                    <%--<%--Validator for ddl_Conference--%>
-                                    <%--                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" InitialValue="--Please Select Conference--" ErrorMessage="Please select a conference" ControlToValidate="ddl_Conference" SetFocusOnError="True">*</asp:RequiredFieldValidator>--%>
-                                    <%--Validator for ddl_RegistrationType--%>
-                                    <%--                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" InitialValue="--Please Select Registration Type--" ErrorMessage="Please select a registration type" ControlToValidate="ddl_RegistrationType" SetFocusOnError="true"></asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
 
@@ -46,13 +41,13 @@
                             <div class="row">
                                 <div class="6u">
                                     <asp:TextBox ID="fName" runat="server" placeholder="First Name" Visible="False" AutoPostBack="True"></asp:TextBox>
-                                    <%--Validator for fName--%>
+                                    <!-- Validator for fName -->
                                     <%--???? change the text color of the ErrorMessage--%>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter the first name" ControlToValidate="fName" BorderColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="6u">
                                     <asp:TextBox ID="lName" runat="server" placeholder="Last Name" Visible="False"></asp:TextBox>
-                                    <%--Validator for lName--%>
+                                    <!-- Validator for lName -->
                                     <%--???? change the text color of the ErrorMessage--%>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter the last name" ControlToValidate="lName"></asp:RequiredFieldValidator>
                                 </div>
@@ -76,11 +71,64 @@
                             </div>
 
                             <div class="row">
-                                <div class="4u">
+                                <div class="6u">
                                     <asp:TextBox ID="city" runat="server" placeholder="City" Visible="False"></asp:TextBox>
                                 </div>
-                                <div class="4u">
-                                    <asp:DropDownList ID="ddl_state" runat="server" Visible="False"></asp:DropDownList>
+                                <div class="2u">
+                                    <asp:DropDownList ID="ddl_state" runat="server" Visible="False">
+                                        <asp:ListItem></asp:ListItem>
+                                        <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                        <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                        <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                        <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                        <asp:ListItem Value="CA">California</asp:ListItem>
+                                        <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                        <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                        <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                        <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                        <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                        <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                        <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                        <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                        <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                        <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                        <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                        <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                        <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                        <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                        <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                        <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                        <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                        <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                        <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                        <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                        <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                        <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                        <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                        <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                        <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                        <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                        <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                        <asp:ListItem Value="NY">New York</asp:ListItem>
+                                        <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                        <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                        <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                        <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                        <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                        <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                        <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                        <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                        <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                        <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                        <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                        <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                        <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                        <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                        <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                        <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                        <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                        <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                                 <div class="4u">
                                     <asp:TextBox ID="zip" runat="server" placeholder="Zip Code" Visible="False"></asp:TextBox>
@@ -93,6 +141,24 @@
                                 </div>
                                 <div class="6u">
                                     <asp:TextBox ID="email" runat="server" placeholder="Email" Visible="False"></asp:TextBox>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="6u">
+                                    How did you hear about our conference? <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="6u">
+                                    
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="6u">
+
+                                </div>
+                                <div class="6u">
+
                                 </div>
                             </div>
                             <br />

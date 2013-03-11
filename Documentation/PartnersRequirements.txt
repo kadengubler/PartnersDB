@@ -1,8 +1,28 @@
 ﻿conference time
-	-report to determine number of attendees
-	-
+	-report to determine number of attendees registered for a specific conference
+	-name badge report
+	
 
 
 
 marketing
 	-email blasts
+
+
+
+
+Invoicing
+	-generate report of attendees that select "Invoice me later"
+
+
+
+
+Registration
+	-form to register for a conference
+	-student host registration form
+	-speaker registration
+
+
+
+Speakers
+	-form to enter contact information and correspondence
