@@ -31,12 +31,19 @@ public partial class Registration : System.Web.UI.Page
         add.Visible = true;
         clear.Visible = true;
     }
+
     protected void submit_Click(object sender, EventArgs e)
     {
+        //submit form data to the DB
 
+        //redirect to confirmation page
     }
-    protected void clear_Click(object sender, EventArgs e)
+    
+    protected void add_Click(object sender, EventArgs e)
     {
+        //submit form data to the DB
+
+
         //clear the text fields
         fName.Text = "";
         lName.Text = "";
@@ -49,25 +56,10 @@ public partial class Registration : System.Web.UI.Page
         phone.Text = "";
         email.Text = "";
 
-        //fName.Visible = false;
-        //lName.Visible = false;
-        //title.Visible = false;
-        //company.Visible = false;
-        //address.Visible = false;
-        //city.Visible = false;
-        //ddl_state.Visible = false;
-        //zip.Visible = false;
-        //phone.Visible = false;
-        //email.Visible = false;
-        //submit.Visible = false;
-        //add.Visible = false;
-        //clear.Visible = false;
     }
-    protected void add_Click(object sender, EventArgs e)
+    
+    protected void clear_Click(object sender, EventArgs e)
     {
-        //submit form data to the DB
-
-
         //clear the text fields
         fName.Text = "";
         lName.Text = "";

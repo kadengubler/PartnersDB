@@ -204,7 +204,7 @@
                             <span class="image image-centered">
                                 <img src="images/work03.png" alt="" /></span>
                             <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
+                            <p>This report is used to display current attendee list for the selected conference.</p>
                         </section>
                     </div>
                 </div>

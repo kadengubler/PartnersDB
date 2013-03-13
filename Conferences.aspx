@@ -48,15 +48,15 @@
                     <div class="4u">
                         <section class="box box-style1">
                             <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
+                                <img src="images/work01.png" alt="" /></span>
+                            <h3>Speakers</h3>
+                            <p>This report is used to display the speakers information.</p>
                         </section>
                     </div>
                     <div class="4u">
                         <section class="box box-style1">
                             <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
+                                <img src="images/work02.png" alt="" /></span>
                             <h3>Attendee Demographics</h3>
                             <p>This report is used to display the demographics from past conferences.</p>
                         </section>
@@ -64,7 +64,35 @@
                     <div class="4u">
                         <section class="box box-style1">
                             <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
+                                <img src="images/work03.png" alt="" /></span>
+                            <h3>Attendee List</h3>
+                            <p>This report is used to display the attendee lists from past conferences.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work01.png" alt="" /></span>
+                            <h3>Conference Feedback</h3>
+                            <p>This report is used to display the feedback from past conferences.</p>
+                        </section>
+                    </div>
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work02.png" alt="" /></span>
+                            <h3>Attendee Demographics</h3>
+                            <p>This report is used to display the demographics from past conferences.</p>
+                        </section>
+                    </div>
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work03.png" alt="" /></span>
                             <h3>Attendee List</h3>
                             <p>This report is used to display the attendee lists from past conferences.</p>
                         </section>
