@@ -1,10 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Registration.aspx.cs" Inherits="Registration" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
 
     <!-- Registration -->
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="wrapper wrapper-style2">
         <article class="5grid-layout" id="contact">
             <header>
@@ -31,12 +34,30 @@
                                         <asp:ListItem>--Please Select Registration Type--</asp:ListItem>
                                         <asp:ListItem>Professional</asp:ListItem>
                                         <asp:ListItem>Partner</asp:ListItem>
-                                        <asp:ListItem>Student</asp:ListItem>
+                                        <asp:ListItem>Student/Faculty</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
 
                             <p>________________________________________________________________________________________________________________</p>
+
+                            <div class="row">
+                                <div class="4u">
+                                    <asp:TextBox ID="aNumber" runat="server" placeholder="Anumber" Visible="false"></asp:TextBox>
+                                </div>
+                                <div class="4u">
+                                    <asp:CheckBox ID="cb_student" runat="server" Text="Student" Visible="false" />
+                                    <asp:RoundedCornersExtender runat="server" Enabled="True" TargetControlID="cb_student" ID="cb_student_RoundedCornersExtender">
+                                    </asp:RoundedCornersExtender>
+                                    <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender1" TargetControlID="cb_student" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
+                                </div>
+                                <div class="4u">
+                                    <asp:CheckBox ID="cb_faculty" runat="server" Text="Faculty" Visible="false" />
+                                    <asp:RoundedCornersExtender ID="cb_faculty_RoundedCornersExtender" runat="server" Enabled="True" TargetControlID="cb_faculty">
+                                    </asp:RoundedCornersExtender>
+                                    <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender2" TargetControlID="cb_faculty" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="6u">
@@ -54,12 +75,16 @@
                             </div>
 
                             <div class="row">
-                                <div class="6u">
+                                <div class="4u">
                                     <asp:TextBox ID="title" runat="server" placeholder="Job Title" Visible="False"></asp:TextBox>
 
                                 </div>
-                                <div class="6u">
+                                <div class="4u">
                                     <asp:TextBox ID="company" runat="server" placeholder="Company" Visible="False"></asp:TextBox>
+
+                                </div>
+                                <div class="4u">
+                                    <asp:TextBox ID="department" runat="server" placeholder="Department" Visible="False"></asp:TextBox>
 
                                 </div>
                             </div>
@@ -75,8 +100,8 @@
                                     <asp:TextBox ID="city" runat="server" placeholder="City" Visible="False"></asp:TextBox>
                                 </div>
                                 <div class="2u">
-                                    <asp:DropDownList ID="ddl_state" runat="server" Visible="False">
-                                        <asp:ListItem></asp:ListItem>
+                                    <asp:DropDownList ID="ddl_state" runat="server" Visible="False" AppendDataBoundItems="True" DataSourceID="SqlDataSource1" DataTextField="StateName" DataValueField="ST">
+                                        <asp:ListItem Value="-state-">-state-</asp:ListItem>
                                         <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                         <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                         <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -129,6 +154,7 @@
                                         <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
                                         <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                                     </asp:DropDownList>
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT * FROM [States] ORDER BY [StateName]"></asp:SqlDataSource>
                                 </div>
                                 <div class="4u">
                                     <asp:TextBox ID="zip" runat="server" placeholder="Zip Code" Visible="False"></asp:TextBox>
@@ -136,8 +162,14 @@
                             </div>
 
                             <div class="row">
-                                <div class="6u">
-                                    <asp:TextBox ID="phone" runat="server" placeholder="Phone Number" Visible="False"></asp:TextBox>
+                                <div class="2u">
+                                    <asp:TextBox ID="areaCode" runat="server" placeholder="(   )" Visible="False"></asp:TextBox>
+                                </div>
+                                <div class="2u">
+                                    <asp:TextBox ID="exchange" runat="server" placeholder="Phone -" Visible="False"></asp:TextBox>
+                                </div>
+                                <div class="2u">
+                                    <asp:TextBox ID="subscriberNumber" runat="server" placeholder="Number" Visible="False"></asp:TextBox>
                                 </div>
                                 <div class="6u">
                                     <asp:TextBox ID="email" runat="server" placeholder="Email" Visible="False"></asp:TextBox>
@@ -145,20 +177,24 @@
                             </div>
 
                             <div class="row">
-                                <div class="6u">
-                                    
-                                </div>
-                                <div class="6u">
-                                    
-                                </div>
+                                <p>Select the conferences for which you would like to receive notifications</p>
                             </div>
 
                             <div class="row">
-                                <div class="6u">
-
+                                <div class="2u">
+                                    <asp:CheckBox ID="cb_acct" Text="Accounting" runat="server" />
                                 </div>
-                                <div class="6u">
-
+                                <div class="2u">
+                                    <asp:CheckBox ID="cb_it" Text="Information Technology" runat="server" />
+                                </div>
+                                <div class="2u">
+                                    <asp:CheckBox ID="cb_oe" Text="Operational Excellence" runat="server" />
+                                </div>
+                                <div class="2u">
+                                    <asp:CheckBox ID="cb_lead" Text="Leadership" runat="server" />
+                                </div>
+                                <div class="2u">
+                                    <asp:CheckBox ID="cb_cr" Text="Human Resources" runat="server" />
                                 </div>
                             </div>
                             <br />
