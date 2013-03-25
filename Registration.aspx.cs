@@ -99,16 +99,15 @@ public partial class Registration : System.Web.UI.Page
         con.Open();
         cmd2.ExecuteNonQuery();
         con.Close();
+        if (ddl_RegistrationType.SelectedValue == "Student/Faculty")
+        {
         SqlCommand cmd3 = new SqlCommand("INSERT INTO Student(Anumber, ContactID) VALUES(@Anumber, @ContactID)", con);
         cmd3.Parameters.AddWithValue("@ContactID", id);
         cmd3.Parameters.AddWithValue("@Anumber", aNumber.Text);
         con.Open();
-        if (ddl_RegistrationType.SelectedValue == "Student/Faculty")
-        {
             cmd3.ExecuteNonQuery();
-        }
         con.Close();
-        aNumber.Text = "";
+        }
         //redirect to confirmation page
         redirectToConfirmationPage();
     }
@@ -122,38 +121,32 @@ public partial class Registration : System.Web.UI.Page
     {
         //submit form data to the DB
         submit_Click(sender, e);
+        clear_Fields();
+    }
+
+    protected void clear_Fields()
+    {
 
         //clear the text fields
-        fName.Text = "";
-        lName.Text = "";
-        title.Text = "";
-        company.Text = "";
-        address.Text = "";
-        city.Text = "";
-        ddl_state.Text = "";
-        zip.Text = "";
-        areaCode.Text = "";
-        exchange.Text = "";
-        subscriberNumber.Text = "";
-        email.Text = "";
+        fName.Text = string.Empty;
+        lName.Text = string.Empty;
+        title.Text = string.Empty;
+        company.Text = string.Empty;
+        department.Text = string.Empty;
+        address.Text = string.Empty;
+        city.Text = string.Empty;
+        ddl_state.SelectedIndex = 0;
+        zip.Text = string.Empty;
+        areaCode.Text = string.Empty;
+        exchange.Text = string.Empty;
+        subscriberNumber.Text = string.Empty;
+        email.Text = string.Empty;
 
     }
     
     protected void clear_Click(object sender, EventArgs e)
     {
         //clear the text fields
-        fName.Text = "";
-        lName.Text = "";
-        title.Text = "";
-        company.Text = "";
-        address.Text = "";
-        city.Text = "";
-        ddl_state.Text = "";
-        zip.Text = "";
-        areaCode.Text = "";
-        exchange.Text = "";
-        subscriberNumber.Text = "";
-        email.Text = "";
-
+        clear_Fields();
     }
 }
