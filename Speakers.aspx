@@ -24,7 +24,7 @@
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
             ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" 
-            SelectCommand="SpeakersByConference" SelectCommandType="StoredProcedure">
+            SelectCommand="usp_SpeakersByConference" SelectCommandType="StoredProcedure">
             <SelectParameters>
                 <asp:ControlParameter ControlID="DropDownList1" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
             </SelectParameters>
