@@ -14,7 +14,14 @@ public partial class Reports : System.Web.UI.Page
 
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
-        ddl_Report.Visible = true;
+        if (ddl_Conference.SelectedIndex == 0)
+        {
+            ddl_Report.Visible = false;
+        }
+        else
+        {
+            ddl_Report.Visible = true;
+        }
     }
     protected void ddl_Report_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -69,6 +76,10 @@ public partial class Reports : System.Web.UI.Page
         else if (ddl_Report.SelectedIndex == 10)
         {
             //Email Blast List
+        }
+        else if (ddl_Report.SelectedIndex == 0)
+        {
+            cr.Visible = false;
         }
         
     }

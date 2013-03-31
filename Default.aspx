@@ -69,8 +69,8 @@
             <asp:GridView ID="gv_qksearch" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Visible="False">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
                     <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
                     <asp:BoundField DataField="Organization" HeaderText="Organization" SortExpression="Organization" />
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
@@ -259,8 +259,8 @@
             <asp:GridView ID="gv_search" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Visible="False">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
                     <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
                     <asp:BoundField DataField="Organization" HeaderText="Organization" SortExpression="Organization" />
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
@@ -274,7 +274,11 @@
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Organization] FROM [Contacts]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_QuickSearch" SelectCommandType="StoredProcedure">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="TextBox1" Name="searchTerm" PropertyName="Text" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource>
             
             <asp:GridView ID="gv_detail" runat="server" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />

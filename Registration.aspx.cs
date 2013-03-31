@@ -18,26 +18,61 @@ public partial class Registration : System.Web.UI.Page
     }
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
-        ddl_RegistrationType.Visible = true;
+        if (ddl_Conference.SelectedIndex == 0)
+        {
+            ddl_RegistrationType.Visible = false;
+            ddl_RegistrationType.SelectedIndex = 0;
+            ddl_RegistrationType_SelectedIndexChanged(sender, e);
+        }
+        else
+        {
+            ddl_RegistrationType.Visible = true;
+        }
     }
     protected void ddl_RegistrationType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        fName.Visible = true;
-        lName.Visible = true;
-        title.Visible = true;
-        company.Visible = true;
-        department.Visible = true;
-        address.Visible = true;
-        city.Visible = true;
-        ddl_state.Visible = true;
-        zip.Visible = true;
-        areaCode.Visible = true;
-        exchange.Visible = true;
-        subscriberNumber.Visible = true;
-        email.Visible = true;        
-        submit.Visible = true;
-        add.Visible = true;
-        clear.Visible = true;
+        if (ddl_Conference.SelectedIndex == 0)
+        {
+            fName.Visible = false;
+            lName.Visible = false;
+            title.Visible = false;
+            company.Visible = false;
+            department.Visible = false;
+            address.Visible = false;
+            city.Visible = false;
+            ddl_state.Visible = false;
+            zip.Visible = false;
+            areaCode.Visible = false;
+            exchange.Visible = false;
+            subscriberNumber.Visible = false;
+            email.Visible = false;
+            submit.Visible = false;
+            add.Visible = false;
+            clear.Visible = false;
+            partnership.Visible = false;
+            aNumber.Visible = false;
+            cb_student.Visible = false;
+            cb_faculty.Visible = false;
+        }
+        else
+        {
+            fName.Visible = true;
+            lName.Visible = true;
+            title.Visible = true;
+            company.Visible = true;
+            department.Visible = true;
+            address.Visible = true;
+            city.Visible = true;
+            ddl_state.Visible = true;
+            zip.Visible = true;
+            areaCode.Visible = true;
+            exchange.Visible = true;
+            subscriberNumber.Visible = true;
+            email.Visible = true;
+            submit.Visible = true;
+            add.Visible = true;
+            clear.Visible = true;
+        }
         if (ddl_RegistrationType.SelectedValue.ToString() == "Student/Faculty")
         {
             aNumber.Visible = true;
@@ -49,6 +84,14 @@ public partial class Registration : System.Web.UI.Page
             aNumber.Visible = false;
             cb_student.Visible = false;
             cb_faculty.Visible = false;
+        }
+        if (ddl_RegistrationType.SelectedValue.ToString() == "Partner")
+        {
+            partnership.Visible = true;
+        }
+        else
+        {
+            partnership.Visible = false;
         }
     }
 
@@ -128,6 +171,15 @@ public partial class Registration : System.Web.UI.Page
     {
 
         //clear the text fields
+        aNumber.Text = string.Empty;
+        partnership.Text = string.Empty;
+        cb_student.Checked = false;
+        cb_faculty.Checked = false;
+        cb_acct.Checked = false;
+        cb_oe.Checked = false;
+        cb_it.Checked = false;
+        cb_cr.Checked = false;
+        cb_lead.Checked = false;
         fName.Text = string.Empty;
         lName.Text = string.Empty;
         title.Text = string.Empty;
@@ -147,6 +199,8 @@ public partial class Registration : System.Web.UI.Page
     protected void clear_Click(object sender, EventArgs e)
     {
         //clear the text fields
+        ddl_Conference.SelectedIndex = 0;
+        ddl_RegistrationType.SelectedIndex = 0;
         clear_Fields();
     }
 }

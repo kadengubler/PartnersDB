@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="2u">
                                         <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="LastName" DataValueField="LastName"></asp:DropDownList>
-                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersDBConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Title], [Organization], [Email], [Street], [City], [Student], [Faculty], [Zip], [ST] FROM [Contacts]"></asp:SqlDataSource>
+                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Title], [Organization], [Email], [Street], [City], [Student], [Faculty], [Zip], [ST] FROM [Contacts]"></asp:SqlDataSource>
                                     </div>
                                     <div class="2u">
                                         <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
@@ -98,7 +98,7 @@
                                         <asp:BoundField DataField="Organization" HeaderText="Organization" SortExpression="Organization" />
                                     </Columns>
                                 </asp:GridView>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersDBConnectionString %>" SelectCommand="SELECT [FirstName], [LastName], [Title], [Organization] FROM [Contacts]"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [FirstName], [LastName], [Title], [Organization] FROM [Contacts]"></asp:SqlDataSource>
                             </div>
                             
                             <div class="row">
