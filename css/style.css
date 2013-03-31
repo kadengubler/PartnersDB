@@ -85,7 +85,7 @@
 		form select,
 		form textarea
 		{
-			-webkit-appearance: none;
+			-webkit-appearance: listbox,checkbox;
 		}
 
 		form input[type=text],
