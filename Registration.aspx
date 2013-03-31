@@ -176,36 +176,38 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <p>Select the conferences for which you would like to receive notifications</p>
-                            </div>
+                            <div id="emailsubscribe" class="row">
+                                <div class="12u">
+                                    <p>Select the conferences for which you would like to receive notifications</p>
+                                </div>
 
-                            <div class="row">
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_acct" Text="Accounting" runat="server" />
+                                <div class="row">
+                                    <div class="2u">
+                                        <asp:CheckBox ID="cb_acct" Text="Accounting" runat="server" />
+                                    </div>
+                                    <div class="2u">
+                                        <asp:CheckBox ID="cb_it" Text="Information Technology" runat="server" />
+                                    </div>
+                                    <div class="2u">
+                                        <asp:CheckBox ID="cb_oe" Text="Operational Excellence" runat="server" />
+                                    </div>
+                                    <div class="2u">
+                                        <asp:CheckBox ID="cb_lead" Text="Leadership" runat="server" />
+                                    </div>
+                                    <div class="2u">
+                                        <asp:CheckBox ID="cb_cr" Text="Human Resources" runat="server" />
+                                    </div>
                                 </div>
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_it" Text="Information Technology" runat="server" />
-                                </div>
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_oe" Text="Operational Excellence" runat="server" />
-                                </div>
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_lead" Text="Leadership" runat="server" />
-                                </div>
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_cr" Text="Human Resources" runat="server" />
-                                </div>
-                            </div>
-                            <br />
+                                <br />
 
-                            <div class="row">
+
                                 <div class="12u">
                                     <asp:Button ID="submit" runat="server" Text="Submit" CssClass="button" Visible="False" OnClick="submit_Click" />
                                     <asp:Button ID="add" runat="server" Text="Submit and add another" CssClass="button" Visible="False" OnClick="add_Click" />
                                     <asp:Button ID="clear" runat="server" Text="Clear Form" CssClass="button button-alt" Visible="False" OnClick="clear_Click" CausesValidation="False" />
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

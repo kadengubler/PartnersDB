@@ -34,7 +34,7 @@ public partial class Registration : System.Web.UI.Page
         areaCode.Visible = true;
         exchange.Visible = true;
         subscriberNumber.Visible = true;
-        email.Visible = true;
+        email.Visible = true;        
         submit.Visible = true;
         add.Visible = true;
         clear.Visible = true;
