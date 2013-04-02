@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 public partial class Registration : System.Web.UI.Page
 {
@@ -16,6 +17,9 @@ public partial class Registration : System.Web.UI.Page
     {
 
     }
+    
+        
+    
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddl_Conference.SelectedIndex == 0)
@@ -31,7 +35,7 @@ public partial class Registration : System.Web.UI.Page
     }
     protected void ddl_RegistrationType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddl_Conference.SelectedIndex == 0)
+        if (ddl_RegistrationType.SelectedIndex == 0)
         {
             fName.Visible = false;
             lName.Visible = false;

@@ -46,15 +46,11 @@
                                     <asp:TextBox ID="aNumber" runat="server" placeholder="Anumber" Visible="false"></asp:TextBox>
                                 </div>
                                 <div class="4u">
-                                    <asp:CheckBox ID="cb_student" runat="server" Text="Student" Visible="false" />
-                                    <asp:RoundedCornersExtender runat="server" Enabled="True" TargetControlID="cb_student" ID="cb_student_RoundedCornersExtender">
-                                    </asp:RoundedCornersExtender>
+                                    <asp:CheckBox ID="cb_student" runat="server" Text="Student" Visible="false" ForeColor="Black" Font-Bold="True" />
                                     <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender1" TargetControlID="cb_student" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
                                 </div>
                                 <div class="4u">
-                                    <asp:CheckBox ID="cb_faculty" runat="server" Text="Faculty" Visible="false" />
-                                    <asp:RoundedCornersExtender ID="cb_faculty_RoundedCornersExtender" runat="server" Enabled="True" TargetControlID="cb_faculty">
-                                    </asp:RoundedCornersExtender>
+                                    <asp:CheckBox ID="cb_faculty" runat="server" Text="Faculty" Visible="false" ForeColor="Black" Font-Bold="True" />
                                     <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender2" TargetControlID="cb_faculty" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
                                 </div>
                             </div>
@@ -85,7 +81,8 @@
                                 </div>
                                 <div class="4u">
                                     <asp:TextBox ID="company" runat="server" placeholder="Company" Visible="False"></asp:TextBox>
-
+                                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" Enabled="true" runat="server" MinimumPrefixLength="1" TargetControlID="company" 
+                                    UseContextKey="True" ServiceMethod="GetCompletionList" CompletionSetCount="10" CompletionInterval="1000" EnableCaching="true" ServicePath="AutoExtender.asmx"/>
                                 </div>
                                 <div class="4u">
                                     <asp:TextBox ID="department" runat="server" placeholder="Department" Visible="False"></asp:TextBox>
@@ -185,20 +182,23 @@
                             </div>
 
                             <div class="row">
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_acct" Text="Accounting" runat="server" />
+                                <div class="4u">
+                                    <asp:CheckBox ID="cb_acct" Text="Accounting" runat="server" ForeColor="Black" Font-Bold="True" />
                                 </div>
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_it" Text="Information Technology" runat="server" />
+                                <div class="4u">
+                                    <asp:CheckBox ID="cb_it" Text="Information Technology" runat="server" ForeColor="Black" Font-Bold="True" />
                                 </div>
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_oe" Text="Operational Excellence" runat="server" />
+                                <div class="4u">
+                                    <asp:CheckBox ID="cb_oe" Text="Operational Excellence" runat="server" ForeColor="Black" Font-Bold="True" />
                                 </div>
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_lead" Text="Leadership" runat="server" />
+                            </div>
+
+                            <div class="row">
+                                <div class="6u">
+                                    <asp:CheckBox ID="cb_lead" Text="Leadership" runat="server" ForeColor="Black" Font-Bold="True" />
                                 </div>
-                                <div class="2u">
-                                    <asp:CheckBox ID="cb_cr" Text="Human Resources" runat="server" />
+                                <div class="6u">
+                                    <asp:CheckBox ID="cb_cr" Text="Human Resources" runat="server" ForeColor="Black" Font-Bold="True" />
                                 </div>
                             </div>
                             <br />
