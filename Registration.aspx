@@ -23,11 +23,11 @@
                                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                                     <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
                                         <asp:ListItem>--Please Select Conference--</asp:ListItem>
-                                        <asp:ListItem>Crossroads</asp:ListItem>
-                                        <asp:ListItem>Operational Excellence</asp:ListItem>
-                                        <asp:ListItem>Accounting</asp:ListItem>
-                                        <asp:ListItem>Information Technology</asp:ListItem>
-                                        <asp:ListItem>Leadership</asp:ListItem>
+                                        <asp:ListItem Value="CR">Crossroads</asp:ListItem>
+                                        <asp:ListItem Value="OE">Operational Excellence</asp:ListItem>
+                                        <asp:ListItem Value="ACCT">Accounting</asp:ListItem>
+                                        <asp:ListItem Value="IT">Information Technology</asp:ListItem>
+                                        <asp:ListItem Value="LEAD">Leadership</asp:ListItem>
                                     </asp:DropDownList>
 
                                     <asp:DropDownList ID="ddl_RegistrationType" runat="server" OnSelectedIndexChanged="ddl_RegistrationType_SelectedIndexChanged" Visible="False" AutoPostBack="True">
@@ -43,16 +43,39 @@
 
                             <div class="row">
                                 <div class="4u">
+                                    <asp:DropDownList ID="ddl_daysAttending" runat="server" Visible="False" DataSourceID="SqlDataSource2" DataTextField="Days" DataValueField="Days"></asp:DropDownList>
+                                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_GetDays" SelectCommandType="StoredProcedure">
+                                        <SelectParameters>
+                                            <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="SelectedValue" Type="String" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="4u">
                                     <asp:TextBox ID="aNumber" runat="server" placeholder="Anumber" Visible="false"></asp:TextBox>
                                 </div>
                                 <div class="4u">
-                                    <asp:CheckBox ID="cb_student" runat="server" Text="Student" Visible="false" ForeColor="Black" Font-Bold="True" />
-                                    <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender1" TargetControlID="cb_student" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
+                                    <asp:CheckBox ID="cb_student" runat="server" Text="Student" Visible="false" ForeColor="Black" Font-Bold="True" AutoPostBack="True" />
+                                    <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender3" TargetControlID="cb_student" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
                                 </div>
                                 <div class="4u">
-                                    <asp:CheckBox ID="cb_faculty" runat="server" Text="Faculty" Visible="false" ForeColor="Black" Font-Bold="True" />
-                                    <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender2" TargetControlID="cb_faculty" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
+                                    <asp:CheckBox ID="cb_faculty" runat="server" Text="Faculty" Visible="false" ForeColor="Black" Font-Bold="True" AutoPostBack="True" />
+                                    <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender4" TargetControlID="cb_faculty" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="4u">
+                                    <asp:CheckBox ID="cb_lunch" runat="server" Text="Lunch" Visible="false" ForeColor="Black" Font-Bold="True" EnableTheming="True" />
+                                </div>
+                                <div class="4u">
+                                    <asp:CheckBox ID="cb_daybook" runat="server" Text="Daybook" Visible="false" ForeColor="Black" Font-Bold="True" />
+                                </div>
+                                <div class="4u">
+                                    <asp:CheckBox ID="cb_networkDinner" runat="server" Text="Networking Dinner" Visible="false" ForeColor="Black" Font-Bold="True" />
+                                </div>
+                            </div>
                             </div>
                             <div class="row">
                                 <div class="12u">
@@ -178,7 +201,7 @@
                             </div>
 
                             <div class="row">
-                                <p>Select the conferences for which you would like to receive notifications</p>
+                                <p style="color: #000000; font-weight: bold;">Select the conferences for which you would like to receive notifications</p>
                             </div>
 
                             <div class="row">
@@ -199,6 +222,11 @@
                                 </div>
                                 <div class="6u">
                                     <asp:CheckBox ID="cb_cr" Text="Human Resources" runat="server" ForeColor="Black" Font-Bold="True" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="6u">
+                                    <asp:TextBox ID="promocode" runat="server" placeholder="Promo Code" Visible="False"></asp:TextBox>
                                 </div>
                             </div>
                             <br />
