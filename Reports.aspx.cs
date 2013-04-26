@@ -29,16 +29,14 @@ public partial class Reports : System.Web.UI.Page
         {
             //Custom Report
             //*** code to allow user to select fields to show in report ***
-            gvAttendee.Visible = true;
-            gvAttendee.Focus();
+            cr.Visible = true;
         }
         else if (ddl_Report.SelectedIndex == 2)
         {
             //Current list of registered attendees
             //*** Query DB and list [fName] [lName] [company] [title] ***
             //*** calculate the number of attendees for each category (students, professionals, partners)
-            gvAttendee.Visible = true;
-            gvAttendee.Focus();
+
         }
         else if (ddl_Report.SelectedIndex == 3)
         {
@@ -85,9 +83,4 @@ public partial class Reports : System.Web.UI.Page
         }
         
     }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        GridView1.Visible = true;
-    }
-
 }

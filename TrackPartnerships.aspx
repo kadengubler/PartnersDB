@@ -3,41 +3,14 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-
+<head runat="server">
     <title></title>
-   <%-- <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="css/5grid/init.js?use=mobile,desktop,1000px"></script>
-    <script src="js/init.js"></script>
-    <noscript>
-			<link rel="stylesheet" href="css/style.css" />
-		</noscript>--%>
-    
 </head>
-
-
 <body>
     <form id="form1" runat="server">
-
-        <!-- Nav -->
-        <nav id="nav">
-            <ul>
-                <li><a href="Default.aspx">Home</a></li>
-                <li><a href="Registration.aspx">Registration</a></li>
-                <li><a href="Reports.aspx">Reports</a></li>
-                <li><a href="Conferences.aspx">Conferences</a></li>
-                <li><a href="Documentation.aspx">Help</a></li>
-            </ul>
-        </nav>
-
-
     <div>
     
-        <asp:GridView ID="GridView1" CssClass="gridview" runat="server" AutoGenerateColumns="False" DataKeyNames="PartnershipID" DataSourceID="PartnershipTracking" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="PartnershipID" DataSourceID="PartnershipTracking" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
                 <asp:CommandField ShowSelectButton="True" SelectText="View" />
                 <asp:BoundField DataField="PartnershipID" HeaderText="PartnershipID" ReadOnly="True" SortExpression="PartnershipID" />
@@ -52,7 +25,7 @@
         <asp:SqlDataSource ID="PartnershipTracking" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT * FROM [PartnershipTracking]"></asp:SqlDataSource>
     
     </div>
-        <asp:GridView ID="GridView2" CssClass="gridview" runat="server" AutoGenerateColumns="False" DataSourceID="PartnershipUse" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" Visible="False">
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="PartnershipUse" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" Visible="False">
             <Columns>
                 <asp:CommandField ShowSelectButton="True" SelectText="Back" />
                 <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />

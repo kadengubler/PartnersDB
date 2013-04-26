@@ -1,8 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
-<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
-<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,7 +19,6 @@
 			<link rel="stylesheet" href="css/5grid/core-1200px.css" />
 			<link rel="stylesheet" href="css/5grid/core-noscript.css" />--%>
 			<link rel="stylesheet" href="css/style.css" />
-            <%--<link href="../css/style.css" rel="stylesheet" type="text/css" />--%>
 			<%--<link rel="stylesheet" href="css/style-desktop.css" />--%>
 		</noscript>
     <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
@@ -46,23 +42,22 @@
                 <li><a href="Documentation.aspx">Help</a></li>
             </ul>
         </nav>
-        <div id="wrap">
+        <div>
             <asp:ContentPlaceHolder ID="body" runat="server">
                 <%--this is where the content of the page goes dont put anything in here--%>
             </asp:ContentPlaceHolder>
-            </div>
 
             <!-- Footer -->
-            <div id="footer" class="footer">
-                <article id="Article1" >
+            <div>
+                <article id="Article1">
                     <footer>
                         <p id="copyright">
-                            © 2013 Partners In Business | Website: <a href="http://partners.usu.edu" target="_blank">partners.usu.edu</a> | Contact: <a href="mailto:kgubler@gmail.com">Kaden Gubler</a> & <a href="mailto:deja7777@gmail.com">Claiton Weeks</a> | Documentation: <a href="/Documentation.aspx" target="_blank">Click Here</a> | Project Requirements: <a href="Documentation/ProjectRequirements.html" target="_blank">Click Here</a>
+                            © 2013 Partners In Business | Website: <a href="http://partners.usu.edu">partners.usu.edu</a> | Contact: <a href="mailto:kgubler@gmail.com">Kaden Gubler</a> & <a href="mailto:deja7777@gmail.com">Claiton Weeks</a> | Documentation: <a href="/Documentation.aspx">Click Here</a>
                         </p>
                     </footer>
                 </article>
             </div>
-        
+        </div>
     </form>
 </body>
 </html>

@@ -12,40 +12,41 @@ public partial class _Default : System.Web.UI.Page
 
     }
 
-    protected void btn_search_Click(object sender, EventArgs e)
+    protected void btn_qksearch_Click(object sender, EventArgs e)
     {
         //***take the user inputs and query the DB***
 
         //make gridview visable
-        gv_search.Visible = true;
+        gv_qksearch.Visible = true;
 
     }
 
-    //protected void search_Click(object sender, EventArgs e)
-    //{
-    //    //***take the user inputs and query the DB***
+    protected void search_Click(object sender, EventArgs e)
+    {
+        //***take the user inputs and query the DB***
 
 
 
-    //    //make the gridview visable
-    //    gv_search.Visible = true;
+        //make the gridview visable
+        gv_search.Visible = true;
 
-    //    //?? add code to set focus of page to gv_search ??
-    //    //Page.SetFocus(this.FindControl("gv_search"));
-    //    //SetFocus(this.gv_search);
-    //    gv_search.Focus();
-    //}
+        //?? add code to set focus of page to gv_search ??
+        //Page.SetFocus(this.FindControl("gv_search"));
+        //SetFocus(this.gv_search);
+        gv_search.Focus();
+    }
 
-    //protected void clear_Click(object sender, EventArgs e)
-    //{
-    //    txt_fName.Text = "";
-    //    txt_lName.Text = "";
-    //    txt_org.Text = "";
-    //    txt_partNum.Text = "";
+    protected void clear_Click(object sender, EventArgs e)
+    {
+        txt_fName.Text = "";
+        txt_lName.Text = "";
+        txt_org.Text = "";
+        txt_partNum.Text = "";
 
-    //    //?? add code to set focus of the page to #quicksearch ??
+        //?? add code to set focus of the page to #quicksearch ??
 
-    //}
+
+    }
 
 
     
