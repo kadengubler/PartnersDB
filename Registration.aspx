@@ -6,13 +6,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
 
-    <!-- Registration -->
+    <!-- Conference and Registration Type -->
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="wrapper wrapper-style2">
         <article class="5grid-layout" id="contact">
             <header>
                 <h2>Conference Registration</h2>
-                <span>Please fill out the form below to register for a conference.</span>
+                <span>Select the conference you would like to register for.</span>
             </header>
             <div class="5grid">
                 <div class="row">
@@ -38,11 +38,27 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
 
-                            <p>________________________________________________________________________________________________________________</p>
 
+    <!-- Attendee Information -->
+    <asp:Panel ID="Panel1" runat="server" CssClass="wrapper wrapper-style3" Visible="false">
+        <article class="5grid-layout" id="Article1">
+            <header>
+                <h2>Conference Registration</h2>
+                <span>Select the conference you would like to register for.</span>
+            </header>
+            <div class="5grid">
+                <div class="row">
+                    <div class="12u">
+                        <div class="5grid">
                             <div class="row">
-                                <div class="4u">
+                                <div class="12u">
                                     <asp:DropDownList ID="ddl_daysAttending" runat="server" Visible="False" DataSourceID="SqlDataSource2" DataTextField="Days" DataValueField="Days"></asp:DropDownList>
                                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_GetDays" SelectCommandType="StoredProcedure">
                                         <SelectParameters>
@@ -51,7 +67,7 @@
                                     </asp:SqlDataSource>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="4u">
                                     <asp:TextBox ID="aNumber" runat="server" placeholder="Anumber" Visible="false"></asp:TextBox>
@@ -76,174 +92,177 @@
                                     <asp:CheckBox ID="cb_networkDinner" runat="server" Text="Networking Dinner" Visible="false" ForeColor="Black" Font-Bold="True" />
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="4u">
+                                <asp:TextBox ID="partnership" runat="server" placeholder="Partnership#" Visible="false"></asp:TextBox>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="6u">
+                                <asp:TextBox ID="fName" runat="server" placeholder="First Name" Visible="true"></asp:TextBox>
+                                <!-- Validator for fName -->
+                                <%--???? change the text color of the ErrorMessage--%>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter the first name" ControlToValidate="fName" BorderColor="Red"></asp:RequiredFieldValidator>
+                            </div>
+                            <div class="6u">
+                                <asp:TextBox ID="lName" runat="server" placeholder="Last Name" Visible="true"></asp:TextBox>
+                                <!-- Validator for lName -->
+                                <%--???? change the text color of the ErrorMessage--%>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter the last name" ControlToValidate="lName"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="4u">
+                                <asp:TextBox ID="title" runat="server" placeholder="Job Title" Visible="true"></asp:TextBox>
+
+                            </div>
+                            <div class="4u">
+                                <asp:TextBox ID="company" runat="server" placeholder="Company" Visible="true"></asp:TextBox>
+                                <asp:AutoCompleteExtender ID="AutoCompleteExtender1" Enabled="true" runat="server" MinimumPrefixLength="1" TargetControlID="company"
+                                    UseContextKey="True" ServiceMethod="GetCompletionList" CompletionSetCount="10" CompletionInterval="1000" EnableCaching="true" ServicePath="AutoExtender.asmx" />
+                            </div>
+                            <div class="4u">
+                                <asp:TextBox ID="department" runat="server" placeholder="Department" Visible="true"></asp:TextBox>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="12u">
+                                <asp:TextBox ID="address" runat="server" placeholder="Address" Visible="true"></asp:TextBox>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="6u">
+                                <asp:TextBox ID="city" runat="server" placeholder="City" Visible="true"></asp:TextBox>
+                            </div>
+                            <div class="2u">
+                                <asp:DropDownList ID="ddl_state" runat="server" Visible="true" AppendDataBoundItems="True" DataSourceID="SqlDataSource1" DataTextField="StateName" DataValueField="ST">
+                                    <asp:ListItem Value="-state-">-state-</asp:ListItem>
+                                    <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                    <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                    <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                    <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                    <asp:ListItem Value="CA">California</asp:ListItem>
+                                    <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                    <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                    <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                    <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                    <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                    <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                    <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                    <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                    <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                    <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                    <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                    <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                    <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                    <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                    <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                    <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                    <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                    <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                    <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                    <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                    <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                    <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                    <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                    <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                    <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                    <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                    <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                    <asp:ListItem Value="NY">New York</asp:ListItem>
+                                    <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                    <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                    <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                    <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                    <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                    <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                    <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                    <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                    <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                    <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                    <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                    <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                    <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                    <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                    <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                    <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                    <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                    <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT * FROM [States] ORDER BY [StateName]"></asp:SqlDataSource>
+                            </div>
+                            <div class="4u">
+                                <asp:TextBox ID="zip" runat="server" placeholder="Zip Code" Visible="true"></asp:TextBox>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="2u">
+                                <asp:TextBox ID="areaCode" runat="server" placeholder="(   )" Visible="true"></asp:TextBox>
+                            </div>
+                            <div class="2u">
+                                <asp:TextBox ID="exchange" runat="server" placeholder="Phone -" Visible="true"></asp:TextBox>
+                            </div>
+                            <div class="2u">
+                                <asp:TextBox ID="subscriberNumber" runat="server" placeholder="Number" Visible="true"></asp:TextBox>
+                            </div>
+                            <div class="6u">
+                                <asp:TextBox ID="email" runat="server" placeholder="Email" Visible="true"></asp:TextBox>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="6u">
+                                <asp:TextBox ID="promocode" runat="server" placeholder="Promo Code" Visible="true"></asp:TextBox>
+                            </div>
+                        </div>
+
+
+
+                        <div align="middle">
+                            <div id="notifications" runat="server" visible="false" style="border: solid 3px black; background-color: white; width: 1000px;">
+                                <%--<asp:Panel ID="notifications" runat="server" Visible="false" BorderStyle="Solid" BorderColor="#999999" BorderWidth="3px" BackColor="White" Width="1000px" HorizontalAlign="Center">--%>
+                                <div class="row">
+                                    <div class="12u">
+                                        <span>Select the conferences for which you would like to receive notifications</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="12u">
+                                        &nbsp;<asp:CheckBox ID="cb_acct" Text="Accounting" runat="server" ForeColor="Black" Font-Bold="True" />
+                                        &nbsp;<asp:CheckBox ID="cb_cr" Text="Human Resources" runat="server" ForeColor="Black" Font-Bold="True" />
+                                        &nbsp;<asp:CheckBox ID="cb_it" Text="Information Technology" runat="server" ForeColor="Black" Font-Bold="True" />
+                                        &nbsp;<asp:CheckBox ID="cb_lead" Text="Leadership" runat="server" ForeColor="Black" Font-Bold="True" />
+                                        &nbsp;<asp:CheckBox ID="cb_oe" Text="Operational Excellence" runat="server" ForeColor="Black" Font-Bold="True" /><br />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+                        <br />
+
+
+                        <div id="buttons" runat="server" visible="false">
                             <div class="row">
                                 <div class="12u">
-                                    <asp:TextBox ID="partnership" runat="server" placeholder="Partnership#" Visible="false"></asp:TextBox>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="6u">
-                                    <asp:TextBox ID="fName" runat="server" placeholder="First Name" Visible="False"></asp:TextBox>
-                                    <!-- Validator for fName -->
-                                    <%--???? change the text color of the ErrorMessage--%>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter the first name" ControlToValidate="fName" BorderColor="Red"></asp:RequiredFieldValidator>
-                                </div>
-                                <div class="6u">
-                                    <asp:TextBox ID="lName" runat="server" placeholder="Last Name" Visible="False"></asp:TextBox>
-                                    <!-- Validator for lName -->
-                                    <%--???? change the text color of the ErrorMessage--%>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter the last name" ControlToValidate="lName"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="4u">
-                                    <asp:TextBox ID="title" runat="server" placeholder="Job Title" Visible="False"></asp:TextBox>
-
-                                </div>
-                                <div class="4u">
-                                    <asp:TextBox ID="company" runat="server" placeholder="Company" Visible="False"></asp:TextBox>
-                                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" Enabled="true" runat="server" MinimumPrefixLength="1" TargetControlID="company" 
-                                    UseContextKey="True" ServiceMethod="GetCompletionList" CompletionSetCount="10" CompletionInterval="1000" EnableCaching="true" ServicePath="AutoExtender.asmx"/>
-                                </div>
-                                <div class="4u">
-                                    <asp:TextBox ID="department" runat="server" placeholder="Department" Visible="False"></asp:TextBox>
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="12u">
-                                    <asp:TextBox ID="address" runat="server" placeholder="Address" Visible="False"></asp:TextBox>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="6u">
-                                    <asp:TextBox ID="city" runat="server" placeholder="City" Visible="False"></asp:TextBox>
-                                </div>
-                                <div class="2u">
-                                    <asp:DropDownList ID="ddl_state" runat="server" Visible="False" AppendDataBoundItems="True" DataSourceID="SqlDataSource1" DataTextField="StateName" DataValueField="ST">
-                                        <asp:ListItem Value="-state-">-state-</asp:ListItem>
-                                        <asp:ListItem Value="AL">Alabama</asp:ListItem>
-                                        <asp:ListItem Value="AK">Alaska</asp:ListItem>
-                                        <asp:ListItem Value="AZ">Arizona</asp:ListItem>
-                                        <asp:ListItem Value="AR">Arkansas</asp:ListItem>
-                                        <asp:ListItem Value="CA">California</asp:ListItem>
-                                        <asp:ListItem Value="CO">Colorado</asp:ListItem>
-                                        <asp:ListItem Value="CT">Connecticut</asp:ListItem>
-                                        <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
-                                        <asp:ListItem Value="DE">Delaware</asp:ListItem>
-                                        <asp:ListItem Value="FL">Florida</asp:ListItem>
-                                        <asp:ListItem Value="GA">Georgia</asp:ListItem>
-                                        <asp:ListItem Value="HI">Hawaii</asp:ListItem>
-                                        <asp:ListItem Value="ID">Idaho</asp:ListItem>
-                                        <asp:ListItem Value="IL">Illinois</asp:ListItem>
-                                        <asp:ListItem Value="IN">Indiana</asp:ListItem>
-                                        <asp:ListItem Value="IA">Iowa</asp:ListItem>
-                                        <asp:ListItem Value="KS">Kansas</asp:ListItem>
-                                        <asp:ListItem Value="KY">Kentucky</asp:ListItem>
-                                        <asp:ListItem Value="LA">Louisiana</asp:ListItem>
-                                        <asp:ListItem Value="ME">Maine</asp:ListItem>
-                                        <asp:ListItem Value="MD">Maryland</asp:ListItem>
-                                        <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
-                                        <asp:ListItem Value="MI">Michigan</asp:ListItem>
-                                        <asp:ListItem Value="MN">Minnesota</asp:ListItem>
-                                        <asp:ListItem Value="MS">Mississippi</asp:ListItem>
-                                        <asp:ListItem Value="MO">Missouri</asp:ListItem>
-                                        <asp:ListItem Value="MT">Montana</asp:ListItem>
-                                        <asp:ListItem Value="NE">Nebraska</asp:ListItem>
-                                        <asp:ListItem Value="NV">Nevada</asp:ListItem>
-                                        <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
-                                        <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
-                                        <asp:ListItem Value="NM">New Mexico</asp:ListItem>
-                                        <asp:ListItem Value="NY">New York</asp:ListItem>
-                                        <asp:ListItem Value="NC">North Carolina</asp:ListItem>
-                                        <asp:ListItem Value="ND">North Dakota</asp:ListItem>
-                                        <asp:ListItem Value="OH">Ohio</asp:ListItem>
-                                        <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
-                                        <asp:ListItem Value="OR">Oregon</asp:ListItem>
-                                        <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
-                                        <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
-                                        <asp:ListItem Value="SC">South Carolina</asp:ListItem>
-                                        <asp:ListItem Value="SD">South Dakota</asp:ListItem>
-                                        <asp:ListItem Value="TN">Tennessee</asp:ListItem>
-                                        <asp:ListItem Value="TX">Texas</asp:ListItem>
-                                        <asp:ListItem Value="UT">Utah</asp:ListItem>
-                                        <asp:ListItem Value="VT">Vermont</asp:ListItem>
-                                        <asp:ListItem Value="VA">Virginia</asp:ListItem>
-                                        <asp:ListItem Value="WA">Washington</asp:ListItem>
-                                        <asp:ListItem Value="WV">West Virginia</asp:ListItem>
-                                        <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
-                                        <asp:ListItem Value="WY">Wyoming</asp:ListItem>
-                                    </asp:DropDownList>
-                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT * FROM [States] ORDER BY [StateName]"></asp:SqlDataSource>
-                                </div>
-                                <div class="4u">
-                                    <asp:TextBox ID="zip" runat="server" placeholder="Zip Code" Visible="False"></asp:TextBox>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="2u">
-                                    <asp:TextBox ID="areaCode" runat="server" placeholder="(   )" Visible="False"></asp:TextBox>
-                                </div>
-                                <div class="2u">
-                                    <asp:TextBox ID="exchange" runat="server" placeholder="Phone -" Visible="False"></asp:TextBox>
-                                </div>
-                                <div class="2u">
-                                    <asp:TextBox ID="subscriberNumber" runat="server" placeholder="Number" Visible="False"></asp:TextBox>
-                                </div>
-                                <div class="6u">
-                                    <asp:TextBox ID="email" runat="server" placeholder="Email" Visible="False"></asp:TextBox>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <p style="color: #000000; font-weight: bold;">Select the conferences for which you would like to receive notifications</p>
-                            </div>
-
-                            <div class="row">
-                                <div class="4u">
-                                    <asp:CheckBox ID="cb_acct" Text="Accounting" runat="server" ForeColor="Black" Font-Bold="True" />
-                                </div>
-                                <div class="4u">
-                                    <asp:CheckBox ID="cb_it" Text="Information Technology" runat="server" ForeColor="Black" Font-Bold="True" />
-                                </div>
-                                <div class="4u">
-                                    <asp:CheckBox ID="cb_oe" Text="Operational Excellence" runat="server" ForeColor="Black" Font-Bold="True" />
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="6u">
-                                    <asp:CheckBox ID="cb_lead" Text="Leadership" runat="server" ForeColor="Black" Font-Bold="True" />
-                                </div>
-                                <div class="6u">
-                                    <asp:CheckBox ID="cb_cr" Text="Human Resources" runat="server" ForeColor="Black" Font-Bold="True" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="6u">
-                                    <asp:TextBox ID="promocode" runat="server" placeholder="Promo Code" Visible="False"></asp:TextBox>
-                                </div>
-                            </div>
-                            <br />
-
-                            <div class="row">
-                                <div class="12u">
-                                    <asp:Button ID="submit" runat="server" Text="Submit" CssClass="button" Visible="False" OnClick="submit_Click" />
-                                    <asp:Button ID="add" runat="server" Text="Submit and add another" CssClass="button" Visible="False" OnClick="add_Click" />
-                                    <asp:Button ID="clear" runat="server" Text="Clear Form" CssClass="button button-alt" Visible="False" OnClick="clear_Click" CausesValidation="False" />
+                                    <asp:Button ID="submit" runat="server" Text="Submit" CssClass="button" Visible="true" OnClick="submit_Click" />
+                                    <asp:Button ID="add" runat="server" Text="Submit and add another" CssClass="button" Visible="true" OnClick="add_Click" />
+                                    <asp:Button ID="clear" runat="server" Text="Clear Form" CssClass="button button-alt" Visible="true" OnClick="clear_Click" CausesValidation="False" />
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </article>
-    </div>
+    </asp:Panel>
+
+
 </asp:Content>
 
 

@@ -33,8 +33,6 @@
         </article>
     </div>
 
-
-
     <!-- Search -->
     <div class="wrapper wrapper-style2">
         <article id="search">
@@ -65,8 +63,6 @@
             </article>
         </div>
 
-
-
     <!-- Asp.net Documentation -->
     <div class="wrapper wrapper-style2">
         <article class="do-5grid" id="asp_doc">
@@ -76,7 +72,7 @@
             </header>
             <h5>Project Requirements</h5>
             <div class="row">
-                <a href="Documentation/Project%20Description.txt">Requirements</a>
+                <a href="Documentation/ProjectRequirements.html" target="_blank">Project Requirements</a>
             </div>
             <br />
             <h5>Project Milestones</h5>

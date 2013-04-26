@@ -8,11 +8,9 @@
     <nav id="pgnav">
         <ul>
             <li><a href="#top">Top |</a></li>            
-            <li><a href="#quicksearch">Quick Search |</a></li>
-            <%--<li><a href="#registration">Quick Registration |</a></li>--%>
-            <li><a href="#quickreports">Quick Reports |</a></li>
-            <li><a href="#regsearch">Regular Search |</a></li>
-            <%--<li><a href="#conferences">Conferences</a></li>--%>
+            <li><a href="#search">Search</a></li>
+            <%--<li><a href="#quickreports">Quick Reports |</a></li>
+            <li><a href="#regsearch">Regular Search</a></li>--%>
         </ul>
     </nav>
 
@@ -38,13 +36,24 @@
         </article>
     </div>
 
-    <!-- Quick Search -->
+    <!-- SqlDataSource -->
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_QuickSearch" SelectCommandType="StoredProcedure">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="TextBox1" Name="searchTerm" PropertyName="Text" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Organization] FROM [Contacts]"></asp:SqlDataSource>
+
+
+
+    <!-- Search -->
     <!-- The following controls will allow the user to quickly perform a search of the database and return the results -->
     <div class="wrapper wrapper-style2">
-        <article id="quicksearch">
+        <article id="search">
             <header>
-                <h2>Quick Search</h2>
-                <span>Run a quick search of the Partners In Business Database</span>
+                <h2>Search</h2>
+                <span>Search the Partners In Business Database</span>
             </header>
             <div class="5grid">
                 <div class="row">
@@ -59,14 +68,14 @@
                             </div>
                             <div class="row">
                                 <div class="12u">
-                                    <asp:Button ID="btn_qksearch" CssClass="button" runat="server" Text="Search" OnClick="btn_qksearch_Click"  />
+                                    <asp:Button ID="btn_search" CssClass="button" runat="server" Text="Search" OnClick="btn_search_Click"  />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <asp:GridView ID="gv_qksearch" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Visible="False">
+            <asp:GridView ID="gv_search" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Visible="False">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
@@ -84,9 +93,8 @@
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Organization] FROM [Contacts]"></asp:SqlDataSource>
             
-            <asp:GridView ID="gv_qkdetail" runat="server" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="gv_detail" runat="server" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -102,65 +110,8 @@
             </article>
         </div>
 
-
-    <%--<!-- Quick Registration -->
-        <!-- The following controls will allow the user to quickly register an attendee for the conference with minimal information -->
-    <div class="wrapper wrapper-style2">
-        <article id="registration">
-            <header>
-                <h2>Quick Registration</h2>
-                <span>Quickly register someone for a Partners In Business Conference</span>
-            </header>
-                <div class="5grid">
-                    <div class="row">
-                        <div class="12u">
-                            <div class="5grid">
-                                <div class="row">
-                                    <div class="6u">
-                                        <input id="Text5" type="text" placeholder="First Name" />
-                                    </div>
-                                    <div class="6u">
-                                        <input id="Text6" type="text" placeholder="Last Name" />
-                                    </div>
-                                    <div class="row">
-                                        <div class="6u">
-                                            <input id="Text7" type="text" placeholder="Organization" />
-                                        </div>
-
-                                        <div class="6u">
-                                            <input id="Text8" type="text" placeholder="Title" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="6u">
-                                            <input id="Text9" type="text" placeholder="Partner Number" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="12u">
-                                        <input type="submit" class="button" value="Submit" />
-                                        <input type="reset" class="button button-alt" value="Clear" />
-                                    </div>
-                                </div>
-
-                                <br />
-                                <br />
-                                <div class="row-special">
-                                    <a href="Registration.aspx" class="button">Full Registration</a>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </article>
-    </div>--%>
-
     <!-- Reports -->
-    <div class="wrapper wrapper-style2">
+    <%--<div class="wrapper wrapper-style2">
         <article id="quickreports">
             <header>
                 <h2>Quick Reports</h2>
@@ -170,7 +121,7 @@
                 <div class="row">
                     <div class="3u"></div>
                     <div class="6u">
-                        <%-- ***connect source to conferences DB*** --%>
+                        <!-- ***connect source to conferences DB*** -->
                         <asp:DropDownList ID="conference" runat="server">
                             <asp:ListItem>--Please select a conference--</asp:ListItem>
                             <asp:ListItem>Crossroads</asp:ListItem>
@@ -214,12 +165,12 @@
                 <a href="#custom_report" class="button button-big">Run a custom report</a>
             </footer>
         </article>
-    </div>
+    </div>--%>
 
 
     <!-- Search -->
     <!-- The following controls will allow the user to perform a regular search of the database and return the results -->
-    <div class="wrapper wrapper-style2">
+    <%--<div class="wrapper wrapper-style2">
         <article id="regsearch">
             <header>
                 <h2>Search</h2>
@@ -273,12 +224,7 @@
                 <SortedAscendingHeaderStyle BackColor="#506C8C" />
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-            </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_QuickSearch" SelectCommandType="StoredProcedure">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="TextBox1" Name="searchTerm" PropertyName="Text" Type="String" />
-                </SelectParameters>
-            </asp:SqlDataSource>
+            </asp:GridView>            
             
             <asp:GridView ID="gv_detail" runat="server" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -294,68 +240,33 @@
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
         </article>
-    </div>
+    </div>--%>
 
-    <%--<!-- Conferences -->
-    <!-- The following will link the user to the conferences page where they can run reports -->
-    <div class="wrapper wrapper-style3">
-        <article id="conferences">
+
+<%--  
+      
+
+    <div class="wrapper wrapper-style2">
+        <article class="5grid-layout" id="Article1">
             <header>
-                <h2>Conferences</h2>
-                <span>Conferences put on by Partners In Business</span>
+                <h2></h2>
+                <span></span>
             </header>
-            <div class="5grid-layout">
+            <div class="5grid">
                 <div class="row">
                     <div class="12u">
+                        <div class="5grid">
+                            <div class="row">
+                                <div class="12u">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="4u">
-                        <article class="box box-style2">
-                            <a href="Conferences.aspx#crossroads" class="image image-full">
-                                <img src="images/portfolio01.jpg" alt="" /></a>
-                            <h3><a href="Conferences.aspx#crossroads">Crossroads</a></h3>
-                        </article>
-                    </div>
-                    <div class="4u">
-                        <article class="box box-style2">
-                            <a href="Conferences.aspx#oe" class="image image-full">
-                                <img src="images/oe_logo.jpg" alt="" /></a>
-                            <h3><a href="Conferences.aspx#oe">Operational Excellence</a></h3>
-                        </article>
-                    </div>
-                    <div class="4u">
-                        <article class="box box-style2">
-                            <a href="Conferences.aspx#acct" class="image image-full">
-                                <img src="images/acct_logo.jpg" alt="" /></a>
-                            <h3><a href="Conferences.aspx#acct">Accounting</a></h3>
-                        </article>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="4u">
-                        <article class="box box-style2">
-                            <a href="Conferences.aspx#it" class="image image-full">
-                                <img src="images/portfolio04.jpg" alt="" /></a>
-                            <h3><a href="Conferences.aspx#it">Information Technology</a></h3>
-                        </article>
-                    </div>
-                    <div class="4u">
-                        <article class="box box-style2">
-                            <a href="Conferences.aspx#lead" class="image image-full">
-                                <img src="images/portfolio05.jpg" alt="" /></a>
-                            <h3><a href="Conferences.aspx#lead">Leadership</a></h3>
-                        </article>
-                    </div>
-                    <div class="4u">
-                        <article class="box box-style2">
-                            <a href="Conferences.aspx#other" class="image image-full">
-                                <img src="images/portfolio06.jpg" alt="" /></a>
-                            <h3><a href="Conferences.aspx#other">Other</a></h3>
-                        </article>
-                    </div>
-                </div>
-            </div>
         </article>
-    </div>--%>
+    </div>
+
+
+--%>
+
 </asp:Content>
