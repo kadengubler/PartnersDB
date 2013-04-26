@@ -94,12 +94,19 @@ public partial class Registration : System.Web.UI.Page
             aNumber.Visible = true;
             cb_student.Visible = true;
             cb_faculty.Visible = true;
+            title.Visible = false;
+            company.Visible = false;
+            department.Visible = false;
+
         }
         else
         {
             aNumber.Visible = false;
             cb_student.Visible = false;
             cb_faculty.Visible = false;
+            title.Visible = true;
+            company.Visible = true;
+            department.Visible = true;
         }
         if (ddl_RegistrationType.SelectedValue.ToString() == "Partner")
         {
