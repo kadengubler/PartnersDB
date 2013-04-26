@@ -15,12 +15,13 @@
         </ul>
     </nav>
 
+    <br />
 
     <div class="wrapper wrapper-style2">
         <article class="5grid-layout" id="Article1">
             <header>
-                <h2></h2>
-                <span></span>
+                <h2>Attendee List</h2>
+                <span>Select conference to retreive a list of registered attendees.</span>
             </header>
             <div class="5grid">
                 <div class="row">

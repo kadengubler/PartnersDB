@@ -16,7 +16,6 @@
     </nav>
 
     <br />
-    <br />
 
 
     <div class="wrapper wrapper-style2">

@@ -88,7 +88,6 @@ public partial class Registration : System.Web.UI.Page
             //clear.Visible = true;
             //notifications.Visible = true;
         }
-
         if (ddl_RegistrationType.SelectedValue.ToString() == "Student/Faculty")
         {
             aNumber.Visible = true;
