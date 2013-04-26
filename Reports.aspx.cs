@@ -9,7 +9,7 @@ public partial class Reports : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
@@ -29,14 +29,16 @@ public partial class Reports : System.Web.UI.Page
         {
             //Custom Report
             //*** code to allow user to select fields to show in report ***
-            cr.Visible = true;
+            gvAttendee.Visible = true;
+            gvAttendee.Focus();
         }
         else if (ddl_Report.SelectedIndex == 2)
         {
             //Current list of registered attendees
             //*** Query DB and list [fName] [lName] [company] [title] ***
             //*** calculate the number of attendees for each category (students, professionals, partners)
-
+            gvAttendee.Visible = true;
+            gvAttendee.Focus();
         }
         else if (ddl_Report.SelectedIndex == 3)
         {
@@ -66,12 +68,12 @@ public partial class Reports : System.Web.UI.Page
         else if (ddl_Report.SelectedIndex == 8)
         {
             //Speaker itineraries
-   
+
         }
         else if (ddl_Report.SelectedIndex == 9)
         {
             //List of past years partnerships 
-  
+
         }
         else if (ddl_Report.SelectedIndex == 10)
         {
@@ -81,6 +83,11 @@ public partial class Reports : System.Web.UI.Page
         {
             cr.Visible = false;
         }
-        
+
     }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        GridView1.Visible = true;
+    }
+
 }

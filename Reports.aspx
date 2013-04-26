@@ -1,4 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reports.aspx.cs" Inherits="Reports" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reports.aspx.cs" Inherits="Reports" MaintainScrollPositionOnPostback="true"%>
+
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+
 
 <%--<%@ Register src="Temp/DataFilter.ascx" tagname="DataFilter" tagprefix="uc1" %>--%>
 
@@ -6,8 +11,22 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
 
+    <!-- Page Nav -->
+    <nav id="pgnav">
+        <ul>
+            <li><a href="Reports.aspx">Reports Main |</a></li>
+            <li><a href="StatusBoard.aspx">Status Board |</a></li>            
+            <li><a href="TrackPartnerships.aspx">Track Partnerships |</a></li>
+            <li><a href="AttendeeList.aspx">Attendee List |</a></li>
+            <li><a href="Itinerary.aspx">Itinerary</a></li>
+        </ul>
+    </nav>
+
+    <br />
+
+
     <!-- Reports -->
-    <div class="wrapper wrapper-style2">
+    <div class="wrapper wrapper-style1">
         <article class="5grid-layout" id="contact">
             <header>
                 <h2>Reports</h2>
@@ -16,114 +35,105 @@
             <div class="5grid">
                 <div class="row">
                     <div class="12u">
-                        <div class="5grid">
-                            <div class="row">
-                                <div class="12u">
-                                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
-                                    <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
-                                        <asp:ListItem>--Please Select Conference--</asp:ListItem>
-                                        <asp:ListItem>Crossroads</asp:ListItem>
-                                        <asp:ListItem>Operational Excellence</asp:ListItem>
-                                        <asp:ListItem>Accounting</asp:ListItem>
-                                        <asp:ListItem>Information Technology</asp:ListItem>
-                                        <asp:ListItem>Leadership</asp:ListItem>
-                                    </asp:DropDownList>
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+                        <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
+                            <asp:ListItem>--Please Select Conference--</asp:ListItem>
+                            <asp:ListItem>Crossroads</asp:ListItem>
+                            <asp:ListItem>Operational Excellence</asp:ListItem>
+                            <asp:ListItem>Accounting</asp:ListItem>
+                            <asp:ListItem>Information Technology</asp:ListItem>
+                            <asp:ListItem>Leadership</asp:ListItem>
+                        </asp:DropDownList>
 
-                                    <asp:DropDownList ID="ddl_Report" runat="server" Visible="False" AutoPostBack="True" OnSelectedIndexChanged="ddl_Report_SelectedIndexChanged">
-                                        <asp:ListItem>--Please Select Report Type--</asp:ListItem>
-                                        <asp:ListItem>Custom Report</asp:ListItem>
-                                        <asp:ListItem>Current list of registered attendees</asp:ListItem>
-                                        <asp:ListItem>List of attendees at past conferences</asp:ListItem>
-                                        <asp:ListItem>List of current partnerships</asp:ListItem>
-                                        <asp:ListItem>List of current sponsors</asp:ListItem>
-                                        <asp:ListItem>List of current co-sponsors</asp:ListItem>
-                                        <asp:ListItem>Name badges</asp:ListItem>
-                                        <asp:ListItem>Speaker itineraries</asp:ListItem>
-                                        <asp:ListItem>List of past years partnerships</asp:ListItem>
-                                        <asp:ListItem>Email Blast List</asp:ListItem>
-                                        <asp:ListItem></asp:ListItem>
-                                        <asp:ListItem></asp:ListItem>
-                                        <asp:ListItem></asp:ListItem>
-                                        <asp:ListItem></asp:ListItem>
-                                        <asp:ListItem></asp:ListItem>
-                                        <asp:ListItem></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
+                        <asp:DropDownList ID="ddl_Report" runat="server" Visible="False" AutoPostBack="True" OnSelectedIndexChanged="ddl_Report_SelectedIndexChanged">
+                            <asp:ListItem>--Please Select Report Type--</asp:ListItem>
+                            <asp:ListItem>Custom Report</asp:ListItem>
+                            <asp:ListItem>Current list of registered attendees</asp:ListItem>
+                            <asp:ListItem>List of attendees at past conferences</asp:ListItem>
+                            <asp:ListItem>List of current partnerships</asp:ListItem>
+                            <asp:ListItem>List of current sponsors</asp:ListItem>
+                            <asp:ListItem>List of current co-sponsors</asp:ListItem>
+                            <asp:ListItem>Name badges</asp:ListItem>
+                            <asp:ListItem>Speaker itineraries</asp:ListItem>
+                            <asp:ListItem>List of past years partnerships</asp:ListItem>
+                            <asp:ListItem>Email Blast List</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+            </div>
+
+
+            <p>________________________________________________________________________________________________________________</p>
+
+
+            <!-- Controls for custom report -->
+            <%--??? populate ddl's with column names from the DB ???--%>
+            <div class="5grid" id="cr" runat="server" visible="false">
+                <div class="row">
+                    <div class="12u">
+                        <h3></h3>
+                        <h3>Select the items to display in the report</h3>
+
+                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT column_name,* from information_schema.columns WHERE table_name = 'Contacts' ORDER BY ordinal_position"></asp:SqlDataSource>
+
+                        <div class="row">
+                            <div class="2u">
+                                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="column_name" DataValueField="column_name"></asp:DropDownList>
                             </div>
-
-                            <p>________________________________________________________________________________________________________________</p>
-
-                            <!-- Controls for custom report -->
-                            <%--??? populate ddl's with columns from the DB ???--%>
-                            
-                            <div id="cr" runat="server" visible="false">
-                                <h3>Select the items to display in the report</h3>
-                                <div class="row">
-                                    <div class="2u">
-                                        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="LastName" DataValueField="LastName"></asp:DropDownList>
-                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [LastName], [FirstName], [Title], [OrgID], [Email], [Street], [City], [Student], [Faculty], [Zip], [ST] FROM [Contacts]"></asp:SqlDataSource>
-                                    </div>
-                                    <div class="2u">
-                                        <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <div class="2u">
-                                        <asp:DropDownList ID="DropDownList3" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <div class="2u">
-                                        <asp:DropDownList ID="DropDownList4" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <div class="2u">
-                                        <asp:DropDownList ID="DropDownList5" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <div class="2u">
-                                        <asp:DropDownList ID="DropDownList6" runat="server"></asp:DropDownList>                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="12u">
-                                        <asp:Button ID="Button1" runat="server" Text="Run Report" CssClass="button" />
-                                    </div>
-                                </div>
+                            <div class="2u">
+                                <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="column_name" DataValueField="column_name"></asp:DropDownList>
                             </div>
-
-                            <!-- Gridview  -->
-                            <%--???  do we need a seperate gridview for each report or can we alter what the GV displays based on the report selected ???--%>
-
-                            <div class="row">
-                                <asp:GridView ID="GridView1" runat="server" Visible="False" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-                                    <Columns>
-                                        <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
-                                        <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
-                                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                                        <asp:BoundField DataField="Organization" HeaderText="Organization" SortExpression="Organization" />
-                                    </Columns>
-                                </asp:GridView>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [FirstName], [LastName], [Title], [OrgID] FROM [Contacts]"></asp:SqlDataSource>
+                            <div class="2u">
+                                <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource3" DataTextField="column_name" DataValueField="column_name"></asp:DropDownList>
                             </div>
-                            
-                            <div class="row">
-                                <div class="6u">
-                                    
-                                </div>
-                                <div class="6u">
-                                    
-                                </div>
+                            <div class="2u">
+                                <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource3" DataTextField="column_name" DataValueField="column_name"></asp:DropDownList>
                             </div>
-
-                            <div class="row">
-                                <div class="6u">
-
-                                </div>
-                                <div class="6u">
-
-                                </div>
+                            <div class="2u">
+                                <asp:DropDownList ID="DropDownList5" runat="server" DataSourceID="SqlDataSource3" DataTextField="column_name" DataValueField="column_name"></asp:DropDownList>
                             </div>
-                           
+                            <div class="2u">
+                                <asp:DropDownList ID="DropDownList6" runat="server" DataSourceID="SqlDataSource3" DataTextField="column_name" DataValueField="column_name"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="12u">
+                                <asp:Button ID="Button1" runat="server" Text="Run Report" CssClass="button" OnClick="Button1_Click" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
     </div>
-</asp:Content>
 
+    <asp:Panel ID="gvAttendee" runat="server" Visible="false">
+                <div class="wrapper wrapper-style2">
+                    <article class="5grid-layout">
+                        <header>
+                            <h2>Current list of registered attendees</h2>
+                            <span></span>
+                        </header>
+
+                        <!-- Gridview  -->
+                        <%--???  do we need a seperate gridview for each report or can we alter what the GV displays based on the report selected ???--%>
+                        <div class="row">
+                            <div class="12u">
+                                <asp:GridView ID="GridView1" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+                                    <AlternatingRowStyle CssClass="alt"></AlternatingRowStyle>
+                                    <Columns>
+                                        <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+                                        <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+                                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
+                                        <asp:BoundField DataField="OrgName" HeaderText="Organization" SortExpression="OrgName" />
+                                    </Columns>
+
+                                    <PagerStyle CssClass="pgr"></PagerStyle>
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.FirstName, Contacts.LastName, Contacts.Title, Contacts.OrgID, Organization.OrgName FROM Contacts INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID"></asp:SqlDataSource>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+        </asp:Panel>
+</asp:Content>
