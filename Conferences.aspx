@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Conferences.aspx.cs" Inherits="Conferences" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Conferences.aspx.cs" Inherits="Conferences" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -8,8 +8,8 @@
     <nav id="pgnav">
         <ul>
             <li><a href="#top">Top |</a></li>
-            <li><a href="#crossroads">Crossroads |</a></li>
-            <li><a href="#oe">Operational Excellence |</a></li>
+            <li><a href="#dates">Conference Dates |</a></li>
+            <li><a href="#sponsors">Conference Sponsors |</a></li>
             <li><a href="#acct">Accounting |</a></li>
             <li><a href="#it">Information Technology |</a></li>
             <li><a href="#lead">Leadership |</a></li>
@@ -36,246 +36,101 @@
         </article>
     </div>
 
-    <!-- Crossroads -->
+    <!-- Conference Dates -->
     <div class="wrapper wrapper-style2">
-        <article id="crossroads">
+        <article id="dates">
             <header>
-                <h2>Crossroads</h2>
-                <span>Choose a category to run report</span>
+                <h2>Conference Dates</h2>
+                <span>Select a conference to display the date of the conference</span>
             </header>
             <div class="5grid-layout">
                 <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt="" /></span>
-                            <h3>Speakers</h3>
-                            <p>This report is used to display the speakers information.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt="" /></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
+                    <div class="12u">
+                        
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [StartingDate], [EndingDate], [ConferenceTitle] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
+                        
+                            
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="SelectedValue" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT DISTINCT [ConferenceTitle] FROM [Conference]"></asp:SqlDataSource>
+                        <br />
+
+                        <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConferenceTitle" DataValueField="ConferenceTitle">                            
+                        </asp:DropDownList>
+                        <br />
+                        <br />
+                        <h2><asp:Label ID="conferenceDate" runat="server" Text="Label" Visible="false"></asp:Label></h2>
+                            
+                        </div>    
+                    </div>                    
+                
+            </div>
+        </article>
+    </div>
+
+
+    <!-- Conference Sponsors -->
+    <div class="wrapper wrapper-style3">
+        <article id="sponsors">
+            <header>
+                <h2>Conference Sponsors</h2>
+                <span></span>
+            </header>
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="6u">
+                        <asp:LinkButton ID="LinkButton1" runat="server">
                         <section class="box box-style1">
                             <span class="image image-centered">
                                 <img src="images/work03.png" alt="" /></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
+                            <h3>Sponsors</h3>                            
                         </section>
+                        </asp:LinkButton>
                     </div>
-                </div>
-            </div>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt="" /></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
+                    
+                    <div class="6u">
+                        <asp:LinkButton ID="LinkButton2" runat="server">
                         <section class="box box-style1">
                             <span class="image image-centered">
                                 <img src="images/work02.png" alt="" /></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
+                            <h3>CoSponsors</h3>
                         </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt="" /></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
+                        </asp:LinkButton>
                     </div>
                 </div>
             </div>
             <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
+                <asp:Button ID="Button1" runat="server" class="button button-big" Text="Add a new (Co)Sponsor" />                
             </footer>
+
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" DeleteCommand="DELETE FROM [Sponsor] WHERE [SponsorID] = @SponsorID" InsertCommand="INSERT INTO [Sponsor] ([ContactID], [Cosponsor], [Ranking]) VALUES (@ContactID, @Cosponsor, @Ranking)" SelectCommand="SELECT [SponsorID], [ContactID], [Cosponsor], [Ranking] FROM [Sponsor]" UpdateCommand="UPDATE [Sponsor] SET [ContactID] = @ContactID, [Cosponsor] = @Cosponsor, [Ranking] = @Ranking WHERE [SponsorID] = @SponsorID">
+                <DeleteParameters>
+                    <asp:Parameter Name="SponsorID" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="ContactID" Type="Int32" />
+                    <asp:Parameter Name="Cosponsor" Type="Boolean" />
+                    <asp:Parameter Name="Ranking" Type="String" />
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="ContactID" Type="Int32" />
+                    <asp:Parameter Name="Cosponsor" Type="Boolean" />
+                    <asp:Parameter Name="Ranking" Type="String" />
+                    <asp:Parameter Name="SponsorID" Type="Int32" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+            <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1"></asp:GridView>
+
         </article>
     </div>
 
-    <!-- Operational Excellence -->
-    <div class="wrapper wrapper-style3">
-        <article id="oe">
-            <header>
-                <h2>Operational Excellence</h2>
-                <span>Choose a category to run report</span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
-            </footer>
-        </article>
-    </div>
 
-    <!-- Accounting -->
-    <div class="wrapper wrapper-style1">
-        <article id="acct">
-            <header>
-                <h2>Accounting</h2>
-                <span>Choose a category to run report</span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
-            </footer>
-        </article>
-    </div>
-
-    <!-- Information Technology -->
-    <div class="wrapper wrapper-style2">
-        <article id="it">
-            <header>
-                <h2>Information Technology</h2>
-                <span>Choose a category to run report</span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
-            </footer>
-        </article>
-    </div>
-
-    <!-- Leadership -->
-    <div class="wrapper wrapper-style3">
-        <article id="lead">
-            <header>
-                <h2>Leadership</h2>
-                <span>Choose a category to run report</span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
-            </footer>
-        </article>
-    </div>
 
     <!-- Other -->
-    <div class="wrapper wrapper-style4">
+    <%--<div class="wrapper wrapper-style4">
         <article id="other">
             <header>
                 <h2>Other</h2>
@@ -314,6 +169,7 @@
                 <a href="#custom_report" class="button button-big">Run a custom report</a>
             </footer>
         </article>
-    </div>
+    </div>--%>
+
 </asp:Content>
 

@@ -8,7 +8,7 @@
 
     <!-- Conference and Registration Type -->
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div class="wrapper wrapper-style2">
+    <div class="wrapper wrapper-style1">
         <article class="5grid-layout" id="contact">
             <header>
                 <h2>Conference Registration</h2>
@@ -47,7 +47,7 @@
 
 
     <!-- Attendee Information -->
-    <asp:Panel ID="Panel1" runat="server" CssClass="wrapper wrapper-style3" Visible="false">
+    <asp:Panel ID="Panel1" runat="server" CssClass="wrapper wrapper-style2" Visible="false">
         <article class="5grid-layout" id="Article1">
             <header>
                 <h2>Conference Registration</h2>
@@ -262,6 +262,27 @@
             </div>
         </article>
     </asp:Panel>
+
+
+   <%-- <div class="wrapper wrapper-style2">
+        <article class="5grid-layout" id="Article2">
+            <header>
+                <h2></h2>
+                <span></span>
+            </header>
+            <div class="5grid">
+                <div class="row">
+                    <div class="12u">
+                        <div class="5grid">
+                            <div class="row">
+                                <div class="12u">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </article>
+    </div>--%>
 
 
 </asp:Content>
