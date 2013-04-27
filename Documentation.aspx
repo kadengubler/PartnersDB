@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Documentation.aspx.cs" Inherits="Documentation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Documentation.aspx.cs" Inherits="Documentation" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -107,7 +107,7 @@
     <div class="wrapper wrapper-style2">
         <article class="5grid-layout" id="wiki">
             <header>
-                <h3>Conferenes Wiki</h3>
+                <h3>Conferences Wiki</h3>
             </header>
             <div class="row">
                 <a href="Documentation/Wiki/FrontPage.html">Documentation/Wiki/FrontPage.html</a><br />
