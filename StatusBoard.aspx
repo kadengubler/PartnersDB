@@ -31,7 +31,7 @@
                                 <div class="12u">
                                         <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConfYear" DataValueField="ConferenceID">
                                         </asp:DropDownList>
-                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [ConferenceID], [ConferenceTitle] + ' ' + DATENAME(yy,[StartingDate]) AS ConfYear FROM [Conference]" DeleteCommand="DELETE FROM [Speakers] WHERE [SpeakerID] = @SpeakerID" InsertCommand="INSERT INTO [Speakers] ([SpeakerID], [ContactID], [ConferenceID], [SpeakerStatus], [Picture], [Bio], [Summary], [Slides], [Travel], [Hotel]) VALUES (@SpeakerID, @ContactID, @ConferenceID, @SpeakerStatus, @Picture, @Bio, @Summary, @Slides, @Travel, @Hotel)" UpdateCommand="UPDATE [Speakers] SET [ContactID] = @ContactID, [ConferenceID] = @ConferenceID, [SpeakerStatus] = @SpeakerStatus, [Picture] = @Picture, [Bio] = @Bio, [Summary] = @Summary, [Slides] = @Slides, [Travel] = @Travel, [Hotel] = @Hotel WHERE [SpeakerID] = @SpeakerID">
+                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [ConferenceID], [ConferenceTitle] + ' ' + DATENAME(yy,[StartingDate]) AS ConfYear FROM [Conference]" DeleteCommand="DELETE FROM [Speakers] WHERE [SpeakerID] = @SpeakerID" InsertCommand="INSERT INTO [Speakers] ([SpeakerID], [ContactID], [ConferenceID], [SpeakerStatus], [Picture], [Bio], [Summary], [Slides], [Travel], [Hotel]) VALUES (@SpeakerID, @ContactID, @ConferenceID, @SpeakerStatus, @Picture, @Bio, @Summary, @Slides, @Travel, @Hotel)">
                                             <DeleteParameters>
                                                 <asp:Parameter Name="SpeakerID" Type="Int32" />
                                             </DeleteParameters>
@@ -47,26 +47,15 @@
                                                 <asp:Parameter Name="Travel" Type="Boolean" />
                                                 <asp:Parameter Name="Hotel" Type="Boolean" />
                                             </InsertParameters>
-                                            <UpdateParameters>
-                                                <asp:Parameter Name="ContactID" Type="Int32" />
-                                                <asp:Parameter Name="ConferenceID" Type="Int32" />
-                                                <asp:Parameter Name="SpeakerStatus" Type="String" />
-                                                <asp:Parameter Name="Picture" Type="Boolean" />
-                                                <asp:Parameter Name="Bio" Type="Boolean" />
-                                                <asp:Parameter Name="Summary" Type="Boolean" />
-                                                <asp:Parameter Name="Slides" Type="Boolean" />
-                                                <asp:Parameter Name="Travel" Type="Boolean" />
-                                                <asp:Parameter Name="Hotel" Type="Boolean" />
-                                                <asp:Parameter Name="SpeakerID" Type="Int32" />
-                                            </UpdateParameters>
                                         </asp:SqlDataSource>
 
                                     </div>
-                                    <asp:GridView ID="GridView1" runat="server" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="both" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowPaging="true">
+                                    <asp:GridView ID="GridView1" runat="server" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+<AlternatingRowStyle CssClass="alt"></AlternatingRowStyle>
                                         <Columns>
                                             <asp:CommandField ShowEditButton="True" />
                                             <asp:BoundField DataField="Conference" HeaderText="Conference" ReadOnly="True" SortExpression="Conference" />
-                                            <asp:BoundField DataField="Name" HeaderText="Name" ReadOnly="True" SortExpression="Name" />
+                                            <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" ReadOnly="True" />
                                             <asp:BoundField DataField="SpeakerStatus" HeaderText="SpeakerStatus" SortExpression="SpeakerStatus" />
                                             <asp:CheckBoxField DataField="Picture" HeaderText="Picture" SortExpression="Picture" />
                                             <asp:CheckBoxField DataField="Bio" HeaderText="Bio" SortExpression="Bio" />
@@ -74,23 +63,48 @@
                                             <asp:CheckBoxField DataField="Slides" HeaderText="Slides" SortExpression="Slides" />
                                             <asp:CheckBoxField DataField="Travel" HeaderText="Travel" SortExpression="Travel" />
                                         </Columns>
+
+<PagerStyle CssClass="pgr"></PagerStyle>
                                     </asp:GridView>
                                     <asp:GridView ID="GridView2" runat="server">
                                     </asp:GridView>
-                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_StatusBoard" SelectCommandType="StoredProcedure" UpdateCommand="usp_UpdateSpeaker" UpdateCommandType="StoredProcedure">
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommandType="StoredProcedure" SelectCommand="usp_StatusBoard" UpdateCommand="UPDATE [Speakers] SET [ContactID] = @ContactID, [ConferenceID] = @ConferenceID, [SpeakerStatus] = @SpeakerStatus, [Picture] = @Picture, [Bio] = @Bio, [Summary] = @Summary, [Slides] = @Slides, [Travel] = @Travel, [Hotel] = @Hotel WHERE [SpeakerID] = @SpeakerID" DeleteCommand="DELETE FROM [Speakers] WHERE [SpeakerID] = @SpeakerID" InsertCommand="INSERT INTO [Speakers] ([SpeakerID], [ContactID], [ConferenceID], [SpeakerStatus], [Picture], [Bio], [Summary], [Slides], [Travel], [Hotel]) VALUES (@SpeakerID, @ContactID, @ConferenceID, @SpeakerStatus, @Picture, @Bio, @Summary, @Slides, @Travel, @Hotel)">
                                         <SelectParameters>
-                                            <asp:ControlParameter ControlID="DropDownList1" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
+                                        <asp:ControlParameter ControlID="DropDownList1" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
                                         </SelectParameters>
-                                        <UpdateParameters>
+                                        <DeleteParameters>
                                             <asp:Parameter Name="SpeakerID" Type="Int32" />
+                                        </DeleteParameters>
+                                        <InsertParameters>
+                                            <asp:Parameter Name="SpeakerID" Type="Int32" />
+                                            <asp:Parameter Name="ContactID" Type="Int32" />
+                                            <asp:Parameter Name="ConferenceID" Type="Int32" />
                                             <asp:Parameter Name="SpeakerStatus" Type="String" />
                                             <asp:Parameter Name="Picture" Type="Boolean" />
                                             <asp:Parameter Name="Bio" Type="Boolean" />
                                             <asp:Parameter Name="Summary" Type="Boolean" />
                                             <asp:Parameter Name="Slides" Type="Boolean" />
                                             <asp:Parameter Name="Travel" Type="Boolean" />
+                                            <asp:Parameter Name="Hotel" Type="Boolean" />
+                                        </InsertParameters>
+                                        <UpdateParameters>
+                                            <asp:Parameter Name="ContactID" Type="Int32" />
+                                            <asp:Parameter Name="ConferenceID" Type="Int32" />
+                                            <asp:Parameter Name="SpeakerStatus" Type="String" />
+                                            <asp:Parameter Name="Picture" Type="Boolean" />
+                                            <asp:Parameter Name="Bio" Type="Boolean" />
+                                            <asp:Parameter Name="Summary" Type="Boolean" />
+                                            <asp:Parameter Name="Slides" Type="Boolean" />
+                                            <asp:Parameter Name="Travel" Type="Boolean" />
+                                            <asp:Parameter Name="Hotel" Type="Boolean" />
+                                            <asp:Parameter Name="SpeakerID" Type="Int32" />
                                         </UpdateParameters>
                                     </asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_StatusBoard" SelectCommandType="StoredProcedure">
+                                    <SelectParameters>
+                                        <asp:ControlParameter ControlID="DropDownList1" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
                     </div>
