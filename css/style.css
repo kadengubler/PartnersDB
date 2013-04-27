@@ -539,6 +539,61 @@
 				border-right: solid 0.75em transparent;
 				border-top: solid 0.6em #282828;
 			}
+
+
+/*********************************************************************************/
+/* Footer                                                                        */
+/*********************************************************************************/
+#footer
+	{
+		background-color: #282828;
+		text-align: center;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		z-index: 10000;
+		cursor: default;
+	}
+	
+		#footer ul
+		{
+			margin: 0;
+		}
+	
+		#footer li
+		{
+			display: inline-block;
+		}
+		
+		#footer a
+		{
+			position: relative;
+			display: normal;
+			color: #fff;
+			text-decoration: none;
+			outline: 0;
+		}
+		
+			#footer a:hover
+			{
+				color: #fff !important;
+			}
+			
+			#footer a.active:before
+			{
+				content: '';
+				display: normal;
+				position: absolute;
+				bottom: -0.6em;
+				left: 50%;
+				margin-left: -0.75em;
+				border-left: solid 0.75em transparent;
+				border-right: solid 0.75em transparent;
+				border-top: solid 0.6em #282828;
+			}
+
+
 			
 /*********************************************************************************/
 /* Articles                                                                      */
