@@ -69,6 +69,7 @@ public partial class Registration : System.Web.UI.Page
             Panel1.Visible = true;
             notifications.Visible = true;
             buttons.Visible = true;
+            Panel1.Focus();
             //ddl_daysAttending.Visible = true;
             //fName.Visible = true;
             //lName.Visible = true;

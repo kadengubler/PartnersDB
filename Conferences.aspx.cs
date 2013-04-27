@@ -9,6 +9,12 @@ public partial class Conferences : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
 
+    }
+    protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        conferenceDate.Visible = true;
+        
     }
 }

@@ -31,7 +31,35 @@
                                 <div class="12u">
                                         <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConfYear" DataValueField="ConferenceID">
                                         </asp:DropDownList>
-                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [ConferenceID], [ConferenceTitle] + ' ' + DATENAME(yy,[StartingDate]) AS ConfYear FROM [Conference]"></asp:SqlDataSource>
+                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [ConferenceID], [ConferenceTitle] + ' ' + DATENAME(yy,[StartingDate]) AS ConfYear FROM [Conference]" DeleteCommand="DELETE FROM [Speakers] WHERE [SpeakerID] = @SpeakerID" InsertCommand="INSERT INTO [Speakers] ([SpeakerID], [ContactID], [ConferenceID], [SpeakerStatus], [Picture], [Bio], [Summary], [Slides], [Travel], [Hotel]) VALUES (@SpeakerID, @ContactID, @ConferenceID, @SpeakerStatus, @Picture, @Bio, @Summary, @Slides, @Travel, @Hotel)" UpdateCommand="UPDATE [Speakers] SET [ContactID] = @ContactID, [ConferenceID] = @ConferenceID, [SpeakerStatus] = @SpeakerStatus, [Picture] = @Picture, [Bio] = @Bio, [Summary] = @Summary, [Slides] = @Slides, [Travel] = @Travel, [Hotel] = @Hotel WHERE [SpeakerID] = @SpeakerID">
+                                            <DeleteParameters>
+                                                <asp:Parameter Name="SpeakerID" Type="Int32" />
+                                            </DeleteParameters>
+                                            <InsertParameters>
+                                                <asp:Parameter Name="SpeakerID" Type="Int32" />
+                                                <asp:Parameter Name="ContactID" Type="Int32" />
+                                                <asp:Parameter Name="ConferenceID" Type="Int32" />
+                                                <asp:Parameter Name="SpeakerStatus" Type="String" />
+                                                <asp:Parameter Name="Picture" Type="Boolean" />
+                                                <asp:Parameter Name="Bio" Type="Boolean" />
+                                                <asp:Parameter Name="Summary" Type="Boolean" />
+                                                <asp:Parameter Name="Slides" Type="Boolean" />
+                                                <asp:Parameter Name="Travel" Type="Boolean" />
+                                                <asp:Parameter Name="Hotel" Type="Boolean" />
+                                            </InsertParameters>
+                                            <UpdateParameters>
+                                                <asp:Parameter Name="ContactID" Type="Int32" />
+                                                <asp:Parameter Name="ConferenceID" Type="Int32" />
+                                                <asp:Parameter Name="SpeakerStatus" Type="String" />
+                                                <asp:Parameter Name="Picture" Type="Boolean" />
+                                                <asp:Parameter Name="Bio" Type="Boolean" />
+                                                <asp:Parameter Name="Summary" Type="Boolean" />
+                                                <asp:Parameter Name="Slides" Type="Boolean" />
+                                                <asp:Parameter Name="Travel" Type="Boolean" />
+                                                <asp:Parameter Name="Hotel" Type="Boolean" />
+                                                <asp:Parameter Name="SpeakerID" Type="Int32" />
+                                            </UpdateParameters>
+                                        </asp:SqlDataSource>
 
                                     </div>
                                     <asp:GridView ID="GridView1" runat="server" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="both" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowPaging="true">

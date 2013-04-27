@@ -50,8 +50,8 @@
     <asp:Panel ID="Panel1" runat="server" CssClass="wrapper wrapper-style3" Visible="false">
         <article class="5grid-layout" id="Article1">
             <header>
-                <h2>Conference Registration</h2>
-                <span>Select the conference you would like to register for.</span>
+                <h2></h2>
+                <span>Fill out the information below to register for the conference.</span>
             </header>
             <div class="5grid">
                 <div class="row">

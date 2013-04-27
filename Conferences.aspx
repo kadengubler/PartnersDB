@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Conferences.aspx.cs" Inherits="Conferences" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Conferences.aspx.cs" Inherits="Conferences" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -36,73 +36,43 @@
         </article>
     </div>
 
-    <!-- Crossroads -->
+    <!-- Conference Dates -->
     <div class="wrapper wrapper-style2">
         <article id="crossroads">
             <header>
-                <h2>Crossroads</h2>
-                <span>Choose a category to run report</span>
+                <h2>Conference Dates</h2>
+                <span>Select a conference to display the date of the conference</span>
             </header>
             <div class="5grid-layout">
                 <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt="" /></span>
-                            <h3>Speakers</h3>
-                            <p>This report is used to display the speakers information.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt="" /></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt="" /></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
+                    <div class="12u">
+                        
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [StartingDate], [EndingDate], [ConferenceTitle] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
+                        
+                            
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="SelectedValue" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT DISTINCT [ConferenceTitle] FROM [Conference]"></asp:SqlDataSource>
+                        <br />
+
+                        <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConferenceTitle" DataValueField="ConferenceTitle">
+                            <%--<asp:ListItem>--Please Select Conference--</asp:ListItem>
+                                        <asp:ListItem Value="CR">Crossroads</asp:ListItem>
+                                        <asp:ListItem Value="OE">Operational Excellence</asp:ListItem>
+                                        <asp:ListItem Value="ACCT">Accounting</asp:ListItem>
+                                        <asp:ListItem Value="IT">Information Technology</asp:ListItem>
+                                        <asp:ListItem Value="LEAD">Leadership</asp:ListItem>--%>
+
+                        </asp:DropDownList>
+                        <h2><asp:Label ID="conferenceDate" runat="server" Text="Label" Visible="false"></asp:Label></h2>
+                            
+                        </div>    
+                    </div>                    
+                
             </div>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt="" /></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt="" /></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt="" /></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
-            </footer>
         </article>
     </div>
 

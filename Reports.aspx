@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reports.aspx.cs" Inherits="Reports" MaintainScrollPositionOnPostback="true"%>
 
-<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
-<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
 
 
 <%--<%@ Register src="Temp/DataFilter.ascx" tagname="DataFilter" tagprefix="uc1" %>--%>
@@ -38,12 +36,12 @@
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                         <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem>--Please Select Conference--</asp:ListItem>
-                            <asp:ListItem value="all">All Conferences</asp:ListItem>
-                            <asp:ListItem Value="cr">Crossroads</asp:ListItem>
-                            <asp:ListItem Value="oe">Operational Excellence</asp:ListItem>
-                            <asp:ListItem Value="acct">Accounting</asp:ListItem>
-                            <asp:ListItem Value="it">Information Technology</asp:ListItem>
-                            <asp:ListItem Value="lead">Leadership</asp:ListItem>
+                            <%--<asp:ListItem value="all">All Conferences</asp:ListItem>--%>
+                            <asp:ListItem Value="CR">Crossroads</asp:ListItem>
+                            <asp:ListItem Value="OE">Operational Excellence</asp:ListItem>
+                            <asp:ListItem Value="Acct">Accounting</asp:ListItem>
+                            <asp:ListItem Value="IT">Information Technology</asp:ListItem>
+                            <asp:ListItem Value="Lead">Leadership</asp:ListItem>
                         </asp:DropDownList>
 
                         <asp:DropDownList ID="ddl_Report" runat="server" Visible="False" AutoPostBack="True" OnSelectedIndexChanged="ddl_Report_SelectedIndexChanged">
@@ -64,7 +62,7 @@
             </div>
 
 
-            <p>________________________________________________________________________________________________________________</p>
+            <%--<p>________________________________________________________________________________________________________________</p>--%>
 
 
             <!-- Controls for custom report -->
@@ -115,7 +113,7 @@
                 <div class="wrapper wrapper-style3">
                     <article class="5grid-layout">
                         <header>
-                            <h2>List of attendees at past conferences</h2>
+                            <h2>List of attendees at the <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label> conference</h2>
                             <span></span>
                         </header>
 
@@ -134,7 +132,11 @@
 
                                     <PagerStyle CssClass="pgr"></PagerStyle>
                                 </asp:GridView>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.FirstName, Contacts.LastName, Contacts.Title, Contacts.OrgID, Organization.OrgName FROM Contacts INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.FirstName, Contacts.LastName, Contacts.Title, Contacts.OrgID, Organization.OrgName FROM Contacts INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID INNER JOIN ConferenceAttendees ON Contacts.ContactID = ConferenceAttendees.ContactID INNER JOIN Conference ON ConferenceAttendees.ConferenceID = Conference.ConferenceID WHERE ConferenceTitle = @ConferenceTitle ">
+                                    <SelectParameters>
+                                        <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="Text" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
                     </article>

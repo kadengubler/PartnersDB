@@ -8,7 +8,7 @@
     <nav id="pgnav">
         <ul>
             <li><a href="#top">Top |</a></li>
-            <li><a href="#search">Search |</a></li>
+            <%--<li><a href="#search">Search |</a></li>--%>
             <li><a href="#asp_doc">ASP.net |</a></li>
             <li><a href="#partners">Partners |</a></li>
             <li><a href="#wiki">Wiki</a></li>
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Search -->
-    <div class="wrapper wrapper-style2">
+    <%--<div class="wrapper wrapper-style2">
         <article id="search">
             <header>
                 <h2>Search</h2>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             </article>
-        </div>
+        </div>--%>
 
     <!-- Asp.net Documentation -->
     <div class="wrapper wrapper-style2">
@@ -87,7 +87,7 @@
     </div>
 
     <!-- Partners Documentation -->
-    <div class="wrapper wrapper-style2">
+    <div class="wrapper wrapper-style3">
         <article class="5grid-layout" id="partners">
             <header>
                 <h3>Partners Info</h3>
@@ -100,10 +100,10 @@
     </div>
 
     <!-- Partners Wiki -->
-    <div class="wrapper wrapper-style2">
+    <div class="wrapper wrapper-style1">
         <article class="5grid-layout" id="wiki">
             <header>
-                <h3>Conferenes Wiki</h3>
+                <h3>Conferences Wiki</h3>
             </header>
             <div class="row">
                 <a href="Documentation/Wiki/FrontPage.html">Documentation/Wiki/FrontPage.html</a><br />

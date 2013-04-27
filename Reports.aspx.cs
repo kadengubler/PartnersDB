@@ -9,11 +9,12 @@ public partial class Reports : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
+        Label1.Text = ddl_Conference.SelectedItem.Text;
         if (ddl_Conference.SelectedIndex == 0)
         {
             ddl_Report.Visible = false;
@@ -25,13 +26,18 @@ public partial class Reports : System.Web.UI.Page
     }
     protected void ddl_Report_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddl_Report.SelectedIndex == 1)
+        if (ddl_Report.SelectedIndex == 0)
+        {
+            gvAttendee.Visible = false;
+        }
+        else if (ddl_Report.SelectedIndex == 1)
         {
             //Custom Report
             //*** code to allow user to select fields to show in report ***
             gvAttendee.Visible = true;
             gvAttendee.Focus();
         }
+
         //else if (ddl_Report.SelectedIndex == 2)
         //{
         //    //Current list of registered attendees
