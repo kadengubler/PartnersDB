@@ -14,7 +14,19 @@ public partial class Conferences : System.Web.UI.Page
     }
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
-        conferenceDate.Visible = true;
-        
+        lblConferenceDate.Visible = true;
+        lblConferenceDate.Text = ddl_Conference.SelectedItem.ToString();
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        dtvSponsors.Visible = true;
+    }
+    protected void btnSponsor_Click(object sender, EventArgs e)
+    {
+        gvSponsor.Visible = true;
+    }
+    protected void btnCoSponsor_Click(object sender, EventArgs e)
+    {
+
     }
 }

@@ -12,11 +12,11 @@
     <!-- Page Nav -->
     <nav id="pgnav">
         <ul>
-            <li><a href="Reports.aspx">Reports Main |</a></li>
+            <li><a href="#top">Top |</a></li>
+            <li><a href="Reports.aspx">Reports |</a></li>
             <li><a href="StatusBoard.aspx">Status Board |</a></li>            
             <li><a href="Partnerships.aspx">Partnerships |</a></li>
-            <li><a href="AttendeeList.aspx">Attendee List |</a></li>
-            <li><a href="Itinerary.aspx">Itinerary</a></li>
+            <li><a href="AttendeeList.aspx">Attendee List</a></li>
         </ul>
     </nav>
 

@@ -551,13 +551,13 @@
 		position: fixed;
 		left: 0;
 		bottom: 0;
-        height: 100px;
+        /*height: 100px;*/
 		width: 100%;
 		z-index: 10000;
 		cursor: default;
 	}
 	
-		/*#footer ul
+		#footer ul
 		{
 			margin: 0;
 		}
@@ -570,7 +570,7 @@
 		#footer a
 		{
 			position: relative;
-			display: block;
+			display: normal;
 			color: #fff;
 			text-decoration: none;
 			outline: 0;
@@ -584,7 +584,7 @@
 			#footer a.active:before
 			{
 				content: '';
-				display: block;
+				display: normal;
 				position: absolute;
 				bottom: -0.6em;
 				left: 50%;
@@ -592,7 +592,7 @@
 				border-left: solid 0.75em transparent;
 				border-right: solid 0.75em transparent;
 				border-top: solid 0.6em #282828;
-			}*/
+			}
 
 
 			
