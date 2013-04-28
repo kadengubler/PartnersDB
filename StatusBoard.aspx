@@ -7,17 +7,17 @@
     <!-- Page Nav -->
     <nav id="pgnav">
         <ul>
-            <li><a href="Reports.aspx">Reports Main |</a></li>
+            <li><a href="#top">Top |</a></li>
+            <li><a href="Reports.aspx">Reports |</a></li>
             <li><a href="StatusBoard.aspx">Status Board |</a></li>            
             <li><a href="Partnerships.aspx">Partnerships |</a></li>
-            <li><a href="AttendeeList.aspx">Attendee List |</a></li>
-            <li><a href="Itinerary.aspx">Itinerary</a></li>
+            <li><a href="AttendeeList.aspx">Attendee List</a></li>
         </ul>
     </nav>
 
     <br />
 
-    <div class="wrapper wrapper-style2">
+    <div class="wrapper wrapper-style1">
         <article class="5grid-layout" id="statusBoard">
             <header>
                 <h2>Status Board</h2>
@@ -112,4 +112,25 @@
             </div>
         </article>
     </div>
+
+    <%--<div class="wrapper wrapper-style2">
+        <article class="5grid-layout" id="Article1">
+            <header>
+                <h2></h2>
+                <span></span>
+            </header>
+            <div class="5grid">
+                <div class="row">
+                    <div class="12u">
+                        <div class="5grid">
+                            <div class="row">
+                                <div class="12u">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </article>
+    </div>--%>
+
 </asp:Content>

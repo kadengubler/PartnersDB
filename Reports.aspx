@@ -24,7 +24,7 @@
 
 
     <!-- Reports -->
-    <div class="wrapper wrapper-style2">
+    <div class="wrapper wrapper-style1">
         <article class="5grid-layout" id="contact">
             <header>
                 <h2>Reports</h2>
@@ -33,6 +33,7 @@
             <div class="5grid">
                 <div class="row">
                     <div class="12u">
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server"></asp:SqlDataSource>
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                         <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem>--Please Select Conference--</asp:ListItem>
@@ -44,24 +45,29 @@
                             <asp:ListItem Value="Lead">Leadership</asp:ListItem>
                         </asp:DropDownList>
 
+                        <!-- This list will be populated with more reports as nessessary -->
                         <asp:DropDownList ID="ddl_Report" runat="server" Visible="False" AutoPostBack="True" OnSelectedIndexChanged="ddl_Report_SelectedIndexChanged">
                             <asp:ListItem>--Please Select Report Type--</asp:ListItem>
-                            <%--<asp:ListItem>Custom Report</asp:ListItem>
-                            <asp:ListItem>Current list of registered attendees</asp:ListItem>--%>
-                            <asp:ListItem>List of attendees at past conferences</asp:ListItem>
-                            <%--<asp:ListItem>List of current partnerships</asp:ListItem>
+                            <asp:ListItem>List of attendees at past conferences</asp:ListItem>                            
+                            <%--<asp:ListItem>Current list of registered attendees</asp:ListItem>                           
+                            <asp:ListItem>List of current partnerships</asp:ListItem>
                             <asp:ListItem>List of current sponsors</asp:ListItem>
                             <asp:ListItem>List of current co-sponsors</asp:ListItem>
                             <asp:ListItem>Name badges</asp:ListItem>
                             <asp:ListItem>Speaker itineraries</asp:ListItem>
                             <asp:ListItem>List of past years partnerships</asp:ListItem>
-                            <asp:ListItem>Email Blast List</asp:ListItem>--%>
+                            <asp:ListItem>Email Blast List</asp:ListItem>
+                            <asp:ListItem>Custom Report</asp:ListItem>--%>
                         </asp:DropDownList>
                     </div>
                 </div>
             </div>
+           
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> kaden
             <%--<p>________________________________________________________________________________________________________________</p>--%>
 
 
@@ -142,4 +148,5 @@
                     </article>
                 </div>
         </asp:Panel>
+   
 </asp:Content>

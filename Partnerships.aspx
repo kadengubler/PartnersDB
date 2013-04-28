@@ -18,7 +18,7 @@
     <br />
 
 
-    <div class="wrapper wrapper-style2">
+    <div class="wrapper wrapper-style1">
         <article class="5grid-layout" id="Article1">
             <header>
                 <h2>Partnerships</h2>
@@ -76,4 +76,6 @@
             </div>
         </article>
     </div>
+    
+    
 </asp:Content>

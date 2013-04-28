@@ -9,11 +9,15 @@
         <ul>
             <li><a href="#top">Top |</a></li>
             <li><a href="#dates">Conference Dates |</a></li>
+<<<<<<< HEAD
             <li><a href="#sponsors">Conference Sponsors |</a></li>
             <%--<li><a href="#acct">Accounting |</a></li>
             <li><a href="#it">Information Technology |</a></li>
             <li><a href="#lead">Leadership |</a></li>
             <li><a href="#other">Other</a></li>--%>
+=======
+            <li><a href="#sponsors">Conference Sponsors</a></li>
+>>>>>>> kaden
         </ul>
     </nav>
 
@@ -47,29 +51,56 @@
                 <div class="row">
                     <div class="12u">
 
+<<<<<<< HEAD
                         <asp:SqlDataSource ID="SqlDataSourceDates" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [StartingDate], [EndingDate], [ConferenceTitle] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
+=======
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>"
+                            SelectCommand="SELECT [ConferenceName] + ' ' + [StartingDate] + '-' + [EndingDate] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
+
+
+>>>>>>> kaden
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="SelectedValue" />
                             </SelectParameters>
                         </asp:SqlDataSource>
 
+<<<<<<< HEAD
                         <asp:SqlDataSource ID="SqlDataSourceDdlConference" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT DISTINCT [ConferenceTitle] FROM [Conference]"></asp:SqlDataSource>
 
                         <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True" DataSourceID="SqlDataSourceDdlConference" DataTextField="ConferenceTitle" DataValueField="ConferenceTitle">
                         </asp:DropDownList>
                         <h2>
                             <asp:Label ID="lblConferenceDate" runat="server" Text="Label" Visible="false"></asp:Label></h2>
+=======
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>"
+                            SelectCommand="SELECT DISTINCT [ConferenceName] + ' ' + [StartingDate] + '-' + [EndingDate] AS ConfNameDate FROM [Conference] WHERE Datepart(YY,StartingDate) >= Datepart(YY,GETDATE())"></asp:SqlDataSource>
+                        <br />
+
+                        <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True"
+                            DataSourceID="SqlDataSource1" DataTextField="ConferenceName" DataValueField="ConferenceName">
+                        </asp:DropDownList>
+                        <br />
+                        <br />
+                        <asp:Label ID="conferenceDate" runat="server" Visible="false" Font-Size="X-Large" Font-Bold="True"></asp:Label>
+
+>>>>>>> kaden
                     </div>
                 </div>
+
             </div>
         </article>
     </div>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> kaden
     <!-- Conference Sponsors -->
     <div class="wrapper wrapper-style3">
         <article id="sponsors">
             <header>
                 <h2>Conference Sponsors</h2>
+<<<<<<< HEAD
                 <%--<span>Choose a category to run report</span>--%>
             </header>
             <div class="5grid-layout">
@@ -273,15 +304,74 @@
                             <h3>Attendee List</h3>
                             <p>This report is used to display the attendee lists from past conferences.</p>
                         </section>
+=======
+                <span></span>
+            </header>
+            <div class="5grid-layout">
+                <div class="row">
+                    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
+                        <asp:ListItem></asp:ListItem>
+                        <asp:ListItem Value="false">Sponsors</asp:ListItem>
+                        <asp:ListItem Value="true">CoSponsors</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+
+
+            <asp:SqlDataSource ID="SqlDataSourceSponsors" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Sponsor.Cosponsor, Sponsor.Ranking, Contacts.FirstName, Contacts.LastName, Contacts.Email, Contacts.Title, Organization.OrgName FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID WHERE Sponsor.Cosponsor = @CoSponsor" DeleteCommand="DELETE FROM Sponsor" InsertCommand="INSERT INTO Sponsor(SponsorID, ContactID, Cosponsor, Ranking) VALUES (,,,)" UpdateCommand="UPDATE Sponsor SET FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Phone ON Contacts.ContactID = Phone.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="DropDownList1" Name="CoSponsor" PropertyName="SelectedValue" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+
+
+            <br />
+
+            <div align="middle">
+                <div id="gvSponsors" runat="server" visible="false" style="border: solid 3px black; background-color: white; width: 1200px;">
+                    <div class="5grid-layout">
+                        <div class="row">
+                            <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSourceSponsors" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                                    <asp:CheckBoxField DataField="Cosponsor" HeaderText="Cosponsor" SortExpression="Cosponsor" />
+                                    <asp:BoundField DataField="Ranking" HeaderText="Ranking" SortExpression="Ranking" />
+                                    <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
+                                    <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
+                                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                                    <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
+                                    <asp:BoundField DataField="OrgName" HeaderText="Organization" SortExpression="OrgName" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+>>>>>>> kaden
                     </div>
                 </div>
             </div>
+
+
+
+
+
             <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
+                <asp:Button ID="btnAddSponsor" runat="server" class="button button-big" Text="Add a new (Co)Sponsor" OnClick="btnAddSponsor_Click" />
             </footer>
+
         </article>
     </div>--%>
+
+    <asp:DetailsView ID="dtvAddSponsor" runat="server" Height="50px" Width="125px" AutoGenerateRows="false" DataKeyNames="SponsorID" DefaultMode="Insert" OnItemInserted="dtvAddSponsor_ItemInserted" OnItemCommand="dtvAddSponsor_ItemCommand" DataSourceID="SqlDataSourceSponsors">
+        <Fields>
+            <asp:CommandField ShowInsertButton="True" />
+        </Fields>
+    </asp:DetailsView>
+
+
+
+
+
+
+
 
     <!-- Other -->
     <%--<div class="wrapper wrapper-style4">

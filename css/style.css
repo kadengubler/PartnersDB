@@ -551,7 +551,10 @@
 		position: fixed;
 		left: 0;
 		bottom: 0;
+<<<<<<< HEAD
         /*height: 100px;*/
+=======
+>>>>>>> kaden
 		width: 100%;
 		z-index: 10000;
 		cursor: default;
