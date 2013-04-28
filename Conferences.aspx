@@ -318,10 +318,18 @@
             </div>
 
 
-            <asp:SqlDataSource ID="SqlDataSourceSponsors" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Sponsor.Cosponsor, Sponsor.Ranking, Contacts.FirstName, Contacts.LastName, Contacts.Email, Contacts.Title, Organization.OrgName FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID WHERE Sponsor.Cosponsor = @CoSponsor" DeleteCommand="DELETE FROM Sponsor" InsertCommand="INSERT INTO Sponsor(SponsorID, ContactID, Cosponsor, Ranking) VALUES (,,,)" UpdateCommand="UPDATE Sponsor SET FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Phone ON Contacts.ContactID = Phone.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID">
+            <asp:SqlDataSource ID="SqlDataSourceSponsors" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.ContactID, Sponsor.SponsorID, Sponsor.Cosponsor, Sponsor.Ranking, Contacts.FirstName, Contacts.LastName, Contacts.Email, Contacts.Title, Organization.OrgName FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID WHERE Sponsor.Cosponsor = @CoSponsor" DeleteCommand="DELETE FROM Sponsor" InsertCommand="INSERT INTO Sponsor(SponsorID, ContactID, Cosponsor, Ranking) VALUES (,,,)" UpdateCommand="usp_UpdateSponsors" UpdateCommandType="StoredProcedure">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="CoSponsor" PropertyName="SelectedValue" />
                 </SelectParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="Ranking" Type="String" />
+                	<asp:Parameter Name="CoSponsor" Type="Boolean" />
+    	            <asp:Parameter Name="FirstName" Type="String" />
+	                <asp:Parameter Name="LastName" Type="String" />
+                	<asp:Parameter Name="Email" Type="String" />
+    	            <asp:Parameter Name="Title" Type="String" />
+                </UpdateParameters>
             </asp:SqlDataSource>
 
 
@@ -331,16 +339,18 @@
                 <div id="gvSponsors" runat="server" visible="false" style="border: solid 3px black; background-color: white; width: 1200px;">
                     <div class="5grid-layout">
                         <div class="row">
-                            <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSourceSponsors" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False">
+                            <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" DataSourceID="SqlDataSourceSponsors" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False">
                                 <Columns>
                                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                                    <asp:CheckBoxField DataField="Cosponsor" HeaderText="Cosponsor" SortExpression="Cosponsor" />
-                                    <asp:BoundField DataField="Ranking" HeaderText="Ranking" SortExpression="Ranking" />
-                                    <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
-                                    <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
-                                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                    <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                                    <asp:BoundField DataField="OrgName" HeaderText="Organization" SortExpression="OrgName" />
+                                    <asp:BoundField DataField="ContactID" HeaderText="ContactID" InsertVisible="False" ReadOnly="True" SortExpression="ContactID" Visible="False" />
+                                    <asp:BoundField DataField="SponsorID" HeaderText="SponsorID" InsertVisible="False" ReadOnly="True" SortExpression="SponsorID" Visible="False" />
+                                    <asp:CheckBoxField DataField="Cosponsor" HeaderText="Cosponsor" SortExpression="Cosponsor" ReadOnly="false"/>
+                                    <asp:BoundField DataField="Ranking" HeaderText="Ranking" SortExpression="Ranking" ReadOnly="false"/>
+                                    <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" ReadOnly="false" />
+                                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" ReadOnly="false"/>
+                                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" ReadOnly="false"/>
+                                    <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" ReadOnly="false"/>
+                                    <asp:BoundField DataField="OrgName" HeaderText="OrgName" SortExpression="OrgName" ReadOnly="false"/>                                    
                                 </Columns>
                             </asp:GridView>
                         </div>
@@ -360,7 +370,7 @@
         </article>
     </div>--%>
 
-    <asp:DetailsView ID="dtvAddSponsor" runat="server" Height="50px" Width="125px" AutoGenerateRows="false" DataKeyNames="SponsorID" DefaultMode="Insert" OnItemInserted="dtvAddSponsor_ItemInserted" OnItemCommand="dtvAddSponsor_ItemCommand" DataSourceID="SqlDataSourceSponsors">
+    <asp:DetailsView ID="dtvAddSponsor" runat="server" Height="50px" Width="125px" AutoGenerateRows="False" DataKeyNames="SponsorID" DefaultMode="Insert" OnItemInserted="dtvAddSponsor_ItemInserted" OnItemCommand="dtvAddSponsor_ItemCommand" DataSourceID="SqlDataSourceSponsors">
         <Fields>
             <asp:CommandField ShowInsertButton="True" />
         </Fields>
