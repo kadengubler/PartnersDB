@@ -3,7 +3,7 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 
 
-<%@ Register src="Temp/DataFilter.ascx" tagname="DataFilter" tagprefix="uc1" %>
+<%--<%@ Register src="Temp/DataFilter.ascx" tagname="DataFilter" tagprefix="uc1" %>--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -64,10 +64,7 @@
             </div>
            
 
-<<<<<<< HEAD
 
-=======
->>>>>>> kaden
             <%--<p>________________________________________________________________________________________________________________</p>--%>
 
 
