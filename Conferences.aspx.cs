@@ -10,14 +10,14 @@ public partial class Conferences : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
     }
-    protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        lblConferenceDate.Visible = true;
-        lblConferenceDate.Text = ddl_Conference.SelectedItem.ToString();
-    }
+//    protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
+//    {
+//        lblConferenceDate.Visible = true;
+//        lblConferenceDate.Text = ddl_Conference.SelectedItem.ToString();
+//    }
     protected void Button1_Click(object sender, EventArgs e)
     {
         dtvSponsors.Visible = true;
@@ -29,7 +29,7 @@ public partial class Conferences : System.Web.UI.Page
     protected void btnCoSponsor_Click(object sender, EventArgs e)
     {
 
-=======
+//=======
     }
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -38,7 +38,7 @@ public partial class Conferences : System.Web.UI.Page
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        gvSponsors.Visible = true;
+        gvSponsor.Visible = true;
     }
     protected void btnAddSponsor_Click(object sender, EventArgs e)
     {
@@ -56,6 +56,6 @@ public partial class Conferences : System.Web.UI.Page
         {
             dtvAddSponsor.Visible = false;
         }
->>>>>>> kaden
+//>>>>>>> kaden
     }
 }

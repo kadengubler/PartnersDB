@@ -9,15 +9,15 @@
         <ul>
             <li><a href="#top">Top |</a></li>
             <li><a href="#dates">Conference Dates |</a></li>
-<<<<<<< HEAD
+<%--<<<<<<< HEAD
             <li><a href="#sponsors">Conference Sponsors |</a></li>
             <%--<li><a href="#acct">Accounting |</a></li>
             <li><a href="#it">Information Technology |</a></li>
             <li><a href="#lead">Leadership |</a></li>
-            <li><a href="#other">Other</a></li>--%>
-=======
+            <li><a href="#other">Other</a></li>
+=======--%>
             <li><a href="#sponsors">Conference Sponsors</a></li>
->>>>>>> kaden
+<%-->>>>>>> kaden--%>
         </ul>
     </nav>
 
@@ -51,39 +51,39 @@
                 <div class="row">
                     <div class="12u">
 
-<<<<<<< HEAD
+<%--<<<<<<< HEAD
                         <asp:SqlDataSource ID="SqlDataSourceDates" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [StartingDate], [EndingDate], [ConferenceTitle] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
-=======
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>"
+=======--%>
+<%--                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>"
                             SelectCommand="SELECT [ConferenceName] + ' ' + [StartingDate] + '-' + [EndingDate] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
 
 
->>>>>>> kaden
-                            <SelectParameters>
+<%-->>>>>>> kaden--%>
+<%--                            <SelectParameters>
                                 <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="SelectedValue" />
                             </SelectParameters>
-                        </asp:SqlDataSource>
+                        </asp:SqlDataSource>--%>
 
-<<<<<<< HEAD
+<%--<<<<<<< HEAD
                         <asp:SqlDataSource ID="SqlDataSourceDdlConference" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT DISTINCT [ConferenceTitle] FROM [Conference]"></asp:SqlDataSource>
 
                         <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True" DataSourceID="SqlDataSourceDdlConference" DataTextField="ConferenceTitle" DataValueField="ConferenceTitle">
                         </asp:DropDownList>
                         <h2>
                             <asp:Label ID="lblConferenceDate" runat="server" Text="Label" Visible="false"></asp:Label></h2>
-=======
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>"
-                            SelectCommand="SELECT DISTINCT [ConferenceName] + ' ' + [StartingDate] + '-' + [EndingDate] AS ConfNameDate FROM [Conference] WHERE Datepart(YY,StartingDate) >= Datepart(YY,GETDATE())"></asp:SqlDataSource>
+=======--%>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>"
+                            SelectCommand="SELECT ConferenceID, [ConferenceName] + ' ' + replace(CONVERT(varchar(10),[StartingDate],102),'.','/') + '-' + replace(CONVERT(varchar(10),[EndingDate],102),'.','/') AS ConfNameDate FROM [Conference] WHERE Datepart(YY,StartingDate) >= Datepart(YY,GETDATE())"></asp:SqlDataSource>
                         <br />
 
                         <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True"
-                            DataSourceID="SqlDataSource1" DataTextField="ConferenceName" DataValueField="ConferenceName">
+                            DataSourceID="SqlDataSource1" DataTextField="ConfNameDate" DataValueField="ConferenceID">
                         </asp:DropDownList>
                         <br />
                         <br />
                         <asp:Label ID="conferenceDate" runat="server" Visible="false" Font-Size="X-Large" Font-Bold="True"></asp:Label>
 
->>>>>>> kaden
+<%-->>>>>>> kaden--%>
                     </div>
                 </div>
 
@@ -91,16 +91,13 @@
         </article>
     </div>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> kaden
     <!-- Conference Sponsors -->
     <div class="wrapper wrapper-style3">
         <article id="sponsors">
             <header>
                 <h2>Conference Sponsors</h2>
-<<<<<<< HEAD
+<%--<<<<<<< HEAD--%>
                 <%--<span>Choose a category to run report</span>--%>
             </header>
             <div class="5grid-layout">
@@ -183,7 +180,6 @@
                         <asp:BoundField DataField="OrgName" HeaderText="OrgName" SortExpression="OrgName" />
                     </Fields>
                 </asp:DetailsView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
             </footer>
         </article>
     </div>

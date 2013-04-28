@@ -167,32 +167,29 @@ public partial class Registration : System.Web.UI.Page
         //{
 
         //}
-        SqlCommand cmd1 = new SqlCommand("usp_NewContact", con); // Connection String
-        cmd1.CommandType = CommandType.StoredProcedure;
-        cmd1.Parameters.AddWithValue("@LastName", lName.Text);
-        cmd1.Parameters.AddWithValue("@FirstName", fName.Text);
-        cmd1.Parameters.AddWithValue("@Title", title.Text);
-        cmd1.Parameters.AddWithValue("@OrgID", OrgID);
-        cmd1.Parameters.AddWithValue("@Department", department.Text);
-        cmd1.Parameters.AddWithValue("@Email", email.Text);
-        cmd1.Parameters.AddWithValue("@Street", address.Text);
-        cmd1.Parameters.AddWithValue("@City", city.Text);
-        cmd1.Parameters.AddWithValue("@ST", ddl_state.SelectedValue.ToString());
-        cmd1.Parameters.AddWithValue("@Zip", zip.Text);
-        cmd1.Parameters.AddWithValue("@Student", cb_student.Checked);
-        cmd1.Parameters.AddWithValue("@Faculty", cb_faculty.Checked);
-        cmd1.Parameters.AddWithValue("@AcctEmail", cb_acct.Checked);
-        cmd1.Parameters.AddWithValue("@ITEmail", cb_it.Checked);
-        cmd1.Parameters.AddWithValue("@CREmail", cb_cr.Checked);
-        cmd1.Parameters.AddWithValue("@LeadEmail", cb_lead.Checked);
-        cmd1.Parameters.AddWithValue("@OEEmail", cb_oe.Checked);
-        if (ddl_RegistrationType.SelectedValue.ToString() == "Partner")
-        {
-            cmd1.Parameters.AddWithValue("@PartnershipID", partnership.Text);
-        }
+        SqlCommand cmdGetContactID = new SqlCommand("usp_NewContact", con); // Connection String
+        cmdGetContactID.CommandType = CommandType.StoredProcedure;
+        cmdGetContactID.Parameters.AddWithValue("@LastName", lName.Text);
+        cmdGetContactID.Parameters.AddWithValue("@FirstName", fName.Text);
+        cmdGetContactID.Parameters.AddWithValue("@Title", title.Text);
+        cmdGetContactID.Parameters.AddWithValue("@OrgID", OrgID);
+        cmdGetContactID.Parameters.AddWithValue("@Department", department.Text);
+        cmdGetContactID.Parameters.AddWithValue("@Email", email.Text);
+        cmdGetContactID.Parameters.AddWithValue("@Street", address.Text);
+        cmdGetContactID.Parameters.AddWithValue("@City", city.Text);
+        cmdGetContactID.Parameters.AddWithValue("@ST", ddl_state.SelectedValue.ToString());
+        cmdGetContactID.Parameters.AddWithValue("@Zip", zip.Text);
+        cmdGetContactID.Parameters.AddWithValue("@Student", cb_student.Checked);
+        cmdGetContactID.Parameters.AddWithValue("@Faculty", cb_faculty.Checked);
+        cmdGetContactID.Parameters.AddWithValue("@AcctEmail", cb_acct.Checked);
+        cmdGetContactID.Parameters.AddWithValue("@ITEmail", cb_it.Checked);
+        cmdGetContactID.Parameters.AddWithValue("@CREmail", cb_cr.Checked);
+        cmdGetContactID.Parameters.AddWithValue("@LeadEmail", cb_lead.Checked);
+        cmdGetContactID.Parameters.AddWithValue("@OEEmail", cb_oe.Checked);
+        
 
         con.Open();
-        ContactID = cmd1.ExecuteNonQuery(); //inserts and returns ContactID
+        cmdGetContactID.ExecuteNonQuery(); //inserts and returns ContactID
         con.Close();
         SqlCommand cmd4 = new SqlCommand("SELECT ContactID FROM Contacts WHERE Email = @Email AND FirstName = @FirstName AND LastName = @LastName", con);
         cmd4.Parameters.AddWithValue("@Email", email.Text);
@@ -202,49 +199,57 @@ public partial class Registration : System.Web.UI.Page
         con.Open();
 
 
+
         reader = cmd4.ExecuteReader();
         reader.Read();
         ContactID = reader.GetInt32(0);
         con.Close();
-        SqlCommand cmd8 = new SqlCommand("SELECT ConferenceID FROM Conference WHERE EndingDate > GETDATE()", con);
-        cmd8.Parameters.AddWithValue("@ConferenceTitle", ddl_Conference.SelectedValue);
+        SqlCommand cmdGetConferenceID = new SqlCommand("usp_GetConferenceID", con);
+        cmdGetConferenceID.CommandType = CommandType.StoredProcedure;
+        cmdGetConferenceID.Parameters.AddWithValue("@ConferenceTitle", ddl_Conference.SelectedValue);
         con.Open();
 
-        reader = cmd8.ExecuteReader();
+        reader = cmdGetConferenceID.ExecuteReader();
         reader.Read();
         ConfID = reader.GetInt32(0);
         con.Close();
-        SqlCommand cmd2 = new SqlCommand("usp_NewPhone", con);
-        cmd2.CommandType = CommandType.StoredProcedure;
-        cmd2.Parameters.AddWithValue("@AreaCode", areaCode.Text);
-        cmd2.Parameters.AddWithValue("@Exchange", exchange.Text);
-        cmd2.Parameters.AddWithValue("@SubscriberNumber", subscriberNumber.Text);
-        cmd2.Parameters.AddWithValue("@ContactID", ContactID);
+        SqlCommand cmdAddPhone = new SqlCommand("usp_NewPhone", con);
+        cmdAddPhone.CommandType = CommandType.StoredProcedure;
+        cmdAddPhone.Parameters.AddWithValue("@AreaCode", areaCode.Text);
+        cmdAddPhone.Parameters.AddWithValue("@Exchange", exchange.Text);
+        cmdAddPhone.Parameters.AddWithValue("@SubscriberNumber", subscriberNumber.Text);
+        cmdAddPhone.Parameters.AddWithValue("@ContactID", ContactID);
         con.Open();
-        cmd2.ExecuteNonQuery();
+        cmdAddPhone.ExecuteNonQuery();
         con.Close();
-
-        SqlCommand cmd7 = new SqlCommand("usp_NewConferenceAttendee", con);
-        cmd7.CommandType = CommandType.StoredProcedure;
-        cmd7.Parameters.AddWithValue("@ContactID", ContactID);
-        cmd7.Parameters.AddWithValue("@ConferenceID", ConfID);
-        cmd7.Parameters.AddWithValue("@PromoCode", promocode.Text);
-        cmd7.Parameters.AddWithValue("@PartnershipID", partnership.Text);
-        cmd7.Parameters.AddWithValue("@DaysAttending", ddl_daysAttending.SelectedValue);
-        cmd7.Parameters.AddWithValue("@Lunch", cb_lunch.Checked);
-        cmd7.Parameters.AddWithValue("@Daybook", cb_daybook.Checked);
-        cmd7.Parameters.AddWithValue("@NetworkDinner", cb_networkDinner.Checked);
-        con.Open();
-        cmd7.ExecuteNonQuery();
-        con.Close();
-
+        //Add Validation of Contacts.OrgID and Partnership.OrgID for PartnershipID
+        try
+        {
+            SqlCommand cmdAddAttendee = new SqlCommand("usp_NewConferenceAttendee", con);
+            cmdAddAttendee.CommandType = CommandType.StoredProcedure;
+            cmdAddAttendee.Parameters.AddWithValue("@ContactID", ContactID);
+            cmdAddAttendee.Parameters.AddWithValue("@ConferenceID", ConfID);
+            cmdAddAttendee.Parameters.AddWithValue("@PromoCode", promocode.Text);
+            cmdAddAttendee.Parameters.AddWithValue("@PartnershipID", partnership.Text);
+            cmdAddAttendee.Parameters.AddWithValue("@DaysAttending", ddl_daysAttending.SelectedValue);
+            cmdAddAttendee.Parameters.AddWithValue("@Lunch", cb_lunch.Checked);
+            cmdAddAttendee.Parameters.AddWithValue("@Daybook", cb_daybook.Checked);
+            cmdAddAttendee.Parameters.AddWithValue("@NetworkDinner", cb_networkDinner.Checked);
+            con.Open();
+            cmdAddAttendee.ExecuteNonQuery();
+            con.Close();
+        }
+        catch (SqlException ex)
+        {
+            Response.Redirect("Error.html");
+        }
         if (ddl_RegistrationType.SelectedValue == "Student/Faculty")
         {
-            SqlCommand cmd3 = new SqlCommand("INSERT INTO Student(Anumber, ContactID) VALUES(@Anumber, @ContactID)", con);
-            cmd3.Parameters.AddWithValue("@ContactID", ContactID);
-            cmd3.Parameters.AddWithValue("@Anumber", aNumber.Text);
+            SqlCommand cmdAddStudent = new SqlCommand("INSERT INTO Student(Anumber, ContactID) VALUES(@Anumber, @ContactID)", con);
+            cmdAddStudent.Parameters.AddWithValue("@ContactID", ContactID);
+            cmdAddStudent.Parameters.AddWithValue("@Anumber", aNumber.Text);
             con.Open();
-            cmd3.ExecuteNonQuery();
+            cmdAddStudent.ExecuteNonQuery();
             con.Close();
         }
     }
