@@ -14,13 +14,13 @@ public partial class Partnerships : System.Web.UI.Page
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        GridView1.Visible = false;
-        GridView2.Visible = true;
+        gvPartners.Visible = false;
+        gvDaysUsed.Visible = true;
     }
 
     protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
     {
-        GridView1.Visible = true;
-        GridView2.Visible = false;
+        gvPartners.Visible = true;
+        gvDaysUsed.Visible = false;
     }
 }

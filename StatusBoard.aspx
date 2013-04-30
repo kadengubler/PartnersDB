@@ -29,7 +29,7 @@
                         <div class="5grid">
                             <div class="row">
                                 <div class="12u">
-                                        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConfYear" DataValueField="ConferenceID">
+                                        <asp:DropDownList ID="ddlConference" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConfYear" DataValueField="ConferenceID">
                                         </asp:DropDownList>
                                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [ConferenceID], [ConferenceTitle] + ' ' + DATENAME(yy,[StartingDate]) AS ConfYear FROM [Conference]"></asp:SqlDataSource>
 
@@ -51,7 +51,7 @@
                                     </asp:GridView>
                                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_StatusBoard" SelectCommandType="StoredProcedure" UpdateCommand="usp_UpdateSpeaker" UpdateCommandType="StoredProcedure">
                                         <SelectParameters>
-                                            <asp:ControlParameter ControlID="DropDownList1" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
+                                            <asp:ControlParameter ControlID="ddlConference" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
                                         </SelectParameters>
                                         <UpdateParameters>
                                             <asp:Parameter Name="SpeakerID" Type="Int32" />

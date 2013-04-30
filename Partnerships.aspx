@@ -32,7 +32,7 @@
                                 <div class="12u">
 
 
-                                    <asp:GridView ID="GridView1" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="Both" runat="server" AutoGenerateColumns="False" DataKeyNames="PartnershipID" DataSourceID="PartnershipTracking" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+                                    <asp:GridView ID="gvPartners" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="Both" runat="server" AutoGenerateColumns="False" DataKeyNames="PartnershipID" DataSourceID="PartnershipTracking" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                                         <Columns>
                                             <asp:CommandField ShowSelectButton="True" SelectText="View" />
                                             <asp:BoundField DataField="PartnershipID" HeaderText="PartnershipID" ReadOnly="True" SortExpression="PartnershipID" />
@@ -47,7 +47,7 @@
                                     <asp:SqlDataSource ID="PartnershipTracking" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT * FROM [PartnershipTracking]"></asp:SqlDataSource>
 
                                 </div>
-                                <asp:GridView ID="GridView2" CssClass="gridview" runat="server" AutoGenerateColumns="False" DataSourceID="PartnershipUse" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" Visible="False">
+                                <asp:GridView ID="gvDaysUsed" CssClass="gridview" runat="server" AutoGenerateColumns="False" DataSourceID="PartnershipUse" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" Visible="False">
                                     <Columns>
                                         <asp:CommandField ShowSelectButton="True" SelectText="Back" />
                                         <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />

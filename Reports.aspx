@@ -3,6 +3,8 @@
 <%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+<%@ Register Src="~/Controls/UC_ddlConference.ascx" TagPrefix="uc1" TagName="UC_ddlConference" %>
+
 
 
 <%--<%@ Register src="Temp/DataFilter.ascx" tagname="DataFilter" tagprefix="uc1" %>--%>
@@ -37,7 +39,7 @@
                     <div class="12u">
                         <asp:SqlDataSource ID="SqlDataSource2" runat="server"></asp:SqlDataSource>
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
-                        <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
+                        <%--<asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem>--Please Select Conference--</asp:ListItem>
                             <asp:ListItem value="all">All Conferences</asp:ListItem>
                             <asp:ListItem Value="cr">Crossroads</asp:ListItem>
@@ -45,7 +47,9 @@
                             <asp:ListItem Value="acct">Accounting</asp:ListItem>
                             <asp:ListItem Value="it">Information Technology</asp:ListItem>
                             <asp:ListItem Value="lead">Leadership</asp:ListItem>
-                        </asp:DropDownList>
+                        </asp:DropDownList>--%>
+
+                        <uc1:UC_ddlConference runat="server" ID="ddl_Conference" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True" />
 
                         <!-- This list will be populated with more reports as nessessary -->
                         <asp:DropDownList ID="ddl_Report" runat="server" Visible="False" AutoPostBack="True" OnSelectedIndexChanged="ddl_Report_SelectedIndexChanged">
@@ -125,7 +129,7 @@
                         <%--???  do we need a seperate gridview for each report or can we alter what the GV displays based on the report selected ???--%>
                         <div class="row">
                             <div class="12u">
-                                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+                                <asp:GridView ID="gvAttendees" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
                                     <AlternatingRowStyle CssClass="alt"></AlternatingRowStyle>
                                     <Columns>
                                         <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
