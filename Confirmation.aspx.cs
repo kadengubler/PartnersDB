@@ -11,6 +11,7 @@ public partial class Confirmation : System.Web.UI.Page
     {
         if (Session["SessionID"] != null)
         {
+            lblHeaderMessage.Text = "Thank you for registering for the " + Session["Conference"] + " conference. " + "<br />" + "Below are the details of your registration.";
             fName.Text = Session["Reg_fName"].ToString();
             lName.Text = Session["Reg_lName"].ToString();
             if (fName.Text.Length + lName.Text.Length < 2)

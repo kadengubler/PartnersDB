@@ -13,9 +13,11 @@
     <div class="wrapper wrapper-style1">
         <article class="5grid-layout" id="Article1">
             <header>
-                <h2>Confirmation</h2>
+                <h2>Registration Confirmation</h2>
                 <span>
-                    <asp:Label ID="lblHeaderMessage" runat="server" Text="Below are the details of your registration."></asp:Label></span>
+                    <asp:Label ID="lblHeaderMessage" runat="server" Text=""></asp:Label></span>
+                <br />
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Default.aspx">Return to Home Page</asp:HyperLink>
             </header>
             <asp:Panel ID="Panel1" runat="server" Visible="true" style="display:inline-table;">
                 <table style="text-align:left; padding:10px; border-spacing:20px; display:inline">

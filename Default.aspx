@@ -58,9 +58,11 @@
                     <div class="12u">
                         <div class="5grid">
                             <div class="row">
-                                <div class="12u">
+                                <div class="6u">
                                     <asp:TextBox ID="TextBox1" placeholder="Search" runat="server"></asp:TextBox>
                                 </div>
+                                <br />
+                                <br />
                                 <div class="12u">
                                     <asp:Button ID="btn_search" CssClass="button" runat="server" Text="Search" OnClick="btn_search_Click" />
                                 </div>

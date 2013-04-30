@@ -21,6 +21,7 @@ public partial class Controls_UC_ddlConference : System.Web.UI.UserControl
             return ddl_Conference.SelectedIndex;
         }
     }
+
     protected void DropDownSelectionChanged(object sender, EventArgs e)
     {
         if (DropDownSelected != null)

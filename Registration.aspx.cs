@@ -308,6 +308,7 @@ public partial class Registration : System.Web.UI.Page
     {
         //save all inputs to a session
         Session["SessionID"] = Session.SessionID;
+        Session["Conference"] = ddl_Conference.SelectedItem;
         Session["Reg_aNumber"] = aNumber.Text;
         Session["Reg_partnership"] = partnership.Text;
         Session["Reg_cb_student"] = cb_student.Checked;

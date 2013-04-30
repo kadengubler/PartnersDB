@@ -9,12 +9,9 @@ public partial class Reports : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //nt index = (Controls_UC_ddlConference.FindControl("ddlConference") as DropDownList).SelecteIndex;
         
     }
 
-        //int index = (FindControl("ddlConference") as DropDownList).SelectedIndex;
-        //if (index == 0)
     protected void Reports_DropDownSelected(object sender, EventArgs e)
     {
         ddl_Conference_SelectedIndexChanged(sender, e);

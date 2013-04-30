@@ -69,11 +69,11 @@
                                     </asp:GridView>
                                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommandType="StoredProcedure" SelectCommand="usp_StatusBoard" UpdateCommand="usp_UpdateSpeakers" DeleteCommand="DELETE FROM [Speakers] WHERE [SpeakerID] = @SpeakerID" InsertCommand="INSERT INTO [Speakers] ([SpeakerID], [ContactID], [ConferenceID], [SpeakerStatus], [Picture], [Bio], [Summary], [Slides], [Travel], [Hotel]) VALUES (@SpeakerID, @ContactID, @ConferenceID, @SpeakerStatus, @Picture, @Bio, @Summary, @Slides, @Travel, @Hotel)" UpdateCommandType="StoredProcedure">
                                         <SelectParameters>
-<<<<<<< HEAD
-                                        <asp:ControlParameter ControlID="DropDownList1" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
-=======
+
+                                        <%--<asp:ControlParameter ControlID="DropDownList1" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />--%>
+
                                             <asp:ControlParameter ControlID="ddlConference" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
->>>>>>> kaden
+
                                         </SelectParameters>
                                         <DeleteParameters>
                                             <asp:Parameter Name="SpeakerID" Type="Int32" />
