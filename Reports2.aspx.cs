@@ -9,20 +9,13 @@ public partial class Reports : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //nt index = (Controls_UC_ddlConference.FindControl("ddlConference") as DropDownList).SelecteIndex;
         
-    }
-
-        //int index = (FindControl("ddlConference") as DropDownList).SelectedIndex;
-        //if (index == 0)
-    protected void Reports_DropDownSelected(object sender, EventArgs e)
-    {
-        ddl_Conference_SelectedIndexChanged(sender, e);
     }
 
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
-       if (ddl_Conference.GetSelectedIndex == 0)        
+        Label1.Text = ddl_Conference.SelectedItem.Text;
+        if (ddl_Conference.SelectedIndex == 0)
         {
             ddl_Report.Visible = false;
         }
@@ -33,15 +26,17 @@ public partial class Reports : System.Web.UI.Page
     }
     protected void ddl_Report_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddl_Report.SelectedIndex == 1)
+        if (ddl_Report.SelectedIndex == 0)
+        {
+            gvAttendee.Visible = false;
+        }
+        else if (ddl_Report.SelectedIndex == 1)
         {
             //Custom Report
             //*** code to allow user to select fields to show in report ***
             gvAttendee.Visible = true;
             gvAttendee.Focus();
         }
-
-
 
         //else if (ddl_Report.SelectedIndex == 2)
         //{
@@ -98,7 +93,7 @@ public partial class Reports : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        gvAttendees.Visible = true;
+        GridView1.Visible = true;
     }
 
 }

@@ -1,10 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reports.aspx.cs" Inherits="Reports" MaintainScrollPositionOnPostback="true"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reports2.aspx.cs" Inherits="Reports" MaintainScrollPositionOnPostback="true"%>
 
-<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
-<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
-<%@ Register Src="~/Controls/UC_ddlConference.ascx" TagPrefix="uc1" TagName="UC_ddlConference" %>
-
 
 
 <%--<%@ Register src="Temp/DataFilter.ascx" tagname="DataFilter" tagprefix="uc1" %>--%>
@@ -39,17 +35,15 @@
                     <div class="12u">
                         <asp:SqlDataSource ID="SqlDataSource2" runat="server"></asp:SqlDataSource>
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
-                        <%--<asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem>--Please Select Conference--</asp:ListItem>
-                            <asp:ListItem value="all">All Conferences</asp:ListItem>
-                            <asp:ListItem Value="cr">Crossroads</asp:ListItem>
-                            <asp:ListItem Value="oe">Operational Excellence</asp:ListItem>
-                            <asp:ListItem Value="acct">Accounting</asp:ListItem>
-                            <asp:ListItem Value="it">Information Technology</asp:ListItem>
-                            <asp:ListItem Value="lead">Leadership</asp:ListItem>
-                        </asp:DropDownList>--%>
-
-                        <uc1:UC_ddlConference runat="server" ID="ddl_Conference" OnDropDownSelected="Reports_DropDownSelected" AutoPostBack="True" />
+                            <%--<asp:ListItem value="all">All Conferences</asp:ListItem>--%>
+                            <asp:ListItem Value="CR">Crossroads</asp:ListItem>
+                            <asp:ListItem Value="OE">Operational Excellence</asp:ListItem>
+                            <asp:ListItem Value="Acct">Accounting</asp:ListItem>
+                            <asp:ListItem Value="IT">Information Technology</asp:ListItem>
+                            <asp:ListItem Value="Lead">Leadership</asp:ListItem>
+                        </asp:DropDownList>
 
                         <!-- This list will be populated with more reports as nessessary -->
                         <asp:DropDownList ID="ddl_Report" runat="server" Visible="False" AutoPostBack="True" OnSelectedIndexChanged="ddl_Report_SelectedIndexChanged">
@@ -69,6 +63,7 @@
                 </div>
             </div>
            
+
 
             <%--<p>________________________________________________________________________________________________________________</p>--%>
 
@@ -121,7 +116,7 @@
                 <div class="wrapper wrapper-style3">
                     <article class="5grid-layout">
                         <header>
-                            <h2>List of attendees at past conferences</h2>
+                            <h2>List of attendees at the <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label> conference</h2>
                             <span></span>
                         </header>
 
@@ -129,7 +124,7 @@
                         <%--???  do we need a seperate gridview for each report or can we alter what the GV displays based on the report selected ???--%>
                         <div class="row">
                             <div class="12u">
-                                <asp:GridView ID="gvAttendees" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+                                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
                                     <AlternatingRowStyle CssClass="alt"></AlternatingRowStyle>
                                     <Columns>
                                         <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
@@ -140,7 +135,11 @@
 
                                     <PagerStyle CssClass="pgr"></PagerStyle>
                                 </asp:GridView>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.FirstName, Contacts.LastName, Contacts.Title, Contacts.OrgID, Organization.OrgName FROM Contacts INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.FirstName, Contacts.LastName, Contacts.Title, Contacts.OrgID, Organization.OrgName FROM Contacts INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID INNER JOIN ConferenceAttendees ON Contacts.ContactID = ConferenceAttendees.ContactID INNER JOIN Conference ON ConferenceAttendees.ConferenceID = Conference.ConferenceID WHERE ConferenceTitle = @ConferenceTitle ">
+                                    <SelectParameters>
+                                        <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="Text" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
                     </article>
