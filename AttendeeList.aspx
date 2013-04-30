@@ -17,7 +17,7 @@
 
     <br />
 
-    <div class="wrapper wrapper-style1">
+    <asp:Panel ID="Panel1" runat="server" CssClass="wrapper wrapper-style1">    
         <article class="5grid-layout" id="Article1">
             <header>
                 <h2>Attendee List</h2>
@@ -29,7 +29,6 @@
                         <div class="5grid">
                             <div class="row">
                                 <div class="12u">
-
                                     <asp:DropDownList ID="DropDownList1" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="Both"  runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConfYear" DataValueField="ConferenceID">
                                     </asp:DropDownList>
                                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [ConferenceID], [ConferenceTitle] + ' ' + DATENAME(yy,[StartingDate]) AS ConfYear FROM [Conference]"></asp:SqlDataSource>
@@ -59,8 +58,8 @@
                     </div>
                 </div>
             </div>
-        </article>
-    </div>
+        </article>    
+     </asp:Panel>
 
 
     

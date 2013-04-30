@@ -36,12 +36,14 @@ public partial class Registration : System.Web.UI.Page
     }
     protected void ddl_RegistrationType_SelectedIndexChanged(object sender, EventArgs e)
     {
+
         if (ddl_RegistrationType.SelectedIndex == 0)
         {
             Panel1.Visible = false;
             notifications.Visible = false;
             buttons.Visible = false;
             ddl_daysAttending.Visible = false;
+
             //fName.Visible = false;
             //lName.Visible = false;
             //title.Visible = false;

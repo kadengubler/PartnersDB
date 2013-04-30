@@ -29,7 +29,7 @@
                         <div class="5grid">
                             <div class="row">
                                 <div class="12u">
-                                        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConfYear" DataValueField="ConferenceID">
+                                        <asp:DropDownList ID="ddlConference" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="ConfYear" DataValueField="ConferenceID">
                                         </asp:DropDownList>
                                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [ConferenceID], [ConferenceTitle] + ' ' + DATENAME(yy,[StartingDate]) AS ConfYear FROM [Conference]" DeleteCommand="DELETE FROM [Speakers] WHERE [SpeakerID] = @SpeakerID" InsertCommand="INSERT INTO [Speakers] ([SpeakerID], [ContactID], [ConferenceID], [SpeakerStatus], [Picture], [Bio], [Summary], [Slides], [Travel], [Hotel]) VALUES (@SpeakerID, @ContactID, @ConferenceID, @SpeakerStatus, @Picture, @Bio, @Summary, @Slides, @Travel, @Hotel)">
                                             <DeleteParameters>
@@ -69,7 +69,11 @@
                                     </asp:GridView>
                                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommandType="StoredProcedure" SelectCommand="usp_StatusBoard" UpdateCommand="usp_UpdateSpeakers" DeleteCommand="DELETE FROM [Speakers] WHERE [SpeakerID] = @SpeakerID" InsertCommand="INSERT INTO [Speakers] ([SpeakerID], [ContactID], [ConferenceID], [SpeakerStatus], [Picture], [Bio], [Summary], [Slides], [Travel], [Hotel]) VALUES (@SpeakerID, @ContactID, @ConferenceID, @SpeakerStatus, @Picture, @Bio, @Summary, @Slides, @Travel, @Hotel)" UpdateCommandType="StoredProcedure">
                                         <SelectParameters>
+<<<<<<< HEAD
                                         <asp:ControlParameter ControlID="DropDownList1" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
+=======
+                                            <asp:ControlParameter ControlID="ddlConference" Name="ConferenceID" PropertyName="SelectedValue" Type="Int32" />
+>>>>>>> kaden
                                         </SelectParameters>
                                         <DeleteParameters>
                                             <asp:Parameter Name="SpeakerID" Type="Int32" />
