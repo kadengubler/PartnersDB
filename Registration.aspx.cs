@@ -136,13 +136,15 @@ public partial class Registration : System.Web.UI.Page
     {
         Register();
         //redirect to confirmation page
+        Save2Session();
         redirectToConfirmationPage();
     }
 
     protected void redirectToConfirmationPage()
     {
-
+        Response.Redirect("Confirmation.aspx");
     }
+
     protected void Register()
     {
         //submit form data to the DB
@@ -241,8 +243,13 @@ public partial class Registration : System.Web.UI.Page
         }
         catch (SqlException ex)
         {
-            Response.Redirect("Error.html");
+            //Response.Redirect("Error.html");
         }
+        finally
+        {
+            con.Close();        
+        }
+
         if (ddl_RegistrationType.SelectedValue == "Student/Faculty")
         {
             SqlCommand cmdAddStudent = new SqlCommand("INSERT INTO Student(Anumber, ContactID) VALUES(@Anumber, @ContactID)", con);
@@ -253,12 +260,14 @@ public partial class Registration : System.Web.UI.Page
             con.Close();
         }
     }
+
     protected void add_Click(object sender, EventArgs e)
     {
         //submit form data to the DB
         Register();
         //redirect to confirmation page
-        redirectToConfirmationPage();
+        Save2Session();
+        //redirectToConfirmationPage();
         clear_Fields();
     }
 
@@ -291,6 +300,37 @@ public partial class Registration : System.Web.UI.Page
 
     }
 
+    //public TextBox reg_fName { get { return fName; } }
+
+    public void Save2Session()
+    {
+        //save all inputs to a session
+        Session["SessionID"] = Session.SessionID;
+        Session["Reg_aNumber"] = aNumber.Text;
+        Session["Reg_partnership"] = partnership.Text;
+        Session["Reg_cb_student"] = cb_student.Checked;
+        Session["Reg_cb_faculty"] = cb_faculty.Checked;
+        Session["Reg_cb_acct"] = cb_acct.Checked;
+        Session["Reg_cb_oe"] = cb_oe.Checked;
+        Session["Reg_cb_it"] = cb_it.Checked;
+        Session["Reg_cb_cr"] = cb_cr.Checked;
+        Session["Reg_cb_lead"] = cb_lead.Checked;
+        Session["Reg_fName"] = fName.Text;
+        Session["Reg_lName"] = lName.Text;
+        Session["Reg_title"] = title.Text;
+        Session["Reg_company"] = company.Text;
+        Session["Reg_department"] = department.Text;
+        Session["Reg_address"] = address.Text;
+        Session["Reg_city"] = city.Text;
+        Session["Reg_state"] = ddl_state.SelectedValue;
+        Session["Reg_zip"] = zip.Text;
+        Session["Reg_areaCode"] = areaCode.Text;
+        Session["Reg_exchange"] = exchange.Text;
+        Session["Reg_subscriberNumber"] = subscriberNumber.Text;
+        Session["Reg_email"] = email.Text;
+
+    }
+
     protected void clear_Click(object sender, EventArgs e)
     {
         //clear the text fields
@@ -299,4 +339,44 @@ public partial class Registration : System.Web.UI.Page
         clear_Fields();
     }
 
+    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+
+        args.IsValid = true;
+
+        foreach (DataRowView drv in SqlDataSource_aNumberValidation.Select(DataSourceSelectArguments.Empty))
+        {
+            if (drv["aNumber"].ToString() == args.Value)
+            {
+                args.IsValid = false;
+                break;
+            }
+        }
+
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\Partners.mdf;Integrated Security=True");
+        
+        //try
+        //{
+        //    SqlCommand checkAnumber = new SqlCommand("SELECT Anumber FROM Student WHERE Anumber='@Anumber'", con);
+        //    con.Open();
+        //    if (checkAnumber.ExecuteNonQuery() >= 1)
+        //    {
+        //        args.IsValid = false;
+        //    }
+        //    else
+        //    {
+        //        args.IsValid = true;
+        //    }
+        //    con.Close();
+        //}
+        //catch (SqlException se)
+        //{
+        //    Response.Redirect("Error.html");
+        //}
+        //finally
+        //{
+        //    con.Close();
+        //}
+
+    }
 }

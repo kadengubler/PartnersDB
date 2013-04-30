@@ -59,6 +59,7 @@
                         <div class="5grid">
                             <div class="row">
                                 <div class="12u">
+                                    <article id="Form"></article>
                                     <asp:DropDownList ID="ddl_daysAttending" runat="server" Visible="False" DataSourceID="SqlDataSource2" DataTextField="Days" DataValueField="Days"></asp:DropDownList>
                                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="usp_GetDays" SelectCommandType="StoredProcedure">
                                         <SelectParameters>
@@ -71,13 +72,17 @@
                             <div class="row">
                                 <div class="4u">
                                     <asp:TextBox ID="aNumber" runat="server" placeholder="Anumber" Visible="false"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter your A-Number<br>" ControlToValidate="aNumber" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Text="" ErrorMessage="Please enter a valid A-number" ControlToValidate="aNumber" ValidationExpression="A[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                                    <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="This A-Number has been registered already." ControlToValidate="aNumber" ForeColor="Red" Display="Dynamic" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
+                                    <asp:SqlDataSource ID="SqlDataSource_aNumberValidation" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" ProviderName="<%$ ConnectionStrings:PartnersConnectionString.ProviderName %>" SelectCommand="SELECT Anumber FROM Student"></asp:SqlDataSource>
                                 </div>
                                 <div class="4u">
-                                    <asp:CheckBox ID="cb_student" runat="server" Text="Student" Visible="false" ForeColor="Black" Font-Bold="True" AutoPostBack="True" />
+                                    <asp:CheckBox ID="cb_student" runat="server" Text="Student" Visible="false" ForeColor="Black" Font-Bold="True" AutoPostBack="True" OnCheckedChanged="ddl_RegistrationType_SelectedIndexChanged" />
                                     <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender3" TargetControlID="cb_student" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
                                 </div>
                                 <div class="4u">
-                                    <asp:CheckBox ID="cb_faculty" runat="server" Text="Faculty" Visible="false" ForeColor="Black" Font-Bold="True" AutoPostBack="True" />
+                                    <asp:CheckBox ID="cb_faculty" runat="server" Text="Faculty" Visible="false" ForeColor="Black" Font-Bold="True" AutoPostBack="True" OnCheckedChanged="ddl_Conference_SelectedIndexChanged" />
                                     <asp:MutuallyExclusiveCheckBoxExtender ID="MutuallyExclusiveCheckBoxExtender4" TargetControlID="cb_faculty" Key="stu/fac" runat="server"></asp:MutuallyExclusiveCheckBoxExtender>
                                 </div>
                             </div>
@@ -103,13 +108,13 @@
                                 <asp:TextBox ID="fName" runat="server" placeholder="First Name" Visible="true"></asp:TextBox>
                                 <!-- Validator for fName -->
                                 <%--???? change the text color of the ErrorMessage--%>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter the first name" ControlToValidate="fName" BorderColor="Red"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter the first name" ControlToValidate="fName" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div class="6u">
                                 <asp:TextBox ID="lName" runat="server" placeholder="Last Name" Visible="true"></asp:TextBox>
                                 <!-- Validator for lName -->
                                 <%--???? change the text color of the ErrorMessage--%>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter the last name" ControlToValidate="lName"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter the last name" ControlToValidate="lName" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                         </div>
 
@@ -195,6 +200,7 @@
                                     <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT * FROM [States] ORDER BY [StateName]"></asp:SqlDataSource>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please select a state" ControlToValidate="ddl_state" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div class="4u">
                                 <asp:TextBox ID="zip" runat="server" placeholder="Zip Code" Visible="true"></asp:TextBox>
@@ -204,16 +210,20 @@
                         <div class="row">
                             <div class="2u">
                                 <asp:TextBox ID="areaCode" runat="server" placeholder="(   )" Visible="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Please enter an area code" ControlToValidate="areaCode" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div class="2u">
                                 <asp:TextBox ID="exchange" runat="server" placeholder="Phone -" Visible="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Please enter a phone number prefix" ControlToValidate="exchange" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div class="2u">
                                 <asp:TextBox ID="subscriberNumber" runat="server" placeholder="Number" Visible="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Please enter a phone number" ControlToValidate="subscriberNumber" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div class="6u">
                                 <asp:TextBox ID="email" runat="server" placeholder="Email" Visible="true"></asp:TextBox>
-                            </div>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Please enter an e-mail address" ControlToValidate="email" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                         </div>
                         </div>
 
                         <div class="row">
