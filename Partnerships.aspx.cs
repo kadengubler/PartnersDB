@@ -16,7 +16,7 @@ public partial class Partnerships : System.Web.UI.Page
     {
         gvPartners.Visible = false;
         gvDaysUsed.Visible = true;
-        Label1.Text = "This page contains a list of days attended using the partner number ";             
+        Label1.Text = "This page contains a list of days attended using the partner number ";
     }
 
     protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,5 +26,5 @@ public partial class Partnerships : System.Web.UI.Page
         Label1.Text = "This page contains a list of current partnerships.";
     }
 
-    
+
 }

@@ -9,7 +9,7 @@ public partial class Reports : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void Reports_DropDownSelected(object sender, EventArgs e)
@@ -22,7 +22,7 @@ public partial class Reports : System.Web.UI.Page
     {
         lblConference.Text = ddl_Conference.GetSelectedItem;
 
-       if (ddl_Conference.GetSelectedIndex == 0)        
+        if (ddl_Conference.GetSelectedIndex == 0)
         {
             ddl_Report.Visible = false;
         }
@@ -37,7 +37,7 @@ public partial class Reports : System.Web.UI.Page
         {
             //Custom Report
             //*** code to allow user to select fields to show in report ***
-            gvAttendee.Visible = true;            
+            gvAttendee.Visible = true;
             gvAttendee.Focus();
         }
 

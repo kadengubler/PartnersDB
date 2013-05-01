@@ -9,7 +9,15 @@
         <ul>
             <li><a href="#top">Top |</a></li>
             <li><a href="#dates">Conference Dates |</a></li>
+<%--<<<<<<< HEAD
+            <li><a href="#sponsors">Conference Sponsors |</a></li>
+            <%--<li><a href="#acct">Accounting |</a></li>
+            <li><a href="#it">Information Technology |</a></li>
+            <li><a href="#lead">Leadership |</a></li>
+            <li><a href="#other">Other</a></li>
+=======--%>
             <li><a href="#sponsors">Conference Sponsors</a></li>
+<%-->>>>>>> kaden--%>
         </ul>
     </nav>
 
@@ -89,6 +97,8 @@
         <article id="sponsors">
             <header>
                 <h2>Conference Sponsors</h2>
+<%--<<<<<<< HEAD--%>
+                <%--<span>Choose a category to run report</span>--%>
             </header>
             <div class="5grid-layout">
                 <div class="row">
@@ -153,7 +163,7 @@
                     </div>
                 </div>
             <footer>
-
+                <%--<p>Can't find the report you need?</p>--%>
                 <asp:Button ID="Button1" class="button button-big" runat="server" Text="Add a new Sponsor or CoSponsor" OnClick="Button1_Click" />                
                 
                 <asp:DetailsView ID="dtvSponsors" runat="server" Height="50px" Width="125px" Visible="False" AutoGenerateRows="False" DataSourceID="SqlDataSourceSponsors">
@@ -174,8 +184,137 @@
         </article>
     </div>
 
+    <!-- Accounting -->
+    <%--<div class="wrapper wrapper-style1">
+        <article id="acct">
+            <header>
+                <h2>Accounting</h2>
+                <span>Choose a category to run report</span>
+            </header>
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work01.png" alt=""></span>
+                            <h3>Conference Feedback</h3>
+                            <p>This report is used to display the feedback from past conferences.</p>
+                        </section>
+                    </div>
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work02.png" alt=""></span>
+                            <h3>Attendee Demographics</h3>
+                            <p>This report is used to display the demographics from past conferences.</p>
+                        </section>
+                    </div>
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work03.png" alt=""></span>
+                            <h3>Attendee List</h3>
+                            <p>This report is used to display the attendee lists from past conferences.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>Can't find the report you need?</p>
+                <a href="#custom_report" class="button button-big">Run a custom report</a>
+            </footer>
+        </article>
+    </div>--%>
 
-            <%--<asp:SqlDataSource ID="SqlDataSourceSponsors" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.ContactID, Sponsor.SponsorID, Sponsor.Cosponsor, Sponsor.Ranking, Contacts.FirstName, Contacts.LastName, Contacts.Email, Contacts.Title, Organization.OrgName FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID WHERE Sponsor.Cosponsor = @CoSponsor" DeleteCommand="DELETE FROM Sponsor" InsertCommand="INSERT INTO Sponsor(SponsorID, ContactID, Cosponsor, Ranking) VALUES (,,,)" UpdateCommand="usp_UpdateSponsors" UpdateCommandType="StoredProcedure">
+    <!-- Information Technology -->
+    <%--<div class="wrapper wrapper-style2">
+        <article id="it">
+            <header>
+                <h2>Information Technology</h2>
+                <span>Choose a category to run report</span>
+            </header>
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work01.png" alt=""></span>
+                            <h3>Conference Feedback</h3>
+                            <p>This report is used to display the feedback from past conferences.</p>
+                        </section>
+                    </div>
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work02.png" alt=""></span>
+                            <h3>Attendee Demographics</h3>
+                            <p>This report is used to display the demographics from past conferences.</p>
+                        </section>
+                    </div>
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work03.png" alt=""></span>
+                            <h3>Attendee List</h3>
+                            <p>This report is used to display the attendee lists from past conferences.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>Can't find the report you need?</p>
+                <a href="#custom_report" class="button button-big">Run a custom report</a>
+            </footer>
+        </article>
+    </div>--%>
+
+    <!-- Leadership -->
+    <%--<div class="wrapper wrapper-style3">
+        <article id="lead">
+            <header>
+                <h2>Leadership</h2>
+                <span>Choose a category to run report</span>
+            </header>
+            <div class="5grid-layout">
+                <div class="row">
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work01.png" alt=""></span>
+                            <h3>Conference Feedback</h3>
+                            <p>This report is used to display the feedback from past conferences.</p>
+                        </section>
+                    </div>
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work02.png" alt=""></span>
+                            <h3>Attendee Demographics</h3>
+                            <p>This report is used to display the demographics from past conferences.</p>
+                        </section>
+                    </div>
+                    <div class="4u">
+                        <section class="box box-style1">
+                            <span class="image image-centered">
+                                <img src="images/work03.png" alt=""></span>
+                            <h3>Attendee List</h3>
+                            <p>This report is used to display the attendee lists from past conferences.</p>
+                        </section>
+=======
+                <span></span>
+            </header>
+            <div class="5grid-layout">
+                <div class="row">
+                    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
+                        <asp:ListItem></asp:ListItem>
+                        <asp:ListItem Value="false">Sponsors</asp:ListItem>
+                        <asp:ListItem Value="true">CoSponsors</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+
+
+            <asp:SqlDataSource ID="SqlDataSourceSponsors" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.ContactID, Sponsor.SponsorID, Sponsor.Cosponsor, Sponsor.Ranking, Contacts.FirstName, Contacts.LastName, Contacts.Email, Contacts.Title, Organization.OrgName FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID WHERE Sponsor.Cosponsor = @CoSponsor" DeleteCommand="DELETE FROM Sponsor" InsertCommand="INSERT INTO Sponsor(SponsorID, ContactID, Cosponsor, Ranking) VALUES (,,,)" UpdateCommand="usp_UpdateSponsors" UpdateCommandType="StoredProcedure">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="CoSponsor" PropertyName="SelectedValue" />
                 </SelectParameters>
@@ -187,13 +326,13 @@
                 	<asp:Parameter Name="Email" Type="String" />
     	            <asp:Parameter Name="Title" Type="String" />
                 </UpdateParameters>
-            </asp:SqlDataSource>--%>
+            </asp:SqlDataSource>
 
 
             <br />
 
             <div align="middle">
-                <div id="gvSponsors" runat="server" visible="true" style="border: solid 3px black; background-color: white; width: 1200px;">
+                <div id="gvSponsors" runat="server" visible="false" style="border: solid 3px black; background-color: white; width: 1200px;">
                     <div class="5grid-layout">
                         <div class="row">
                             <asp:GridView ID="GridView1" runat="server" DataKeyNames="ContactID" DataSourceID="SqlDataSourceSponsors" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False">
@@ -211,6 +350,7 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
+>>>>>>> kaden
                     </div>
                 </div>
             </div>
@@ -223,6 +363,8 @@
                 <asp:Button ID="btnAddSponsor" runat="server" class="button button-big" Text="Add a new (Co)Sponsor" OnClick="btnAddSponsor_Click" />
             </footer>
 
+        </article>
+    </div>--%>
 
     <asp:DetailsView ID="dtvAddSponsor" runat="server" Height="50px" Width="125px" AutoGenerateRows="False" DataKeyNames="SponsorID" DefaultMode="Insert" OnItemInserted="dtvAddSponsor_ItemInserted" OnItemCommand="dtvAddSponsor_ItemCommand" DataSourceID="SqlDataSourceSponsors">
         <Fields>
