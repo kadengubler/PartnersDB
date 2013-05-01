@@ -9,15 +9,7 @@
         <ul>
             <li><a href="#top">Top |</a></li>
             <li><a href="#dates">Conference Dates |</a></li>
-<%--<<<<<<< HEAD
-            <li><a href="#sponsors">Conference Sponsors |</a></li>
-            <%--<li><a href="#acct">Accounting |</a></li>
-            <li><a href="#it">Information Technology |</a></li>
-            <li><a href="#lead">Leadership |</a></li>
-            <li><a href="#other">Other</a></li>
-=======--%>
-            <li><a href="#sponsors">Conference Sponsors</a></li>
-<%-->>>>>>> kaden--%>
+            <li><a href="#sponsors">Conference Sponsors |</a></li>            
         </ul>
     </nav>
 
@@ -31,7 +23,7 @@
                 </div>
                 <div class="8u">
                     <header>
-                        <h1><strong>Conferences</strong>.</h1>
+                        <h1><strong>Conferences</strong></h1>
                     </header>
                     <p>Information for each Partners In Business conference.</p>
                     <a href="Documentation.aspx" class="button button-big">Need Help?</a>
@@ -51,39 +43,38 @@
                 <div class="row">
                     <div class="12u">
 
-<%--<<<<<<< HEAD
-                        <asp:SqlDataSource ID="SqlDataSourceDates" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [StartingDate], [EndingDate], [ConferenceTitle] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
-=======--%>
-<%--                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>"
-                            SelectCommand="SELECT [ConferenceName] + ' ' + [StartingDate] + '-' + [EndingDate] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
 
-
-<%-->>>>>>> kaden--%>
-<%--                            <SelectParameters>
+                        <%--<asp:SqlDaaSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT [ConferenceName] + ' ' + [StartingDate] + '-' + [EndingDate] FROM [Conference] WHERE ConferenceTitle = @ConferenceTitle">
+                          <selectparameters>
                                 <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="SelectedValue" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>--%>
+                            </selectparameters>
+                        </asp:SqlDaaSource>--%>
 
-<%--<<<<<<< HEAD
+
                         <asp:SqlDataSource ID="SqlDataSourceDdlConference" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT DISTINCT [ConferenceTitle] FROM [Conference]"></asp:SqlDataSource>
 
-                        <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True" DataSourceID="SqlDataSourceDdlConference" DataTextField="ConferenceTitle" DataValueField="ConferenceTitle">
-                        </asp:DropDownList>
-                        <h2>
-                            <asp:Label ID="lblConferenceDate" runat="server" Text="Label" Visible="false"></asp:Label></h2>
-=======--%>
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>"
-                            SelectCommand="SELECT ConferenceID, [ConferenceName] + ' ' + replace(CONVERT(varchar(10),[StartingDate],102),'.','/') + '-' + replace(CONVERT(varchar(10),[EndingDate],102),'.','/') AS ConfNameDate FROM [Conference] WHERE Datepart(YY,StartingDate) >= Datepart(YY,GETDATE())"></asp:SqlDataSource>
-                        <br />
+                        <%--<asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True" DataSourceID="SqlDataSourceDdlConference" DataTextField="ConferenceTitle" DataValueField="ConferenceTitle"></asp:DropDownList>--%>
+                        
+
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT ConferenceID, [ConferenceName] + ' ' + replace(CONVERT(varchar(10),[StartingDate],102),'.','/') + '-' + replace(CONVERT(varchar(10),[EndingDate],102),'.','/') AS ConfNameDate FROM [Conference] WHERE Datepart(YY,StartingDate) >= Datepart(YY,GETDATE())"></asp:SqlDataSource>
+                       
+
+
+
+
 
                         <asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True"
                             DataSourceID="SqlDataSource1" DataTextField="ConfNameDate" DataValueField="ConferenceID">
                         </asp:DropDownList>
+                        
+                        
                         <br />
                         <br />
-                        <asp:Label ID="conferenceDate" runat="server" Visible="false" Font-Size="X-Large" Font-Bold="True"></asp:Label>
 
-<%-->>>>>>> kaden--%>
+
+                        <asp:Label ID="lblConferenceDate" runat="server" Visible="true" Font-Size="X-Large" Font-Bold="True" DataSourceID="SqlDataSource1" Text="ConfNameDate" DataValueField="ConferenceID" ></asp:Label>
+
+
                     </div>
                 </div>
 
@@ -97,8 +88,6 @@
         <article id="sponsors">
             <header>
                 <h2>Conference Sponsors</h2>
-<%--<<<<<<< HEAD--%>
-                <%--<span>Choose a category to run report</span>--%>
             </header>
             <div class="5grid-layout">
                 <div class="row">
@@ -184,137 +173,9 @@
         </article>
     </div>
 
-    <!-- Accounting -->
-    <%--<div class="wrapper wrapper-style1">
-        <article id="acct">
-            <header>
-                <h2>Accounting</h2>
-                <span>Choose a category to run report</span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
-            </footer>
-        </article>
-    </div>--%>
-
-    <!-- Information Technology -->
-    <%--<div class="wrapper wrapper-style2">
-        <article id="it">
-            <header>
-                <h2>Information Technology</h2>
-                <span>Choose a category to run report</span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
-            </footer>
-        </article>
-    </div>--%>
-
-    <!-- Leadership -->
-    <%--<div class="wrapper wrapper-style3">
-        <article id="lead">
-            <header>
-                <h2>Leadership</h2>
-                <span>Choose a category to run report</span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-=======
-                <span></span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
-                        <asp:ListItem></asp:ListItem>
-                        <asp:ListItem Value="false">Sponsors</asp:ListItem>
-                        <asp:ListItem Value="true">CoSponsors</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-            </div>
 
 
-            <asp:SqlDataSource ID="SqlDataSourceSponsors" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.ContactID, Sponsor.SponsorID, Sponsor.Cosponsor, Sponsor.Ranking, Contacts.FirstName, Contacts.LastName, Contacts.Email, Contacts.Title, Organization.OrgName FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID WHERE Sponsor.Cosponsor = @CoSponsor" DeleteCommand="DELETE FROM Sponsor" InsertCommand="INSERT INTO Sponsor(SponsorID, ContactID, Cosponsor, Ranking) VALUES (,,,)" UpdateCommand="usp_UpdateSponsors" UpdateCommandType="StoredProcedure">
+            <%--<asp:SqlDataSource ID="SqlDataSourceSponsors" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.ContactID, Sponsor.SponsorID, Sponsor.Cosponsor, Sponsor.Ranking, Contacts.FirstName, Contacts.LastName, Contacts.Email, Contacts.Title, Organization.OrgName FROM Sponsor INNER JOIN Contacts ON Sponsor.ContactID = Contacts.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID WHERE Sponsor.Cosponsor = @CoSponsor" DeleteCommand="DELETE FROM Sponsor" InsertCommand="INSERT INTO Sponsor(SponsorID, ContactID, Cosponsor, Ranking) VALUES (,,,)" UpdateCommand="usp_UpdateSponsors" UpdateCommandType="StoredProcedure">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="CoSponsor" PropertyName="SelectedValue" />
                 </SelectParameters>
@@ -326,7 +187,7 @@
                 	<asp:Parameter Name="Email" Type="String" />
     	            <asp:Parameter Name="Title" Type="String" />
                 </UpdateParameters>
-            </asp:SqlDataSource>
+            </asp:SqlDataSource>--%>
 
 
             <br />
@@ -350,7 +211,6 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
->>>>>>> kaden
                     </div>
                 </div>
             </div>
@@ -377,48 +237,5 @@
 
 
 
-
-
-    <!-- Other -->
-    <%--<div class="wrapper wrapper-style4">
-        <article id="other">
-            <header>
-                <h2>Other</h2>
-                <span>Choose a category to run report</span>
-            </header>
-            <div class="5grid-layout">
-                <div class="row">
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work01.png" alt=""></span>
-                            <h3>Conference Feedback</h3>
-                            <p>This report is used to display the feedback from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work02.png" alt=""></span>
-                            <h3>Attendee Demographics</h3>
-                            <p>This report is used to display the demographics from past conferences.</p>
-                        </section>
-                    </div>
-                    <div class="4u">
-                        <section class="box box-style1">
-                            <span class="image image-centered">
-                                <img src="images/work03.png" alt=""></span>
-                            <h3>Attendee List</h3>
-                            <p>This report is used to display the attendee lists from past conferences.</p>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Can't find the report you need?</p>
-                <a href="#custom_report" class="button button-big">Run a custom report</a>
-            </footer>
-        </article>
-    </div>--%>
 </asp:Content>
 

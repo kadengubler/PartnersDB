@@ -18,8 +18,6 @@ public partial class Registration : System.Web.UI.Page
         
     }
 
-
-
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddl_Conference.SelectedIndex == 0)
@@ -34,6 +32,7 @@ public partial class Registration : System.Web.UI.Page
             ddl_RegistrationType.Visible = true;
         }
     }
+
     protected void ddl_RegistrationType_SelectedIndexChanged(object sender, EventArgs e)
     {
 
@@ -43,28 +42,6 @@ public partial class Registration : System.Web.UI.Page
             notifications.Visible = false;
             buttons.Visible = false;
             ddl_daysAttending.Visible = false;
-
-            //fName.Visible = false;
-            //lName.Visible = false;
-            //title.Visible = false;
-            //company.Visible = false;
-            //department.Visible = false;
-            //address.Visible = false;
-            //city.Visible = false;
-            //ddl_state.Visible = false;
-            //zip.Visible = false;
-            //areaCode.Visible = false;
-            //exchange.Visible = false;
-            //subscriberNumber.Visible = false;
-            //email.Visible = false;
-            //submit.Visible = false;
-            //add.Visible = false;
-            //clear.Visible = false;
-            //partnership.Visible = false;
-            //aNumber.Visible = false;
-            //cb_student.Visible = false;
-            //cb_faculty.Visible = false;
-            //notifications.Visible = false;
         }
         else
         {
@@ -72,24 +49,6 @@ public partial class Registration : System.Web.UI.Page
             notifications.Visible = true;
             buttons.Visible = true;
             Panel1.Focus();
-            //ddl_daysAttending.Visible = true;
-            //fName.Visible = true;
-            //lName.Visible = true;
-            //title.Visible = true;
-            //company.Visible = true;
-            //department.Visible = true;
-            //address.Visible = true;
-            //city.Visible = true;
-            //ddl_state.Visible = true;
-            //zip.Visible = true;
-            //areaCode.Visible = true;
-            //exchange.Visible = true;
-            //subscriberNumber.Visible = true;
-            //email.Visible = true;
-            //submit.Visible = true;
-            //add.Visible = true;
-            //clear.Visible = true;
-            //notifications.Visible = true;
         }
         if (ddl_RegistrationType.SelectedValue.ToString() == "Student/Faculty")
         {
@@ -377,31 +336,5 @@ public partial class Registration : System.Web.UI.Page
                 break;
             }
         }
-
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\Partners.mdf;Integrated Security=True");
-        
-        //try
-        //{
-        //    SqlCommand checkAnumber = new SqlCommand("SELECT Anumber FROM Student WHERE Anumber='@Anumber'", con);
-        //    con.Open();
-        //    if (checkAnumber.ExecuteNonQuery() >= 1)
-        //    {
-        //        args.IsValid = false;
-        //    }
-        //    else
-        //    {
-        //        args.IsValid = true;
-        //    }
-        //    con.Close();
-        //}
-        //catch (SqlException se)
-        //{
-        //    Response.Redirect("Error.html");
-        //}
-        //finally
-        //{
-        //    con.Close();
-        //}
-
     }
 }

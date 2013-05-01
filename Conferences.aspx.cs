@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 public partial class Conferences : System.Web.UI.Page
 {
@@ -33,7 +36,24 @@ public partial class Conferences : System.Web.UI.Page
     }
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
-        conferenceDate.Visible = true;
+         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\Partners.mdf;Integrated Security=True");
+
+        lblConferenceDate.Visible = true;
+        lblConferenceDate.Text = 
+
+            SqlCommand cmdAddAttendee = new SqlCommand("usp_NewConferenceAttendee", con);
+            cmdAddAttendee.CommandType = CommandType.StoredProcedure;
+            cmdAddAttendee.Parameters.AddWithValue("@ContactID", ContactID);
+            cmdAddAttendee.Parameters.AddWithValue("@ConferenceID", ConfID);
+            cmdAddAttendee.Parameters.AddWithValue("@PromoCode", promocode.Text);
+            cmdAddAttendee.Parameters.AddWithValue("@PartnershipID", partnership.Text);
+            cmdAddAttendee.Parameters.AddWithValue("@DaysAttending", ddl_daysAttending.SelectedValue);
+            cmdAddAttendee.Parameters.AddWithValue("@Lunch", cb_lunch.Checked);
+            cmdAddAttendee.Parameters.AddWithValue("@Daybook", cb_daybook.Checked);
+            cmdAddAttendee.Parameters.AddWithValue("@NetworkDinner", cb_networkDinner.Checked);
+            con.Open();
+            cmdAddAttendee.ExecuteNonQuery();
+            con.Close();
         
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)

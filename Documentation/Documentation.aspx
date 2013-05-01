@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="4u">
                     <span class="me image image-full">
-                        <img src="images/logo.jpg" alt="logo" /></span>
+                        <img src="../images/logo.jpg" alt="logo" /></span>
                 </div>                
                 <div class="8u">
                     <header>
