@@ -10,15 +10,15 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="css/5grid/init.js?use=mobile,desktop,1000px"></script>
-    <script src="js/init.js"></script>
+    <script src="<%=GetSrcPath1()%>"></script>
+    <script src="<%=GetSrcPath2()%>"></script>
+    <script src="<%=GetSrcPath3()%>"></script>
     <noscript>
 			<%--<link rel="stylesheet" href="css/5grid/core.css" />
 			<link rel="stylesheet" href="css/5grid/core-desktop.css" />
 			<link rel="stylesheet" href="css/5grid/core-1200px.css" />
 			<link rel="stylesheet" href="css/5grid/core-noscript.css" />--%>
-			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="~css/style.css" />
 			<%--<link rel="stylesheet" href="css/style-desktop.css" />--%>
 		</noscript>
     <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
@@ -35,12 +35,14 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="Default.aspx">Home</a></li>
-                <li><a href="Registration.aspx">Registration</a></li>
-                <li><a href="Reports.aspx">Reports</a></li>
-                <li><a href="Conferences.aspx">Conferences</a></li>
-                <li><a href="Documentation.aspx">Help</a></li>
+                <li><a href="<%= Page.ResolveUrl("~/Default.aspx") %>">Home</a></li>
+                <li><a href="<%= Page.ResolveUrl("~/Registration.aspx") %>">Registration</a></li>
+                <li><a href="<%= Page.ResolveUrl("~/Reports/Reports.aspx") %>">Reports</a></li>
+                <li><a href="<%= Page.ResolveUrl("~/Conferences.aspx") %>">Conferences</a></li>
+                <li><a href="<%= Page.ResolveUrl("~/Documentation/Documentation.aspx") %>">Help</a></li>
+                <li style="position:absolute; right:10px"><asp:LoginStatus ID="LoginStatus1" runat="server" /></li>
             </ul>
+            
         </nav>
         <div>
             <asp:ContentPlaceHolder ID="body" runat="server">
