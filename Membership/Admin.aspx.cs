@@ -43,9 +43,9 @@ public partial class Membership_Admin : System.Web.UI.Page
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
         GridView1.EditIndex = e.NewEditIndex;
-//        CheckBox cbx = (CheckBox)e.Row.FindControl("CheckBox1");
+        //        CheckBox cbx = (CheckBox)e.Row.FindControl("CheckBox1");
         CheckBox cbx = ((CheckBox)GridView1.Rows[1].FindControl("CheckBox1"));
-//        CheckBox cbx = ((CheckBox)GridView1.Rows[GridView1.EditIndex].FindControl("CheckBox1"));
+        //        CheckBox cbx = ((CheckBox)GridView1.Rows[GridView1.EditIndex].FindControl("CheckBox1"));
         cbx.Enabled = false;
         GridView1.DataBind();
     }
@@ -83,12 +83,12 @@ public partial class Membership_Admin : System.Web.UI.Page
     {
         string username = GridView1.Rows[e.RowIndex].Cells[1].Text;
         CheckBox cbx = ((CheckBox)GridView1.Rows[e.RowIndex].FindControl("CheckBox1"));
-        
+
         if (cbx.Checked && !Roles.IsUserInRole(username, "Admin"))
         {
             Roles.AddUserToRole(username, "Admin");
         }
-        else if (!cbx.Checked && Roles.IsUserInRole(username,"Admin"))
+        else if (!cbx.Checked && Roles.IsUserInRole(username, "Admin"))
         {
             Roles.RemoveUserFromRole(username, "Admin");
         }

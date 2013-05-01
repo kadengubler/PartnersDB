@@ -1,13 +1,22 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Welcome.aspx.cs" Inherits="Membership_Welcome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Welcome.aspx.cs" Inherits="Membership_Welcome" MasterPageFile="~/MasterPage.master"  %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+    <div class="wrapper wrapper-style2">
+        <article class="5grid-layout" id="search">
+            <header>
+                <h2>Welcome</h2>
+                <span>You can access the your account settings from here.</span>
+            </header>
+            <div class="5grid">
+                <div class="row">
+                    <div class="12u">
+                        <div class="5grid">
+                            <div class="row">
+                                <div class="6u">
+                                    <div align="middle">
     <div>
         <asp:LoginView ID="LoginView1" runat="server">
             <AnonymousTemplate>
@@ -31,6 +40,14 @@
             </RoleGroups>
         </asp:LoginView>
     </div>
-    </form>
-</body>
-</html>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</asp:Content>
+

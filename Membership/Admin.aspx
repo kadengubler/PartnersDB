@@ -1,24 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Admin.aspx.cs" Inherits="Membership_Admin" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Admin.aspx.cs" Inherits="Membership_Admin" MaintainScrollPositionOnPostback="true"%>
 <%@ Register src="CurrentUserInfo.ascx" tagname="CurrentUserInfo" tagprefix="uc1" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <style type="text/css">
-        .auto-style2 {
-            height: 19px;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
+    <div class="wrapper wrapper-style2">
+        <article class="5grid-layout" id="search">
+            <header>
+                <h2>Login</h2>
+                <span>Log in to access the Partners In Business database.</span>
+            </header>
+            <div class="5grid">
+                <div class="row">
+                    <div class="12u">
+                        <div class="5grid">
+                            <div class="row">
+                                <div class="6u">
+                                    <div align="middle">
         <uc1:CurrentUserInfo ID="CurrentUserInfo1" runat="server" />
-        <br />
         <br />
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDataBound="GridView1_RowDataBound" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="UserName">
             <Columns>
@@ -40,7 +40,7 @@
         <br />
         <table style="border-style: ridge; width: 200px; height: 172px; font-size: 10pt;">
             <tr>
-                <td>First Name</td>
+                <td style="width:150px">First Name</td>
                 <td>
                     <asp:Label ID="Label1" runat="server"></asp:Label>
                 </td>
@@ -100,6 +100,14 @@
                 </td>
             </tr>
         </table>
-    </form>
-</body>
-</html>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</asp:Content>
+
