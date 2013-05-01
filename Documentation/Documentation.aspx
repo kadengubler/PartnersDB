@@ -33,36 +33,6 @@
         </article>
     </div>
 
-    <!-- Search -->
-    <%--<div class="wrapper wrapper-style2">
-        <article id="search">
-            <header>
-                <h2>Search</h2>
-                <span>Search the help documents</span>
-            </header>
-            <div class="5grid">
-                <div class="row">
-                    <div class="12u">
-                        <div class="5grid">
-                            <div class="row">
-                                <div class="4u"></div>
-                                <div class="4u">
-                                    <asp:TextBox ID="TextBox1" placeholder="Search" runat="server"></asp:TextBox>
-                                </div>                                
-                                <div class="4u"></div>
-                            </div>
-                            <div class="row">
-                                <div class="12u">
-                                    <asp:Button ID="btn_search" CssClass="button" runat="server" Text="Search" OnClick="btn_search_Click"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </article>
-        </div>--%>
-
     <!-- Asp.net Documentation -->
     <div class="wrapper wrapper-style2">
         <article class="do-5grid" id="asp_doc">
@@ -72,7 +42,7 @@
             </header>
             <h5>Project Requirements</h5>
             <div class="row">
-                <a href="Documentation/ProjectRequirements.html" target="_blank">Project Requirements</a>
+                <a href="ProjectRequirements.html" target="_blank">Project Requirements</a>
             </div>
             <br />
             <h5>Project Milestones</h5>
@@ -83,32 +53,6 @@
             <br />
 
 
-        </article>
-    </div>
-
-    <!-- Partners Documentation -->
-    <div class="wrapper wrapper-style3">
-        <article class="5grid-layout" id="partners">
-            <header>
-                <h3>Partners Info</h3>
-                <br />
-            </header>
-            <div class="row">
-                <a href="Documentation/PartnersRequirements.txt">Partners Requirements</a>
-            </div>
-        </article>
-    </div>
-
-    <!-- Partners Wiki -->
-    <div class="wrapper wrapper-style1">
-        <article class="5grid-layout" id="wiki">
-            <header>
-                <h3>Conferences Wiki</h3>
-            </header>
-            <div class="row">
-                <a href="Documentation/Wiki/FrontPage.html">Documentation/Wiki/FrontPage.html</a><br />
-                <a href="Documentation/Wiki/">Documentation/Wiki/</a>
-            </div>
         </article>
     </div>
 
