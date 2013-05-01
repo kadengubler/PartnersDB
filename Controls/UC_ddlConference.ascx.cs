@@ -22,6 +22,23 @@ public partial class Controls_UC_ddlConference : System.Web.UI.UserControl
         }
     }
 
+    public string GetSelectedValue
+    {
+        get
+        {
+            return ddl_Conference.SelectedValue;
+        }
+    }
+
+    public string GetSelectedItem
+    {
+        get
+        {
+            return ddl_Conference.SelectedItem.ToString();
+        }
+    }
+    
+
     protected void DropDownSelectionChanged(object sender, EventArgs e)
     {
         if (DropDownSelected != null)

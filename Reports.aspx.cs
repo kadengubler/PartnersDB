@@ -15,10 +15,13 @@ public partial class Reports : System.Web.UI.Page
     protected void Reports_DropDownSelected(object sender, EventArgs e)
     {
         ddl_Conference_SelectedIndexChanged(sender, e);
+
     }
 
     protected void ddl_Conference_SelectedIndexChanged(object sender, EventArgs e)
     {
+        lblConference.Text = ddl_Conference.GetSelectedItem;
+
        if (ddl_Conference.GetSelectedIndex == 0)        
         {
             ddl_Report.Visible = false;
@@ -34,7 +37,7 @@ public partial class Reports : System.Web.UI.Page
         {
             //Custom Report
             //*** code to allow user to select fields to show in report ***
-            gvAttendee.Visible = true;
+            gvAttendee.Visible = true;            
             gvAttendee.Focus();
         }
 

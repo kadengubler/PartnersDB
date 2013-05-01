@@ -38,16 +38,7 @@
                 <div class="row">
                     <div class="12u">
                         <asp:SqlDataSource ID="SqlDataSource2" runat="server"></asp:SqlDataSource>
-                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
-                        <%--<asp:DropDownList ID="ddl_Conference" runat="server" OnSelectedIndexChanged="ddl_Conference_SelectedIndexChanged" AutoPostBack="True">
-                            <asp:ListItem>--Please Select Conference--</asp:ListItem>
-                            <asp:ListItem value="all">All Conferences</asp:ListItem>
-                            <asp:ListItem Value="cr">Crossroads</asp:ListItem>
-                            <asp:ListItem Value="oe">Operational Excellence</asp:ListItem>
-                            <asp:ListItem Value="acct">Accounting</asp:ListItem>
-                            <asp:ListItem Value="it">Information Technology</asp:ListItem>
-                            <asp:ListItem Value="lead">Leadership</asp:ListItem>
-                        </asp:DropDownList>--%>
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />                       
 
                         <uc1:UC_ddlConference runat="server" ID="ddl_Conference" OnDropDownSelected="Reports_DropDownSelected" AutoPostBack="True" />
 
@@ -121,7 +112,7 @@
                 <div class="wrapper wrapper-style3">
                     <article class="5grid-layout">
                         <header>
-                            <h2>List of attendees at past conferences</h2>
+                            <h2>List of attendees at the <asp:Label ID="lblConference" runat="server" Text=""></asp:Label> conference.</h2>
                             <span></span>
                         </header>
 
@@ -132,15 +123,19 @@
                                 <asp:GridView ID="gvAttendees" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
                                     <AlternatingRowStyle CssClass="alt"></AlternatingRowStyle>
                                     <Columns>
-                                        <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
-                                        <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+                                        <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
+                                        <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
                                         <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
                                         <asp:BoundField DataField="OrgName" HeaderText="Organization" SortExpression="OrgName" />
                                     </Columns>
 
                                     <PagerStyle CssClass="pgr"></PagerStyle>
                                 </asp:GridView>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.FirstName, Contacts.LastName, Contacts.Title, Contacts.OrgID, Organization.OrgName FROM Contacts INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.FirstName, Contacts.LastName, Contacts.Title, Contacts.OrgID, Organization.OrgName FROM Contacts INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID INNER JOIN ConferenceAttendees ON Contacts.ContactID = ConferenceAttendees.ContactID INNER JOIN Conference ON ConferenceAttendees.ConferenceID = Conference.ConferenceID WHERE (Conference.ConferenceTitle = @ConferenceTitle)">
+                                    <SelectParameters>
+                                        <asp:ControlParameter ControlID="ddl_Conference" Name="ConferenceTitle" PropertyName="GetSelectedValue" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
                         </div>
                     </article>

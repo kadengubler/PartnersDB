@@ -22,7 +22,8 @@
         <article class="5grid-layout" id="Article1">
             <header>
                 <h2>Partnerships</h2>
-                <span>This page contains a list of current partnerships.</span>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                <span></span>
             </header>
             <div class="5grid">
                 <div class="row">
@@ -65,7 +66,7 @@
                                 </asp:GridView>
                                 <asp:SqlDataSource ID="PartnershipUse" runat="server" ConnectionString="<%$ ConnectionStrings:PartnersConnectionString %>" SelectCommand="SELECT Contacts.FirstName, Contacts.LastName, Contacts.Title, Organization.OrgName, Contacts.Department, Conference.ConferenceTitle, ConferenceAttendees.DaysAttending, ConferenceAttendees.TotalPrice, ConferenceAttendees.PartnershipID, Conference.StartingDate, Conference.TotalDays FROM ConferenceAttendees INNER JOIN Conference ON ConferenceAttendees.ConferenceID = Conference.ConferenceID INNER JOIN Contacts ON ConferenceAttendees.ContactID = Contacts.ContactID INNER JOIN Organization ON Contacts.OrgID = Organization.OrgID WHERE (ConferenceAttendees.PartnershipID = @PartnershipID)">
                                     <SelectParameters>
-                                        <asp:ControlParameter ControlID="GridView1" Name="PartnershipID" PropertyName="SelectedValue" />
+                                        <asp:ControlParameter ControlID="gvPartners" Name="PartnershipID" PropertyName="SelectedValue" />
                                     </SelectParameters>
                                 </asp:SqlDataSource>
 
