@@ -121,16 +121,19 @@ public partial class Registration : System.Web.UI.Page
             cmd9.Parameters.AddWithValue("@Lname", lName.Text);
             con.Open();
             SqlDataReader reader9 = cmd9.ExecuteReader();
-            con.Close();
             reader9.Read();
             Status = reader9.GetInt32(0);
-            if (Status == 1)
+
+            con.Close();
+
+            if (Status > 0)
             {
-                
+
             }
             else
             {
                 //Add behavior for a failed unique validation
+                Response.Redirect("Error.html");
             }
         }
         
@@ -235,9 +238,9 @@ public partial class Registration : System.Web.UI.Page
 
         if (ddl_RegistrationType.SelectedValue == "Student/Faculty")
         {
-            SqlCommand cmdAddStudent = new SqlCommand("INSERT INTO Student(Anumber, ContactID) VALUES(@Anumber, @ContactID)", con);
-            cmdAddStudent.Parameters.AddWithValue("@ContactID", ContactID);
+            SqlCommand cmdAddStudent = new SqlCommand("	IF NOT EXISTS (SELECT @Anumber FROM Student WHERE Anumber = @Anumber)	INSERT INTO Student(Anumber, ContactID) VALUES(@Anumber, @ContactID)", con);
             cmdAddStudent.Parameters.AddWithValue("@Anumber", aNumber.Text);
+            cmdAddStudent.Parameters.AddWithValue("@ContactID", ContactID);
             con.Open();
             cmdAddStudent.ExecuteNonQuery();
             con.Close();

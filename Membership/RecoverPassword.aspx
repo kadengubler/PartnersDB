@@ -15,7 +15,7 @@
                     <div class="12u">
                         <div class="5grid">
                             <div class="row">
-                                <div class="6u">
+                                <div class="12u">
                                     <div align="middle">
     <div>
         <asp:PasswordRecovery ID="PasswordRecovery1" runat="server" OnSendingMail="PasswordRecovery1_SendingMail"></asp:PasswordRecovery>

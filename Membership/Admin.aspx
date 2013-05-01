@@ -7,16 +7,12 @@
 
     <div class="wrapper wrapper-style2">
         <article class="5grid-layout" id="search">
-            <header>
-                <h2>Login</h2>
-                <span>Log in to access the Partners In Business database.</span>
-            </header>
             <div class="5grid">
                 <div class="row">
                     <div class="12u">
                         <div class="5grid">
                             <div class="row">
-                                <div class="6u">
+                                <div class="12u">
                                     <div align="middle">
         <uc1:CurrentUserInfo ID="CurrentUserInfo1" runat="server" />
         <br />

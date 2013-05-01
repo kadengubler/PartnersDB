@@ -24,8 +24,6 @@
                                                         <td>
                                                             <table cellpadding="15px" cellspacing="15px">
                                                                 <tr>
-                                                                    <td colspan="2">
-                                                                        &nbsp;</td>
                                                                     <td align="center" colspan="4" style="color:Red;">
                                                                         <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
                                                                     </td>
@@ -41,7 +39,7 @@
                                                                 <tr>
                                                                     <td width="200px" colspan="2">
                                                                         <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
-                                                                        <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>&nbsp;
+                                                                        <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                                                                     </td>
 
                                                                     <td width="200px" colspan="2">
