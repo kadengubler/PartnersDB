@@ -149,10 +149,32 @@ public partial class Registration : System.Web.UI.Page
 
     protected void Register()
     {
-        //submit form data to the DB
-        int OrgID = 0, ContactID = 0, ConfID = 0;
-
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\Partners.mdf;Integrated Security=True");
+        
+        //submit form data to the DB
+        int OrgID = 0, ContactID = 0, ConfID = 0, Status = 0;
+        if (ddl_RegistrationType.SelectedValue.ToString() == "Student/Faculty")
+        {
+            SqlCommand cmd9 = new SqlCommand("usp_ValidateUniqueAnumber", con);
+            cmd9.CommandType = CommandType.StoredProcedure;
+            cmd9.Parameters.AddWithValue("@Anumber", aNumber.Text);
+            cmd9.Parameters.AddWithValue("@Fname", fName.Text);
+            cmd9.Parameters.AddWithValue("@Lname", lName.Text);
+            con.Open();
+            SqlDataReader reader9 = cmd9.ExecuteReader();
+            con.Close();
+            reader9.Read();
+            Status = reader9.GetInt32(0);
+            if (Status == 1)
+            {
+                
+            }
+            else
+            {
+                //Add behavior for a failed unique validation
+            }
+        }
+        
         SqlCommand cmd5 = new SqlCommand("usp_NewOrg", con);
         cmd5.CommandType = CommandType.StoredProcedure;
         cmd5.Parameters.AddWithValue("@OrgName", company.Text);
