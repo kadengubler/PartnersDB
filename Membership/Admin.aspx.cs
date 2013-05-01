@@ -96,6 +96,6 @@ public partial class Membership_Admin : System.Web.UI.Page
         cbx.Enabled = false;
 
         GridView1.EditIndex = -1;
-        GridView1.DataBind();
+        GridView1.DataBind(); 
     }
 }
