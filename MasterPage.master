@@ -40,9 +40,40 @@
                 <li><a href="<%= Page.ResolveUrl("~/Reports/Reports.aspx") %>">Reports</a></li>
                 <li><a href="<%= Page.ResolveUrl("~/Conferences.aspx") %>">Conferences</a></li>
                 <li><a href="<%= Page.ResolveUrl("~/Documentation/Documentation.aspx") %>">Help</a></li>
-                <li style="position:absolute; right:10px"><asp:LoginStatus ID="LoginStatus1" runat="server" /></li>
+                <li style="position:absolute; right:95px">
+                    <asp:LoginView ID="LoginView1" runat="server">
+                        <AnonymousTemplate>
+                            <a href="<%= Page.ResolveUrl("~/Membership/Login.aspx") %>">
+                                <img height="25px" alt="Settings" src="<%= Page.ResolveUrl("~/images/settings.png") %>" />
+                            </a>
+                        </AnonymousTemplate>
+                        <RoleGroups>
+                            <asp:RoleGroup Roles="Admin">
+                                <ContentTemplate>
+                                    <a href="<%= Page.ResolveUrl("~/Membership/Admin.aspx") %>">Admin 
+                                        
+                                    </a>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                            <asp:RoleGroup Roles="User">
+                                <ContentTemplate>
+                                    <a href="<%= Page.ResolveUrl("~/Membership/User.aspx") %>">
+                                        <img height="25px" alt="Settings" src="<%= Page.ResolveUrl("~/images/doublegear.png") %>" />
+                                    </a>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                        </RoleGroups>
+                    </asp:LoginView>
+                </li>
+                <li style="position:absolute; right:10px">
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                </li>
             </ul>
             
+
+
+
+
         </nav>
         <div>
             <asp:ContentPlaceHolder ID="body" runat="server">
